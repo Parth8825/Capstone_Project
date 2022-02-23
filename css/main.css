@@ -4,78 +4,88 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Cinzel', serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
 }
 
-/* Style the header */
+/* HEADER */
 header {
-    background-color: #666;
+    background-color: whitesmoke;
     padding: 15px;
     text-align: center;
-    font-size: 35px;
-    color: rgb(192, 173, 63);
+    font-size: 20px;
+    color: black;    
+    text-transform: uppercase;
 }
 
-#nav_menu {
-    clear: both;
-    border-top: 3px groove black;
-
+header h2{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-top: 4px double gray;
+    border-bottom: 4px double gray;
+    margin: 2% 28%;
+    font-size: 168%;
+    border-radius: 12px;
+    padding: 7.5px 0;
 }
-#nav_menu ul {
-    margin: 0;
-	padding: 0; 
-    list-style-type: none;
-	position: relative;
+
+/* NAVIGATION BAR CSS*/
+nav {
     width: 100%;
-}
-
-#nav_menu ul li { 
-	float: left;
-    width: 16.666%;
-    border: .5px dotted wheat;
-}
-#nav_menu ul li a {
+    margin: 0 auto;
+    background: #fff;
+    padding: 10px 0;
+    box-shadow: 0px 5px 0px #dedede;
+  }
+  
+  nav ul {
+    list-style: none;
     text-align: center;
+  }
+  nav ul li {
+    display: inline-block;
+  }
+  nav ul li a {
     display: block;
-    padding: 1em 0;
+    padding: 1px 15px 1px 15px;
     text-decoration: none;
-    background-color: #666;
-    color: white;
-	font-weight: bold; 
+    color: black;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 135%;
+  }
+  nav ul li a,
+  nav ul li a:after,
+  nav ul li a:before {
+    transition: all .5s;
+  }
+  nav ul li a:hover {
+    color: #666;
+  }
+  
+nav.nav_menu ul li a {
+  position: relative;
 }
-
-
-/* Create two columns/boxes that floats next to each other */
-#nav_area {
-    float: left;
-    border-right: 1px solid black;
-    width: 16.666%;
-    height: 400px;
-    /* only for demonstration, should be removed */
-    background: #ccc;
-    padding: 20px;
+nav.nav_menu ul li a:after{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: black;
+  height: 2px;
 }
-
-/* Style the list inside the menu */
-#nav_area ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#nav_area ul li a {
-    display: block;
-    padding: 5px 0;
-    padding-left: 5px;
-    text-decoration: none;
-    background-color: #666;
-    color: white;
-	font-weight:lighter; 
+nav.nav_menu ul li a:hover:after {
+  width: 100%;
 }
 
 main {
     float: left;
     padding: 20px;
-    width: 83.334%;
+    width: 100%;
     background-color: #f1f1f1;
     height: 400px;
     /* only for demonstration, should be removed */
@@ -103,8 +113,7 @@ footer {
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
-
-   
+/*    
     #nav_menu ul li { 
         float: left;
         width: 50%;
@@ -114,5 +123,83 @@ footer {
     article {
         width: 100%;
         height: auto;
+    } */
+
+    nav ul li a{
+        padding: 20px;
     }
+
+    header h2{
+        margin: 0 15%;
+    }
+}
+
+@media (max-width: 1000px) {
+    nav ul li a{
+        padding: 20px;
+    }
+
+    header h2{
+        margin: 0 15%;
+    }
+}
+
+
+/* BUTTON CSS*/
+.btn {
+    width: 220px;
+    height: 50px;
+    border: 2px solid #333;
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    transition: 1s;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+    .btn::before, .btn::after {
+        position: absolute;
+        background: #eee;
+        z-index: -1;
+        transition: 1s;
+        content: '';
+    }
+
+    .btn::before {
+        height: 50px;
+        width: 200px;
+    }
+
+    .btn::after {
+        width: 220px;
+        height: 30px;
+    }
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn:hover::before {
+    width: 0px;
+    background: #fff;
+}
+
+.btn:hover::after {
+    height: 0px;
+    background: #fff;
+}
+
+.btn:hover {
+    background: #fff;
 }
