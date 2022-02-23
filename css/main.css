@@ -14,10 +14,19 @@ header {
     padding: 15px;
     text-align: center;
     font-size: 20px;
-    color: black;
+    color: black;    
     text-transform: uppercase;
 }
 
+header h2{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-top: 4px double gray;
+    border-bottom: 4px double gray;
+    margin: 2% 28%;
+    font-size: 168%;
+    border-radius: 12px;
+    padding: 7.5px 0;
+}
 
 /* NAVIGATION BAR CSS*/
 nav {
@@ -51,7 +60,7 @@ nav {
     transition: all .5s;
   }
   nav ul li a:hover {
-    color: #555;
+    color: #666;
   }
   
 nav.nav_menu ul li a {
@@ -66,71 +75,11 @@ nav.nav_menu ul li a:after{
   width: 0%;
   content: '.';
   color: transparent;
-  background: #333;
-  height: 1px;
+  background: black;
+  height: 2px;
 }
 nav.nav_menu ul li a:hover:after {
   width: 100%;
-}
-
-
-/* #nav_menu {
-    clear: both;
-}
-#nav_menu ul {
-    margin: 0;
-	padding: 0; 
-    list-style-type: none;
-	position: relative;
-    width: 100%;
-}
-
-#nav_menu ul li { 
-    margin: 1% 0;
-	float: left;
-    padding: 0 1% ;    
-    width: 16.666%;
-}
-#nav_menu ul li a {
-    text-align: center;
-    display: block;
-    padding: 7.5% 0;
-    text-decoration: none;
-    background-color: #3A3C82;
-    opacity: 80%;
-    border: 2px solid lightblue ;
-    box-shadow: 7.5px 10px 30px navy ;
-    color: white;
-    border-radius: 10px;
-	font-weight: bold; 
-} */
-
-
-/* Create two columns/boxes that floats next to each other */
-nav.nav_area {
-    float: left;
-    border-right: 1px solid black;
-    width: 16.666%;
-    height: 400px;
-    /* only for demonstration, should be removed */
-    background: #ccc;
-    padding: 20px;
-}
-
-/* Style the list inside the menu */
-nav.nav_area ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav.nav_area ul li a {
-    display: block;
-    padding: 5px 0;
-    padding-left: 5px;
-    text-decoration: none;
-    background-color: #666;
-    color: white;
-	font-weight:lighter; 
 }
 
 main {
@@ -179,18 +128,26 @@ footer {
     nav ul li a{
         padding: 20px;
     }
+
+    header h2{
+        margin: 0 15%;
+    }
 }
 
-@media (max-width: 858px) {
+@media (max-width: 1000px) {
     nav ul li a{
         padding: 20px;
+    }
+
+    header h2{
+        margin: 0 15%;
     }
 }
 
 
 /* BUTTON CSS*/
 .btn {
-    width: 180px;
+    width: 220px;
     height: 50px;
     border: 2px solid #333;
     font-family: 'Cinzel', serif;
@@ -217,11 +174,11 @@ footer {
 
     .btn::before {
         height: 50px;
-        width: 160px;
+        width: 200px;
     }
 
     .btn::after {
-        width: 180px;
+        width: 220px;
         height: 30px;
     }
 
