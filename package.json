@@ -1,0 +1,24 @@
+{
+  "name": "capstone_project",
+  "version": "1.0.0",
+  "description": "Academic Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parth8825/Capstone_Project.git"
+  },
+  "author": "Parth, Renil, Tara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Parth8825/Capstone_Project/issues"
+  },
+  "homepage": "https://github.com/Parth8825/Capstone_Project#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "ejs": "*"
+  }
+}
