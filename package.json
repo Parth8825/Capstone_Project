@@ -20,6 +20,7 @@
   "dependencies": {
     "express": "^4.17.3",
     "ejs": "*",
-    "body-parser": "*"
+    "body-parser": "*",
+    "express-validator": "*"
   }
 }
