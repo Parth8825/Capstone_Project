@@ -3,7 +3,7 @@ const { fuchsia } = require('color-name');
 var express =  require('express');
 var path = require('path');
 
-//create an expres
+//create an express
 var ourApp = express();
 
 //set up the path to public folder and views
@@ -44,7 +44,7 @@ ourApp.get('/attendance',function(req,res){
     res.render('attendance');
 });
 //listen for request at port 8080
-ourApp.listen(8825);
+ourApp.listen(8080);
 
 //just printing execution successful
 console.log("execute successfully: localhost:8080");
