@@ -7,6 +7,10 @@ body {
   /* font-family: Arial, Helvetica, sans-serif; */
 }
 
+button a {
+  text-decoration: none;
+}
+
 /* HEADER */
 header {
   background-color: whitesmoke;
@@ -28,65 +32,11 @@ header h2 {
   padding: 7.5px 0;
 }
 
-/* NAVIGATION BAR CSS*/
-nav {
-  width: 100%;
-  margin: 0 auto;
-  background: #fff;
-  padding: 10px 0;
-  box-shadow: 0px 5px 0px #dedede;
-}
-
-nav ul {
-  list-style: none;
-  text-align: center;
-}
-nav ul li {
-  display: inline-block;
-}
-nav ul li a {
-  display: block;
-  padding: 1px 15px 1px 15px;
-  text-decoration: none;
-  color: black;
-  font-weight: 500;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 135%;
-}
-nav ul li a,
-nav ul li a:after,
-nav ul li a:before {
-  transition: all 0.5s;
-}
-nav ul li a:hover {
-  color: #666;
-}
-
-nav.nav_menu ul li a {
-  position: relative;
-}
-nav.nav_menu ul li a:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 0%;
-  content: ".";
-  color: transparent;
-  background: black;
-  height: 2px;
-}
-nav.nav_menu ul li a:hover:after {
-  width: 100%;
-}
-
 main {
   float: left;
   padding: 20px;
   width: 100%;
-  background-color: #f1f1f1;
+  background-color: #eee;
   height: 580px;
   /* only for demonstration, should be removed */
 }
@@ -142,6 +92,11 @@ footer {
   header h2 {
     margin: 0 15%;
   }
+}
+
+a {
+  text-decoration: none;
+  color: #333;
 }
 
 /* BUTTON CSS*/
