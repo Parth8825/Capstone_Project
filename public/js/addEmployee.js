@@ -1,5 +1,6 @@
 
 function detailSubmit(){
+    return true;
     var result = '';
     var errors = '';
 
@@ -35,7 +36,7 @@ function detailSubmit(){
     }
     else{
 
-        return true; // this will allow the form to be submitted if there are no errors
+        return true;// this will allow the form to be submitted if there are no errors
         result = "Employee Name: " + employeeName + "<br>" +
                  "Email: " + email +"<br>" +
                  "phone: " + phone +"<br>" +

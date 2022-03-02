@@ -1,37 +1,84 @@
-<%- include('layouts/header'); -%>         
-<main>
+<%- include('layouts/header'); -%>
+  <main>
     <h1>Add Employee Details</h1>
     <form name="Employee" method="post" onsubmit="return detailSubmit();" action="">
-        <label>Emoplyee Name: </label>             
-        <input id="name" placeholder="First and Last name" type="text" name="name"><br/>
+      <label>Emoplyee Name: </label>
+      <input id="name" placeholder="First and Last name" type="text" name="name" /><br />
 
-        <label>Email: </label>
-        <input id="email" placeholder="email@domain.com" type="email" name="email"><br/>
+      <label>Email: </label>
+      <input id="email" placeholder="email@domain.com" type="email" name="email" /><br />
 
-        <label>Phone: </label>
-        <input id="phone" placeholder="123-123-1234" type="phone" name="phone"><br/>
+      <label>Phone: </label>
+      <input id="phone" placeholder="123-123-1234" type="phone" name="phone" /><br />
 
-        <label>Full-time OR Part-time: </label>
-        <input type="radio" value="Full-time" id="radioOne" name="time">Full-time
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="radio" value="Part-time" id="radioSecond" name="time">Part-time
-        <br/>
-        <label>Address: </label>
-        <input id="address" type="address" name="address"><br/>
-        <label>Post Code: </label>
-        <input id="postcode" placeholder="X9X 9X9" type="postcode" name="postcode"><br/>
+      <label>Full-time OR Part-time: </label>
+      <input type="radio" value="Full-time" id="radioOne" name="time" />Full-time
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" value="Part-time" id="radioSecond" name="time" />Part-time
+      <br />
+      <label>Address: </label>
+      <input id="address" type="address" name="address" /><br />
+      <label>Post Code: </label>
+      <input id="postcode" placeholder="X9X 9X9" type="postcode" name="postcode" /><br />
 
-        <label>Position: </label>             
-        <input id="position" type="text" name="position"><br/>
-        
-        <label>Payrate: </label>             
-        <input id="payrate" type="number" name="payrate"> per hour<br/>
+      <label>Position: </label>
+      <input id="position" type="text" name="position" /><br />
 
-        <p id="errors"></p>
-        <input type="submit" value="submit">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="cancel"><a href="/">Cancel</a></button>
+      <label>Payrate: </label>
+      <input id="payrate" type="number" name="payrate" /> per hour<br />
+
+      <p id="errors"></p>
+      <input type="submit" value="submit" />
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="cancel"><a href="/">Cancel</a></button>
     </form>
-    <p id="employeeDetail"></p>
-</main>
-<%- include('layouts/footer'); -%>
+    <section>
+      <h2>Employee Data</h2>
+      <table>
+        <tr>
+          <th>Name: </th>
+          <td>
+            <%= name %>
+          </td>
+        </tr>
+        <tr>
+          <th>Email: </th>
+          <td>
+            <%= email %>
+          </td>
+        </tr>
+        <tr>
+          <th>Phone: </th>
+          <td>
+            <%= phone %>
+          </td>
+        </tr>
+        <tr>
+          <th>Address: </th>
+          <td>
+            <%= address %>
+          </td>
+        </tr>
+        <tr>
+          <th>Postcode: </th>
+          <td>
+            <%= postcode %>
+          </td>
+        </tr>
+        <tr>
+          <th>Position: </th>
+          <td>
+            <%= position %>
+          </td>
+        </tr>
+        <tr>
+          <th>Payrate: </th>
+          <td>
+            <%= payrate %>
+          </td>
+        </tr>
+      </table>
+
+    </section>
+  </main>
+  <%- include('layouts/footer'); -%>
