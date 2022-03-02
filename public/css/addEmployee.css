@@ -1,7 +1,17 @@
+body{
+  text-transform: uppercase;
+}
 
 form{
     margin: 3% 0 0 10%;
-    font-size: 125%;
+    font-size: 110%;
+}
+
+h1{
+  border-bottom: 4px double gray;
+  margin: 2% 38%;
+  font-size: 145%;
+  border-radius: 12px;
 }
 
 /* BUTTON CSS*/
@@ -10,13 +20,17 @@ form{
 }
 
 .space{
-    margin: 0  0 1% 2%;
+    margin: 0  0 1% 5%;
     width: 20%;
     padding: .3%;
 }
 
 .radioBtn{
-    margin: 0  .8% 1% 2%;
+    margin: 0 .8% 1% 2%;
+}
+
+.buttons{
+  display: flex;
 }
 
 #cancel{
@@ -28,10 +42,11 @@ form{
     color: #333;
   }
 
-  .btn {
+  /* BUTTON CANCEL */
+  .btnCancel {
     width: 180px;
     height: 40px;
-    border: 2px solid #333;
+    border: 2px solid darkred;
     font-family: "Cinzel", serif;
     font-size: 18px;
     cursor: pointer;
@@ -46,8 +61,8 @@ form{
     text-transform: uppercase;
   }
   
-  .btn::before,
-  .btn::after {
+  .btnCancel::before,
+  .btnCancel::after {
     position: absolute;
     background: #eee;
     z-index: -1;
@@ -55,12 +70,12 @@ form{
     content: "";
   }
   
-  .btn::before {
+  .btnCancel::before {
     height: 40px;
     width: 160px;
   }
   
-  .btn::after {
+  .btnCancel::after {
     width: 180px;
     height: 20px;
   }
@@ -73,16 +88,78 @@ form{
     user-select: none;
   }
   
-  .btn:hover::before {
+  .btnCancel:hover::before {
     width: 0px;
-    background: #fff;
+    background: darkred ;
   }
   
-  .btn:hover::after {
+  .btnCancel:hover::after {
     height: 0px;
-    background: #fff;
+    background: darkred;
   }
   
-  .btn:hover {
-    background: #fff;
+  .btnCancel:hover {
+    background: darkred;
+    color: #eee;
+  }
+
+   /* BUTTON SUBMIT */
+   .btnSubmit {
+    width: 180px;
+    height: 40px;
+    border: 2px solid darkgreen;
+    font-family: "Cinzel", serif;
+    font-size: 18px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    transition: 1s;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  
+  .btnSubmit::before,
+  .btnSubmit::after {
+    position: absolute;
+    background: #eee;
+    z-index: -1;
+    transition: 1s;
+    content: "";
+  }
+  
+  .btnSubmit::before {
+    height: 40px;
+    width: 160px;
+  }
+  
+  .btnSubmit::after {
+    width: 180px;
+    height: 20px;
+  }
+  
+  .noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .btnSubmit:hover::before {
+    width: 0px;
+    background: darkgreen;
+  }
+  
+  .btnSubmit:hover::after {
+    height: 0px;
+    background: darkgreen;
+  }
+  
+  .btnSubmit:hover {
+    background: darkgreen;
+    color: #eee;
   }
