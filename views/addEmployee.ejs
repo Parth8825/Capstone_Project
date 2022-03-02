@@ -1,54 +1,44 @@
 <%- include('layouts/header'); -%>
-  <%- include('layouts/navigation'); -%>
-    <main>
-      <h1>Add Employee Details</h1>
-      <form name="Employee" method="post" onsubmit="return detailSubmit();" action="">
-        <div class="textboxes">
-          <label>First Name: </label>
-          <input id="firstname" placeholder="First name" type="text" name="firstname" class="space"><br />
+  <main>
+    <h1>Add Employee Details</h1>
+    <form name="Employee" method="post" onsubmit="return detailSubmit();" action="">
+      <div class="textboxes">
+        <label>First Name: </label>
+        <input id="firstname" placeholder="First name" type="text" name="firstname" class="space"><br />
 
-          <label>Last Name: </label>
-          <input id="lastname" placeholder="Last name" type="text" name="lastname" class="space"><br />
+        <label>Last Name: </label>
+        <input id="lastname" placeholder="Last name" type="text" name="lastname" class="space"><br />
 
-          <label>Email: </label>
-          <input id="email" placeholder="email@domain.com" type="email" name="email" class="space"><br />
+        <label>Email: </label>
+        <input id="email" placeholder="email@domain.com" type="email" name="email" class="space"><br />
 
-          <label>Phone: </label>
-          <input id="phone" placeholder="123-123-1234" type="phone" name="phone" class="space"><br />
+        <label>Phone: </label>
+        <input id="phone" placeholder="123-123-1234" type="phone" name="phone" class="space"><br />
 
-          <label>Address: </label>
-          <input id="address" type="address" name="address" class="space"><br />
-          <label>Post Code: </label>
-          <input id="postcode" placeholder="X9X 9X9" type="postcode" name="postcode" class="space"><br />
+        <label>Address: </label>
+        <input id="address" type="address" name="address" class="space"><br />
+        <label>Post Code: </label>
+        <input id="postcode" placeholder="X9X 9X9" type="postcode" name="postcode" class="space"><br />
 
-          <label>Position: </label>
-          <input id="position" type="text" name="position" class="space"><br />
+        <label>Position: </label>
+        <input id="position" type="text" name="position" class="space"><br />
 
+        <label>Payrate: </label>
+        <input id="payrate" type="number" name="payrate" class="space"> per hour<br />
 
-          <label>Payrate: </label>
-          <input id="payrate" type="number" name="payrate" class="space"> per hour<br />
+        <p id="errors">Error massege zdhasodifhalsdkfgbdslifbdhb</p>
 
-          <p id="errors"></p>
+      </div>
+      <div class="buttons">
+        <button class="btnSubmit" id="submit"> Submit </button>
 
-        </div>
-        <div class="buttons">
-          <button class="btnSubmit" id="submit"> Submit </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="/" id="cancel" class="btnCancel">Cancel </a>
+      </div>
 
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="/" id="cancel" class="btnCancel">Cancel </a>
-        </div>
-
-      </form>
-      <p id="employeeDetail"></p>
-    </main>
-    <%- include('layouts/footer'); -%>
-
-      <p id="errors"></p>
-      <input type="submit" value="submit" />
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="cancel"><a href="/">Cancel</a></button>
-      </form>
-      <section>
+    </form>
+    <section>
+      <% if(typeof(payrate) !='undefined' ){ %>
         <h2>Employee Data</h2>
         <table>
           <tr>
@@ -94,7 +84,7 @@
             </td>
           </tr>
         </table>
-
-      </section>
-      </main>
-      <%- include('layouts/footer'); -%>
+        <% } %>
+    </section>
+  </main>
+  <%- include('layouts/footer'); -%>

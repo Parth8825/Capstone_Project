@@ -37,7 +37,7 @@ main {
   padding: 20px;
   width: 100%;
   background-color: #eee;
-  height: 580px;
+  height: 100%;
   /* only for demonstration, should be removed */
 }
 

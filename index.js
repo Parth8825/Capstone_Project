@@ -33,7 +33,8 @@ ourApp.get('/addEmployee',function(req,res){
 
 // Post employee details
 ourApp.post('/addEmployee', function(req,res){
-    var name = req.body.name;
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
     var email = req.body.email;
     var phone = req.body.phone;
     var address = req.body.address;
@@ -41,6 +42,7 @@ ourApp.post('/addEmployee', function(req,res){
     var position = req.body.position;
     var payrate = req.body.payrate;
 
+    var name = firstname + " " + lastname;
     //storing values in object called "employeeData"
     var employeeData = {
         name: name,
