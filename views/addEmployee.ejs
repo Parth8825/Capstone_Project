@@ -1,6 +1,6 @@
 <%- include('layouts/header'); -%>
   <main>
-    <h1>Add Employee Details</h1>
+    <h1 id="addEmployee">Add Employee Details</h1>
     <form name="Employee" method="post" onsubmit="return detailSubmit();" action="">
       <div class="textboxes">
         <label>First Name: </label>
@@ -38,13 +38,13 @@
 
     </form>
     <section class="errors">
+      <% if(typeof(errors) !='undefined' ){ %>
       <div style="border: 5px double #333;">
       <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-        
-          <p><%= error.msg %></p>
-        
+            <p><%= error.msg %></p>      
         <% } } %>
       </div>
+      <% } %>
           <% if(typeof(payrate) !='undefined' ){ %>
             <h2>Employee Data</h2>
             <table>
