@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#employeeDetails{
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande","Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border: 3px solid #333;
+  padding: .5%;
+  color: #333;
+  margin: 2% 38%;
+  font-size: 160%;
+  border-radius: 20px 0 20px 0;
+}
+
+table{
+    border-radius: 12px;
+    width: 100%;
+    font-size: 115%;
+    text-transform: capitalize;
+}
+
+thead tr th{
+    text-align: center;
+    align-items: center;
+    border-bottom: 4px double gray;
+    border-radius: 20px;
+}
+
+tbody tr td{
+    padding: 0.91% 0 .91% 0 ;
+    border-bottom: 1px solid gray;  
+}

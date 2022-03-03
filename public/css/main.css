@@ -22,10 +22,9 @@ header {
 }
 
 header h2 {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande","Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   border-top: 4px double gray;
-  border-bottom: 4px double gray;
+  border-bottom : 4px double gray;
   margin: 2% 28%;
   font-size: 168%;
   border-radius: 12px;
