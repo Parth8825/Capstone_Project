@@ -21,6 +21,7 @@
     "express": "^4.17.3",
     "ejs": "*",
     "body-parser": "*",
-    "express-validator": "*"
+    "express-validator": "*",
+    "mongoose": "*"
   }
 }
