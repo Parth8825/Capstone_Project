@@ -3,8 +3,9 @@ body {
 }
 
 form {
-  margin: 3% 0 0 10%;
-  font-size: 110%;
+  margin: 1% 0 0 2%;
+  font-size: 175%;
+  width: 40%;
 }
 
 h1 {
@@ -14,19 +15,48 @@ h1 {
   border-radius: 12px;
 }
 
+form{
+  float: left;
+}
+
+.errors{
+  float:left;
+  text-align: center;
+  align-items: center;
+  margin: 2% 0 0 10%;
+  padding: 0;
+}
+
+.errors p {
+  padding: .5%;
+}
+
+label{
+  width: 125px;
+  display: inline-block;
+  font-size: 18px;
+  color:black;
+  margin: 0 5% 0 0;
+}
+
 /* BUTTON CSS*/
 #submit {
   float: left;
 }
 
-.space {
-  margin: 0 0 1% 5%;
-  width: 20%;
-  padding: 0.3%;
+#address{
+  padding: 3%;
 }
 
-.radioBtn {
-  margin: 0 0.8% 1% 2%;
+.space {
+  margin: 0 0 3% 0 ;
+  width: 60%;
+  height: 33px;
+  border-radius: .40em;
+  padding: .7%;
+  font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 10px;
 }
 
 .buttons {
