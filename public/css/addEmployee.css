@@ -9,7 +9,7 @@ form {
 }
 
 header{
-  /* display: none; */
+  display: none;
 }
 
 #addEmployee {
@@ -37,7 +37,7 @@ form{
   animation: animation 1s;
   /* animation-timing-function:cubic-bezier(0.6, 0.04, 0.98, 0.335); */
   animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  /* animation-timing-function:cubic-bezier(0.55, 0.055, 0.675, 0.19) */
+  /* animation-timing-function:cubic-bezier(0.55, 0.055, 0.675, 0.19); */
 }
 
 @keyframes animation {
@@ -60,7 +60,7 @@ form{
 }
 
 .errors p{
-  padding: 4.5%;
+  padding: 3.5%;
 }
 
 label{
