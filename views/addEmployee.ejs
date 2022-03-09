@@ -39,15 +39,13 @@
     </form>
     <section class="errors">
       <% if(typeof(errors) !='undefined' ){ %>
-        <div style="border: 5px double #333;">
-          <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-            <p>
-              <%= error.msg %>
-            </p>
-            <% } } %>
-        </div>
-        <% } %>
-          <!-- <% if(typeof(payrate) !='undefined' ){ %>
+      <div style="border: 3px double gray; border-bottom: 5px double gray; border-radius: 0 25px 0 25px;">
+      <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+            <p><%= error.msg %></p>      
+        <% } } %>
+      </div>
+      <% } %>
+          <% if(typeof(payrate) !='undefined' ){ %>
             <h2>Employee Data</h2>
             <table>
               <tr>
