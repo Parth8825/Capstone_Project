@@ -29,7 +29,6 @@ ourApp.use(bodyParser.urlencoded({extended: false}));
 
 // set up the path to public folder and views
 ourApp.set('views',path.join(__dirname,'views'));
-
 // set up the path for public stuff like CSS and javascript
 ourApp.use(express.static(__dirname + '/public'));
 
@@ -112,7 +111,7 @@ ourApp.post('/addEmployee', [
         var payrate = req.body.payrate;
     
         var name = firstname + " " + lastname;
-        //storing values in object called "employeeData"
+        // storing values in object called "employeeData"
         var employeeData = {
             name: name,
             email: email,
