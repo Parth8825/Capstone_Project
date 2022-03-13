@@ -4,6 +4,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 //setting up express validator
 const {check, validationResult} = require('express-validator');// ES6 standard for destructuring an object
+// get expression session
+const session = require('express-session');
 
 // set up DataBase connection
 const mongoose = require('mongoose');
@@ -21,11 +23,23 @@ const Employee= mongoose.model('Employee',{
     position: String,
     payrate: Number
 })
+// set up the model for admin
+const Admin = mongoose.model('Admin', {
+    username: String,
+    password: String
+});
+
 // set up variables to use packages
 // create an express
 var ourApp = express();
 // parse application/x-www-form-urlencoded
 ourApp.use(bodyParser.urlencoded({extended: false}));
+// set up session
+ourApp.use(session({
+    secret: 'superrandomsecret',
+    resave: false,
+    saveUninitialized: true
+}));
 
 // set up the path to public folder and views
 ourApp.set('views',path.join(__dirname,'views'));
@@ -42,7 +56,13 @@ ourApp.set('view engine', 'ejs');
 ourApp.get('/',function(req,res){
     //res.send('this one was showing in the browser');
     Employee.find({}).exec(function(err,employees){
-        res.render('employee', {employees: employees});
+        if(err){
+            res(err)
+        }
+        else{
+            res.render('employee', {employees: employees});
+        }
+        
     });
 });
 // Add Employee page
@@ -126,10 +146,22 @@ ourApp.post('/addEmployee', [
         ourEmployees.save().then(function(){
             console.log('New Employee created');
         });
+        res.redirect('/');
         // To display employee data
         res.render('addEmployee', employeeData);
     }
     
+});
+
+// delete employee data from database
+ourApp.get('/delete/:employeeId', function(req, res){
+    var employeeId = req.params.employeeId;
+    console.log(employeeId);
+    Employee.findByIdAndDelete({_id: employeeId}).exec(function(err, employee){
+        console.log('Error: ' + err);
+        console.log('Employee: ' + employee);
+        res.redirect('/');
+    });
 });
 
 // schedule page
@@ -148,8 +180,18 @@ ourApp.get('/inventory',function(req,res){
 ourApp.get('/attendance',function(req,res){
     res.render('attendance');
 });
+// login page
+ourApp.get('/login',function(req,res){
+    res.render('login');
+});
+// login form
+ourApp.post('/login', function(req, res){
+    var user = req.body.username;
+    var pass = req.body.password;
 
-
+    console.log(username);
+    console.log(password);
+});
 // listen for request at port 8080
 ourApp.listen(8080);
 
