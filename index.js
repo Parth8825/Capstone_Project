@@ -55,6 +55,7 @@ ourApp.set('view engine', 'ejs');
 // Home page (Employee page)
 ourApp.get('/',function(req,res){
     //res.send('this one was showing in the browser');
+    // check if thr user is logged in 
     if(req.session.userLoggedIn){
         Employee.find({}).exec(function(err,employees){
             if(err){
@@ -72,7 +73,13 @@ ourApp.get('/',function(req,res){
 });
 // Add Employee page
 ourApp.get('/addEmployee',function(req,res){
-    res.render('addEmployee');
+    // check if thr user is logged in 
+    if(req.session.userLoggedIn){
+        res.render('addEmployee');
+    }
+    else{
+        res.redirect('/login');
+    }
 });
 
 // Defining regular expressions
@@ -110,7 +117,7 @@ function customPayrateValication(value){
     }
     return true;
 }
-// Post employee details
+// Add employee details
 ourApp.post('/addEmployee', [
     check('firstname', 'First name is required').not().isEmpty(),
     check('lastname', 'Last name is required').not().isEmpty(),
@@ -120,7 +127,6 @@ ourApp.post('/addEmployee', [
     check('payrate').custom(customPayrateValication)
 ],function(req,res){
     const errors = validationResult(req);
-    if(req.session.userLoggedIn){
         if(!errors.isEmpty()){
             res.render('addEmployee',{
                 errors:errors.array()
@@ -156,26 +162,111 @@ ourApp.post('/addEmployee', [
             // To display employee data
             // res.render('employee', employeeData);
         }
+
+    
+});
+// edit employee details [get]
+ourApp.get('/edit/:employeeId', function(req,res){
+    // check if thr user is logged in 
+    if(req.session.userLoggedIn){
+        var employeeId = req.params.employeeId;
+        console.log(employeeId);
+        Employee.findOne({_id: employeeId}).exec(function(err, employee){
+            console.log('Error: ' + err);
+            console.log('Employee: ' + employee);
+            if(employee){
+                res.render('editEmployee', {employee: employee});
+            }
+            else{
+                res.send('No employee found with that id..');
+            }
+        });
     }
     else{
         res.redirect('/login');
     }
-    
+});
+// edit employee details [post]
+ourApp.post('/edit/:id',[
+    check('name', 'Name is required').not().isEmpty(),
+    check('email', 'Email is required').isEmail(),
+    check('phone').custom(customPhoneValidation),
+    check('postcode').custom(customPostcodeValidation),
+    check('payrate').custom(customPayrateValication)
+], function(req, res){
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        var employeeId = req.params.employeeId;
+        console.log(employeeId);
+        Employee.findOne({_id: employeeId}).exec(function(err, employee){
+            console.log('Error: ' + err);
+            console.log('Employee: ' + employee);
+            if(employee){
+                res.render('editEmployee', {employee: employee, errors: errors.array()});
+            }
+            else{
+                res.send('No employee found with that id..');
+            }
+        });
+    }
+    else{
+        var name = req.body.name;
+        var email = req.body.email;
+        var phone = req.body.phone;
+        var address = req.body.address;
+        var postcode = req.body.postcode;
+        var position = req.body.position;
+        var payrate = req.body.payrate;
+
+        // storing values in object called "employeeData"
+        var employeeData = {
+            name: name,
+            email: email,
+            phone: phone,
+            address: address,
+            postcode: postcode,
+            position: position,
+            payrate: payrate
+        }
+
+        var id = req.params.id;
+        Employee.findOne({_id:id}, function(err, employee){
+            employee.name= name;
+            employee.email= email;
+            employee.phone= phone;
+            employee.address= address;
+            employee.postcode= postcode;
+            employee.position= position;
+            employee.payrate= payrate;
+            employee.save().then(function(){
+                console.log('Employee updated');
+            });
+        });
+        res.render('editedEmployeeDetail', employeeData);
+
+    }
 });
 
 // delete employee data from database
 ourApp.get('/delete/:employeeId', function(req, res){
-    var employeeId = req.params.employeeId;
-    console.log(employeeId);
-    Employee.findByIdAndDelete({_id: employeeId}).exec(function(err, employee){
-        console.log('Error: ' + err);
-        console.log('Employee: ' + employee);
-        res.redirect('/');
-    });
+    // check if thr user is logged in 
+    if(req.session.userLoggedIn){
+        var employeeId = req.params.employeeId;
+        console.log(employeeId);
+        Employee.findByIdAndDelete({_id: employeeId}).exec(function(err, employee){
+            console.log('Error: ' + err);
+            console.log('Employee: ' + employee);
+            res.redirect('/');
+        });
+    }
+    else{
+        res.redirect('/login');
+    }
 });
 
 // schedule page
 ourApp.get('/schedule',function(req,res){
+    // check if thr user is logged in 
     if(req.session.userLoggedIn){
         res.render('schedule');
     }
@@ -186,6 +277,7 @@ ourApp.get('/schedule',function(req,res){
 });
 // Pay stub page
 ourApp.get('/paystub',function(req,res){
+    // check if thr user is logged in 
     if(req.session.userLoggedIn){
         res.render('paystub');
     }
@@ -196,6 +288,7 @@ ourApp.get('/paystub',function(req,res){
 });
 // Inventory page
 ourApp.get('/inventory',function(req,res){
+    // check if thr user is logged in 
     if(req.session.userLoggedIn){
         res.render('inventory');
     }
@@ -206,6 +299,7 @@ ourApp.get('/inventory',function(req,res){
 });
 // Attendance page
 ourApp.get('/attendance',function(req,res){
+    // check if thr user is logged in 
     if(req.session.userLoggedIn){
         res.render('attendance');
     }
