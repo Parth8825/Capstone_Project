@@ -103,7 +103,7 @@
   position: relative;
   z-index: 3;
   letter-spacing: 2px;
-  background: linear-gradient(45deg, #809bce, #9893da);
+  background: linear-gradient(45deg, #a0a7b6, #777);
   font-family: "Playfair Display", serif;
   cursor: pointer;
 }

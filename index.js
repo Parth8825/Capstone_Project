@@ -55,15 +55,20 @@ ourApp.set('view engine', 'ejs');
 // Home page (Employee page)
 ourApp.get('/',function(req,res){
     //res.send('this one was showing in the browser');
-    Employee.find({}).exec(function(err,employees){
-        if(err){
-            res(err)
-        }
-        else{
-            res.render('employee', {employees: employees});
-        }
-        
-    });
+    if(req.session.userLoggedIn){
+        Employee.find({}).exec(function(err,employees){
+            if(err){
+                res(err)
+            }
+            else{
+                res.render('employee', {employees: employees});
+            }
+            
+        });
+    }
+    else{
+        res.redirect('/login');
+    }
 });
 // Add Employee page
 ourApp.get('/addEmployee',function(req,res){
@@ -115,40 +120,45 @@ ourApp.post('/addEmployee', [
     check('payrate').custom(customPayrateValication)
 ],function(req,res){
     const errors = validationResult(req);
-    if(!errors.isEmpty()){
-        res.render('addEmployee',{
-            errors:errors.array()
-        });
+    if(req.session.userLoggedIn){
+        if(!errors.isEmpty()){
+            res.render('addEmployee',{
+                errors:errors.array()
+            });
+        }
+        else{
+            var firstname = req.body.firstname;
+            var lastname = req.body.lastname;
+            var email = req.body.email;
+            var phone = req.body.phone;
+            var address = req.body.address;
+            var postcode = req.body.postcode;
+            var position = req.body.position;
+            var payrate = req.body.payrate;
+        
+            var name = firstname + " " + lastname;
+            // storing values in object called "employeeData"
+            var employeeData = {
+                name: name,
+                email: email,
+                phone: phone,
+                address: address,
+                postcode: postcode,
+                position: position,
+                payrate: payrate
+            }
+            // create an object for the model Employee
+            var ourEmployees = new Employee(employeeData);
+            ourEmployees.save().then(function(){
+                console.log('New Employee created');
+            });
+            res.redirect('/');
+            // To display employee data
+            // res.render('employee', employeeData);
+        }
     }
     else{
-        var firstname = req.body.firstname;
-        var lastname = req.body.lastname;
-        var email = req.body.email;
-        var phone = req.body.phone;
-        var address = req.body.address;
-        var postcode = req.body.postcode;
-        var position = req.body.position;
-        var payrate = req.body.payrate;
-    
-        var name = firstname + " " + lastname;
-        // storing values in object called "employeeData"
-        var employeeData = {
-            name: name,
-            email: email,
-            phone: phone,
-            address: address,
-            postcode: postcode,
-            position: position,
-            payrate: payrate
-        }
-        // create an object for the model Employee
-        var ourEmployees = new Employee(employeeData);
-        ourEmployees.save().then(function(){
-            console.log('New Employee created');
-        });
-        res.redirect('/');
-        // To display employee data
-        res.render('addEmployee', employeeData);
+        res.redirect('/login');
     }
     
 });
@@ -166,19 +176,43 @@ ourApp.get('/delete/:employeeId', function(req, res){
 
 // schedule page
 ourApp.get('/schedule',function(req,res){
-    res.render('schedule');
+    if(req.session.userLoggedIn){
+        res.render('schedule');
+    }
+    else{
+        res.redirect('/login');
+    }
+   
 });
 // Pay stub page
 ourApp.get('/paystub',function(req,res){
-    res.render('paystub');
+    if(req.session.userLoggedIn){
+        res.render('paystub');
+    }
+    else{
+        res.redirect('/login');
+    }
+    
 });
 // Inventory page
 ourApp.get('/inventory',function(req,res){
-    res.render('inventory');
+    if(req.session.userLoggedIn){
+        res.render('inventory');
+    }
+    else{
+        res.redirect('/login');
+    }
+   
 });
 // Attendance page
 ourApp.get('/attendance',function(req,res){
-    res.render('attendance');
+    if(req.session.userLoggedIn){
+        res.render('attendance');
+    }
+    else{
+        res.redirect('/login');
+    }
+    
 });
 // login page
 ourApp.get('/login',function(req,res){
@@ -189,9 +223,36 @@ ourApp.post('/login', function(req, res){
     var user = req.body.username;
     var pass = req.body.password;
 
-    console.log(username);
-    console.log(password);
+    Admin.findOne({username: user, password: pass}).exec(function(err, admin){
+        console.log('Error: ' + err);
+        console.log('Adming: ' + admin);
+        if(admin){
+            // store username in session and set logged in true
+            req.session.username = admin.username;
+            req.session.userLoggedIn = true;
+            // redirect to the dashboard
+            res.redirect('/');
+        }
+        else{
+            res.render('login', {error: 'Soory, cannot login!'});
+        }
+    });
+
 });
+
+// logout process
+ourApp.get('/logout', function(req, res){
+    req.session.destroy(function(err){
+        if(err){
+            console.log(err);
+            res.send("Error")
+        }
+        else{
+            res.render('login', {logout: "logout successfully....!"} )
+        }
+    })
+})
+
 // listen for request at port 8080
 ourApp.listen(8080);
 
