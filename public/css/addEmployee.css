@@ -8,19 +8,18 @@ form {
   width: 40%;
 }
 
-header{
-  /* display: none; */
-}
-
 #addEmployee {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande","Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
-  border: 2px solid gray;
-  border-bottom: 4px double gray;
+  /* border: 2px solid gray;
+  border-bottom: 4px double gray; */
   padding: .5%;
   color: #333;
+  background-color: white;
   margin: 2% 35%;
   font-size: 160%;
   border-radius:0 20px 0 20px;
+  box-shadow: 0 0 25px rgba(0,0,0,.15);
+  text-transform: uppercase;
 }
 
 form{
@@ -35,9 +34,10 @@ form{
   top: 40px;
   left: 100px;
   animation: animation 1s;
-  /* animation-timing-function:cubic-bezier(0.6, 0.04, 0.98, 0.335); */
-  animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  /* animation-timing-function:cubic-bezier(0.55, 0.055, 0.675, 0.19); */
+  /* animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95); */
+  box-shadow: 0 0 20px rgba(0,0,0,.15);
+  border-radius: 0 25px 0 25px;
+  text-transform: uppercase;
 }
 
 @keyframes animation {
