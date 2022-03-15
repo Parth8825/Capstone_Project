@@ -3,6 +3,7 @@
     margin: 0;
 }
 
+
 #employeeDetails{
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande","Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
   border: 2px solid gray;
@@ -11,20 +12,50 @@
   color: #333;
   margin: 2% 38% 4% 38%;
   font-size: 160%;
-  border-radius: 0 20px 0 20px ;
+  border-radius: 0 20px 0 20px;
+  text-transform: uppercase;
 }
 
-table{
+.content-table{
+    border-collapse: collapse;
     width: 100%;
     font-size: 115%;
-    border: 4px double gray;
-    text-transform: capitalize;
+    /* border: 4px double gray; */
+    min-width: 400px;
+    border-radius: 5px 5px 0  0;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
 }
 
-thead tr th{
+.content-table thead tr{
+    background-color: #009879;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+    /* text-transform: uppercase; */
+}
+
+.content-table th, .content-table td{
+    padding: 15px 15px;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid gray;
+}
+
+.content-table tbody tr:nth-of-type(even)
+{
+    background-color: rgb(206, 206, 206);
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid #009879 ;
+}
+
+/* thead tr th{
     text-align: center;
     align-items: center;
-    /* border: 2px solid gray; */
+    border: 2px solid gray;
     border-radius: 3px;
     padding: .5%;
     border-bottom: 4px double gray;
@@ -33,5 +64,5 @@ thead tr th{
 tbody tr td{
     padding: 0.91% 0 0.91% 0.91%;
     border-bottom: 2px solid gray;  
-    /* border: 2px solid gray; */
-}
+    border: 2px solid gray;
+} */
