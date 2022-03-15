@@ -23,6 +23,7 @@
     "body-parser": "*",
     "express-validator": "*",
     "mongoose": "*",
-    "nodemon": "*"
+    "nodemon": "*",
+    "express-session": "*"
   }
 }

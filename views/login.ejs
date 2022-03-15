@@ -1,0 +1,37 @@
+<%- include('layouts/header'); -%>
+    <div class="loginBody">
+        <% if(locals.logout){%>
+            <%= logout %>
+                <% } %>
+                    <div class="container">
+                        <div class="message signup">
+                            <div class="btn-wrapper">
+                                <button class="button" id="signup">Sign Up</button>
+                                <button class="button" id="login"> Login</button>
+                            </div>
+                        </div>
+                        <div class="form form--signup">
+                            <div class="form--heading">Welcome! Sign Up</div>
+                            <form autocomplete="off" class="loginForm" method="post">
+                                <input type="text" placeholder="Name" name="newUsername">
+                                <input type="email" placeholder="Email" name="newEmail">
+                                <input type="password" placeholder="Password" name="newPassword">
+                                <button class="button">Sign Up</button>
+                                <p id="errors">
+                                    <% if(typeof error !=='undefined' ){ %>
+                                        <%= error %>
+                                            <% } %>
+                                </p>
+                            </form>
+                        </div>
+                        <div class="form form--login" class="loginForm">
+                            <div class="form--heading">Welcome back! </div>
+                            <form autocomplete="off" method="post" action="">
+                                <input type="text" placeholder="Name" name="username">
+                                <input type="password" placeholder="Password" name="password">
+                                <button type="submit" class="button">Login</button>
+                            </form>
+                        </div>
+                    </div>
+    </div>
+    <%- include('layouts/footer'); -%>
