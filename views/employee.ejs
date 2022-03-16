@@ -1,6 +1,13 @@
 <%- include('layouts/header'); -%>
-    <%- include('layouts/navigation'); -%>
-        <section>
+    <link href="/css/employee.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h2>Employee Management System</h2>
+        </header>
+        <%- include('layouts/navigation'); -%>
+
             <% if(locals.message){ %>
                 <%= message%>
                     <% }%>
@@ -9,7 +16,7 @@
                                 <button class="btn">Add Employee</button>
                             </a>
                             <h1 id="employeeDetails">Employee Details</h1>
-                            <table>
+                            <table class="content-table">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -57,5 +64,4 @@
                                 </tbody>
                             </table>
                         </main>
-        </section>
-        <%- include('layouts/footer'); -%>
+                        <%- include('layouts/footer'); -%>

@@ -1,43 +1,53 @@
 <%- include('layouts/header'); -%>
-    <main>
-        <h1 id="addEmployee">Add Employee Details</h1>
-        <form name="Employee" method="post" action="">
-            <div class="textboxes">
-                <label>Name: </label>
-                <input id="firstname" placeholder="First name" type="text" name="name" class="space"
-                    value="<%= employee.name %>"><br />
+    <link href="/css/editEmployee.css" rel="stylesheet">
+    </head>
 
-                <label>Email: </label>
-                <input id="email" placeholder="email@domain.com" type="email" name="email" class="space"
-                    value="<%= employee.email %>"><br />
+    <body>
+        <header>
+            <h2>Employee Management System</h2>
+        </header>
+        <main>
+            <h1 id="editEmployee">Add Employee Details</h1>
+            <form name="Employee" method="post" action="">
+                <div class="textboxes">
+                    <label>Name: </label>
+                    <input id="firstname" placeholder="First name" type="text" name="name" class="space"
+                        value="<%= employee.name %>"><br />
 
-                <label>Phone: </label>
-                <input id="phone" placeholder="123-123-1234" type="phone" name="phone" class="space"
-                    value="<%= employee.phone %>"><br />
+                    <label>Email: </label>
+                    <input id="email" placeholder="email@domain.com" type="email" name="email" class="space"
+                        value="<%= employee.email %>"><br />
 
-                <label>Address: </label>
-                <input id="address" type="address" name="address" class="space" value="<%= employee.address %>"><br />
-                <label>Post Code: </label>
-                <input id="postcode" placeholder="X9X 9X9" type="postcode" name="postcode" class="space"
-                    value="<%= employee.postcode %>"><br />
+                    <label>Phone: </label>
+                    <input id="phone" placeholder="123-123-1234" type="phone" name="phone" class="space"
+                        value="<%= employee.phone %>"><br />
 
-                <label>Position: </label>
-                <input id="position" type="text" name="position" class="space" value="<%= employee.position %>"><br />
+                    <label>Address: </label>
+                    <input id="address" type="address" name="address" class="space"
+                        value="<%= employee.address %>"><br />
+                    <label>Post Code: </label>
+                    <input id="postcode" placeholder="X9X 9X9" type="postcode" name="postcode" class="space"
+                        value="<%= employee.postcode %>"><br />
 
-                <label>Payrate: </label>
-                <input id="payrate" type="number" name="payrate" class="space" value="<%= employee.payrate %>"><br />
+                    <label>Position: </label>
+                    <input id="position" type="text" name="position" class="space"
+                        value="<%= employee.position %>"><br />
 
-                <p id="errors"></p>
+                    <label>Payrate: </label>
+                    <input id="payrate" type="number" name="payrate" class="space"
+                        value="<%= employee.payrate %>"><br />
 
-            </div>
-            <div class="buttons">
-                <button class="btnSubmit" id="submit"> Submit </button>
+                    <p id="errors"></p>
 
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/" id="cancel" class="btnCancel">Cancel </a>
-            </div>
+                </div>
+                <div class="buttons">
+                    <button class="btnSubmit" id="submit"> Submit </button>
 
-        </form>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/" id="cancel" class="btnCancel">Cancel </a>
+                </div>
 
-    </main>
-    <%- include('layouts/footer'); -%>
+            </form>
+
+        </main>
+        <%- include('layouts/footer'); -%>
