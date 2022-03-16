@@ -201,12 +201,9 @@ ourApp.post('/edit/:id', [
         Employee.findOne({ _id: employeeId }).exec(function (err, employee) {
             console.log('Error: ' + err);
             console.log('Employee: ' + employee);
-            if (employee) {
-                res.render('editEmployee', { employee: employee, errors: errors.array() });
-            }
-            else {
-                res.send('No employee found with that id..');
-            }
+          
+            res.render('editEmployee', { employee: employee, errors: errors.array()});
+          
         });
     }
     else {
