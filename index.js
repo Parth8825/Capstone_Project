@@ -313,25 +313,39 @@ ourApp.get('/login',function(req,res){
     res.render('login');
 });
 // login form
-ourApp.post('/login', function(req, res){
+ourApp.post('/login',function(req, res){
     var user = req.body.username;
     var pass = req.body.password;
+    
+        Admin.findOne({username: user, password: pass}).exec(function(err, admin){
+            console.log('Error: ' + err);
+            console.log('Adming: ' + admin);
+            if(admin){
+                // store username in session and set logged in true
+                req.session.username = admin.username;
+                req.session.userLoggedIn = true;
+                // redirect to the dashboard
+                res.redirect('/');
+            }
+            else{
+                res.render('login', {error: 'Soory, cannot login!'});
+            }
+        });
+    
+});
+// sign-up form
+ourApp.post('/signup',[
+    check('newUsername', 'username is required').not().isEmpty(),
+    check('newEmail', 'E-mail is required').isEmail(),
+    check('newPassword','password is required').not().isEmpty()
+], function(req,res){
+    const errors = validationResult(req);
 
-    Admin.findOne({username: user, password: pass}).exec(function(err, admin){
-        console.log('Error: ' + err);
-        console.log('Adming: ' + admin);
-        if(admin){
-            // store username in session and set logged in true
-            req.session.username = admin.username;
-            req.session.userLoggedIn = true;
-            // redirect to the dashboard
-            res.redirect('/');
+        if(!errors.isEmpty()){
+            res.render('login',{
+                errors:errors.array()
+            });
         }
-        else{
-            res.render('login', {error: 'Soory, cannot login!'});
-        }
-    });
-
 });
 
 // logout process

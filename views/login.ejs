@@ -25,12 +25,15 @@
                                         <input type="text" placeholder="Name" name="newUsername">
                                         <input type="email" placeholder="Email" name="newEmail">
                                         <input type="password" placeholder="Password" name="newPassword">
-                                        <button class="button">Sign Up</button>
-                                        <p id="errors">
-                                            <% if(typeof error !=='undefined' ){ %>
-                                                <%= error %>
-                                                    <% } %>
-                                        </p>
+                                        <button type="submit" class="button" name="signupBtn" formaction="signup">Sign
+                                            Up</button>
+
+                                        <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                                            <p>
+                                                <%= error.msg %>
+                                            </p>
+                                            <% } } %>
+
                                     </form>
                                 </div>
                                 <div class="form form--login">
@@ -38,7 +41,8 @@
                                     <form autocomplete="off" class="loginForm" method="post" action="">
                                         <input type="text" placeholder="Name" name="username">
                                         <input type="password" placeholder="Password" name="password">
-                                        <button type="submit" class="button">Login</button>
+                                        <button type="submit" class="button" name="loginBtn"
+                                            formaction="login">Login</button>
                                     </form>
                                 </div>
                             </div>
