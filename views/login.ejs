@@ -16,7 +16,7 @@
                             <div class="container">
                                 <div class="message signup">
                                     <div class="btn-wrapper">
-                                        <button class="button " id="signup">Sign Up</button>
+                                        <button class="buttonSignup" id="signup">Sign Up</button>
                                         <button class="button " id="login"> Login</button>
                                     </div>
                                 </div>
@@ -26,7 +26,7 @@
                                         <input type="text" placeholder="Name" name="newUsername">
                                         <input type="email" placeholder="Email" name="newEmail">
                                         <input type="password" placeholder="Password" name="newPassword">
-                                        <button type="submit" class="button" name="signupBtn" formaction="signup">Sign
+                                        <button type="submit" id="signup" class="button" name="signupBtn" formaction="signup">Sign
                                             Up</button>
 
                                         <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
@@ -43,7 +43,7 @@
                                         <input type="text" placeholder="Name" name="username">
                                         <input type="password" placeholder="Password" name="password">
                                         <button type="submit" class="button" name="loginBtn"
-                                            formaction="login">Login</button>
+                                           id="login" formaction="login">Login</button>
                                     </form>
                                 </div>
 

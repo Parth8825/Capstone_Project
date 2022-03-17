@@ -101,92 +101,13 @@
   }
 }
 
-/* LOGIN BUTTONS */
+/* LOGIN & SIGUP BUTTONS */
 #signup, #login{
   margin-bottom: 7%;
   margin-left: 10%;
 }
 
-
-
-
-/* BUTTON CSS*/
-.btn {
-  width: 280px;
-  height: 50px;
-  border: 3px solid rgba(27, 27, 119, 0.808);
-  /* font-family: "Cinzel", serif; */
-  font-size: 22px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: 1s;
-  border-radius: 3px;
-  text-transform: uppercase;
-  color: rgba(0, 0, 14, 0.808);
-  font-weight: 100;
-  z-index: 3;
-  letter-spacing: 2px;
-  font-weight: 550;
-  /* background: linear-gradient(45deg, rgba(128, 155, 206, 0.7), rgba(195, 195, 216, 0.5)); */
-  /* background-color: #809bce; */
-  background-color: #a6c0f0;
-  font-family: "Playfair Display", serif;
-  cursor: pointer;
-  text-align: center;
-}
-
-.btn::before,
-.btn::after {
-  position: absolute;
-  /* background: linear-gradient(45deg, rgba(128, 155, 206, 0.7), rgba(195, 195, 216, 0.5)); */
-  background-color: #a6c0f0;
-  z-index: -1;
-  transition: 1s;
-  content: "";
-}
-
-.btn::before {
-  height: 50px;
-  width: 240px;
-}
-
-.btn::after {
-  width: 280px;
-  height: 20px;
-}
-
-.noselect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.btn:hover::before {
-  width: 0px;
-  /* background: linear-gradient(30deg, rgba(128, 155, 206, 0.7), rgba(195, 195, 216, 0.5)); */
-  background-color: rgba(128, 155, 206, 0.7);
-}
-
-.btn:hover::after {
-  height: 0px;
-  /* background: linear-gradient(30deg, rgba(128, 155, 206, 0.7), rgba(195, 195, 216, 0.5)); */
-  background-color: rgba(128, 155, 206, 0.7);
-
-}
-
-.btn:hover {
-  /* background: linear-gradient(30deg, rgba(128, 155, 206, 0.7), rgba(195, 195, 216, 0.5));  */
-  background-color: rgba(128, 155, 206, 0.7);
-
-}
-
-
+/* LOGIN & LEFT SIDE ISGNUP BUTTON CSS */
 .button {
   border-radius: 4px;
   background-color: #5ca1e1;
@@ -200,9 +121,7 @@
   transition: all 0.5s;
   cursor: pointer;
   box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
-}
-
-.button{
+  font-family: "Playfair Display", serif;
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -214,9 +133,10 @@
   content: '»';
   position: absolute;
   opacity: 0;  
-  top: 14px;
+  top: 15px;
   right: -20px;
   transition: 0.5s;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .button:hover{
@@ -228,5 +148,50 @@
   opacity: 1;
   right: 10px;
 }
+
+/*RIGHT SIDE SIGNUP BUTTON CSS */
+.buttonSignup {
+  border-radius: 4px;
+  background-color: #5ca1e1;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  padding: 15px;
+  width: 220px;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+  font-family: "Playfair Display", serif;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  margin: 10% 0 5% 65%;
+}
+
+.buttonSignup:after {
+  content: '«';
+  position: absolute;
+  opacity: 0;  
+  top: 14px;
+  left: -180px;
+  transition: 0.5s;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.buttonSignup:hover{
+  padding-right: 24px;
+  padding-left:8px;
+}
+
+.buttonSignup:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+
+
+
+
 
 
