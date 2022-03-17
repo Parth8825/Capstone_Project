@@ -33,7 +33,11 @@
                                                 <%= error.msg %>
                                             </p>
                                             <% } } %>
-
+                                                <% if(locals.loginError){ %>
+                                                    <div>
+                                                        <%= loginError%>
+                                                    </div>
+                                                    <% } %>
                                     </form>
                                 </div>
                                 <div class="form form--login">
