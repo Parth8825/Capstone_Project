@@ -26,6 +26,7 @@ const Employee = mongoose.model('Employee', {
 // set up the model for admin
 const Admin = mongoose.model('Admin', {
     username: String,
+    mail: String,
     password: String
 });
 
@@ -160,7 +161,7 @@ ourApp.post('/addEmployee', [
         });
         res.redirect('/');
         // To display employee data
-        // res.render('employee', employeeData);
+        // res.render('employee', {message: "Employee data created"} );
     }
 
 
@@ -325,7 +326,7 @@ ourApp.post('/login', function (req, res) {
             res.redirect('/');
         }
         else {
-            res.render('login', { error: 'Soory, cannot login!' });
+            res.render('login', { loginError: 'Soory, cannot login! Please Signup' });
         }
     });
 
@@ -342,6 +343,23 @@ ourApp.post('/signup', [
         res.render('login', {
             errors: errors.array()
         });
+    }
+    else{
+        var newUser = req.body.newUsername;
+        var newEmail = req.body.newEmail;
+        var newPassword = req.body.newPassword;
+
+        var loginData = {
+            username: newUser,
+            mail: newEmail,
+            password: newPassword
+        }
+        
+        var userLoginData = new Admin(loginData);
+        userLoginData.save().then(function (){
+            console.log('Login data saved');
+        });
+        res.render('login');
     }
 });
 
