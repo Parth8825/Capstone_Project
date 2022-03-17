@@ -5,9 +5,9 @@
     </head>
 
     <body>
-        <!-- <header>
+        <header>
             <h2>Employee Management System</h2>
-        </header> -->
+        </header>
         <main>
             <div class="loginBody">
                 <% if(locals.logout){%>
@@ -26,7 +26,8 @@
                                         <input type="text" placeholder="Name" name="newUsername">
                                         <input type="email" placeholder="Email" name="newEmail">
                                         <input type="password" placeholder="Password" name="newPassword">
-                                        <button type="submit" id="signup" class="button" name="signupBtn" formaction="signup">Sign
+                                        <button type="submit" id="signup" class="button" name="signupBtn"
+                                            formaction="signup">Sign
                                             Up</button>
 
                                         <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
@@ -46,8 +47,8 @@
                                     <form autocomplete="off" class="loginForm" method="post" action="">
                                         <input type="text" placeholder="Name" name="username">
                                         <input type="password" placeholder="Password" name="password">
-                                        <button type="submit" class="button" name="loginBtn"
-                                           id="login" formaction="login">Login</button>
+                                        <button type="submit" class="button" name="loginBtn" id="login"
+                                            formaction="login">Login</button>
                                     </form>
                                 </div>
 
