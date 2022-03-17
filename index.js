@@ -161,7 +161,7 @@ ourApp.post('/addEmployee', [
         });
         res.redirect('/');
         // To display employee data
-        // res.render('employee', employeeData);
+        // res.render('employee', {message: "Employee data created"} );
     }
 
 
