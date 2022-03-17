@@ -1,13 +1,14 @@
 <%- include('layouts/header'); -%>
-<link rel="stylesheet" href="css/employee.css">
-</head>
 
-<body>
-    <header>
-        <h2>Employee Management System</h2>
-    </header>
-    <%- include('layouts/navigation'); -%>
-        <section>
+    <link href="/css/employee.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h2>Employee Management System</h2>
+        </header>
+        <%- include('layouts/navigation'); -%>
+
             <% if(locals.message){ %>
                 <%= message%>
                     <% }%>
@@ -54,15 +55,14 @@
                                                 <%= employee.payrate %>
                                             </td>
                                             <td>
-                                                <button class="editBtn"><a
-                                                        href="/edit/<%= employee._id %>">Edit</a></button>
-                                                <button class="deleteBtn"><a
-                                                        href="/delete/<%= employee._id %>">Delete</a></button>
+                                                <div class="buttons">
+                                                    <a class="editButton" href="/edit/<%= employee._id %>">Edit</a>
+                                                    <a class="deleteButton" href="/delete/<%= employee._id %>">Delete</a>
+                                                </div>
                                             </td>
                                         </tr>
                                         <% } %>
                                 </tbody>
                             </table>
                         </main>
-        </section>
-        <%- include('layouts/footer'); -%>
+                        <%- include('layouts/footer'); -%>

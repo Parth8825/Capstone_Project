@@ -1,11 +1,13 @@
 <%- include('layouts/header'); -%>
-</head>
+
+    <link href="/css/editEmployeeDetails.css" rel="stylesheet">
+    </head>
 
 <body>
     <header>
         <h2>Employee Management System</h2>
     </header>
-    <section class="errors">
+    <section class="page">
         <% if(typeof(errors) !='undefined' ){ %>
             <div style="border: 3px double gray; border-bottom: 5px double gray; border-radius: 0 25px 0 25px;">
                 <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
@@ -60,9 +62,13 @@
                                 <%= payrate %>
                             </td>
                         </tr>
+                        <tr>
+                            <th>
+                                <a href="/" class="button">Go back to Main</a>
+                            </th>
+                        </tr>
 
-                    </table>
-                    <a href="/"> <button>Go back to Main</button></a>
-                    <% } %>
-    </section>
-    <%- include('layouts/footer'); -%>
+                        </table>
+                        <% } %>
+        </main>
+        <%- include('layouts/footer'); -%>
