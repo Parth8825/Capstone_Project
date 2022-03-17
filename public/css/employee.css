@@ -1,7 +1,9 @@
 *{
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
+
 
 
 #employeeDetails{
@@ -52,17 +54,145 @@
     border-bottom: 2px solid #009879 ;
 }
 
-/* thead tr th{
-    text-align: center;
-    align-items: center;
-    border: 2px solid gray;
-    border-radius: 3px;
-    padding: .5%;
-    border-bottom: 4px double gray;
+.buttons{
+    display: inline-flex;
 }
 
-tbody tr td{
-    padding: 0.91% 0 0.91% 0.91%;
-    border-bottom: 2px solid gray;  
-    border: 2px solid gray;
+/* .deleteBtn{
+    background-color: maroon;
+    color: #eee;
+    padding: 3% 10%;
+    margin-left: 3.5em;
+    opacity: 80%;
+    border: 1px solid black;
+    box-shadow:5px 5px 3px gray ;
 } */
+
+  /*EDIT BUTTON CSS*/
+
+/* .editBtn{
+    background-color: darkgreen;
+    border: 1px solid black;
+    color: #eee;
+    width:205px;
+    height: 15px;
+    padding: 3% 15%;
+    opacity: 80%;
+    box-shadow: 5px 5px 3px gray;
+    transition: transform .2s; 
+} */
+
+  .editButton{
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 1em;
+    border: 1px solid black;
+    /* box-shadow: -2px 2px 2px darkgreen; */
+    padding-top: 2px;
+  }
+  
+  .editButton{
+    display: block;
+    width: 85px;
+    height: 35px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    border: 3px solid darkgreen;
+    color: black;
+    font-size: 20px;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    text-transform: capitalize;
+    transition: all .35s;
+  }
+  
+  .editButton:before,
+  .editButton:after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: -100%;
+    left: 0;
+    background: darkgreen;
+    z-index: -1;
+    transition: all .35s;
+  }
+  
+  .editButton:before{
+    opacity: .5;
+  }
+  
+  .editButton:after{
+    transition-delay: .3s;
+  }
+  
+  .editButton:hover{
+    color: #fff;
+  }
+  
+  .editButton:hover:before,
+  .editButton:hover:after{
+    top: 0;
+  }
+
+
+/* DELETE BUTTON CSS */
+.deleteButton{
+    /* left: 50%; */
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    /* box-shadow: 2px 2px 2px maroon; */
+    padding-top: 2px;
+    margin-top: 24.5%;
+    left: 41.5%;
+  }
+  
+  .deleteButton{
+    display: block;
+    width: 85px;
+    height: 35px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    border: 3px solid maroon;
+    color: black;
+    font-size: 20px;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    text-transform: capitalize;
+    transition: all .35s;
+  }
+  
+  .deleteButton:before,
+  .deleteButton:after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: -100%;
+    left: 0;
+    background: maroon;
+    z-index: -1;
+    transition: all .35s;
+  }
+  
+  .deleteButton:before{
+    opacity: .5;
+  }
+  
+  .deleteButton:after{
+    transition-delay: .3s;
+  }
+  
+  .deleteButton:hover{
+    color: #fff;
+  }
+  
+  .deleteButton:hover:before,
+  .deleteButton:hover:after{
+    top: 0;
+  }

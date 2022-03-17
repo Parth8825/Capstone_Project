@@ -42,13 +42,12 @@ form{
 
 @keyframes animation {
   from {
-  top: 80px;
-  left: 80px;
+  top: 40px;
+  left: 100px;
   width: px;
   font-size: 0;
   text-align: center;
   height: px;
-  padding: 2%;
   align-items: center;
   align-content: center;}
 
@@ -60,7 +59,7 @@ form{
 }
 
 .errors p{
-  padding: 4.5%;
+  padding: 1.5%;
 }
 
 label{

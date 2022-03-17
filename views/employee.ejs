@@ -55,10 +55,10 @@
                                                 <%= employee.payrate %>
                                             </td>
                                             <td>
-                                                <button class="editBtn"><a
-                                                        href="/edit/<%= employee._id %>">Edit</a></button>
-                                                <button class="deleteBtn"><a
-                                                        href="/delete/<%= employee._id %>">Delete</a></button>
+                                                <div class="buttons">
+                                                    <a class="editButton" href="/edit/<%= employee._id %>">Edit</a>
+                                                    <a class="deleteButton" href="/delete/<%= employee._id %>">Delete</a>
+                                                </div>
                                             </td>
                                         </tr>
                                         <% } %>
