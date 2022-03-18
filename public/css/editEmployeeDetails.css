@@ -4,11 +4,7 @@
 }
 
 body{
-    background-color: #eee;
-}
-
-header{
-border-bottom: 2px double black;
+    background-color: rgba(195, 195, 216, 0.5);
 }
 
 h2{

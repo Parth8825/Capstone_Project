@@ -2,9 +2,11 @@
 nav {
     width: 100%;
     margin: 0 auto;
-    /* background: white; */
-    padding: 25px 0;
+    /* background: rgba(195, 195, 216, 0.5); */
+    background-color: #5ca1e17e;
+    padding: 20px 0;
     box-shadow: 0px 5px 0px black;
+    font-weight: 300;
   }
   
   nav ul {
@@ -18,7 +20,7 @@ nav {
     display: block;
     padding: 1px 15px 1px 15px;
     text-decoration: none;
-    color: black;
+    color: #1a344d;
     font-weight: 500;
     text-transform: uppercase;
     margin: 0;
@@ -30,7 +32,7 @@ nav {
     transition: all 0.5s;
   }
   nav ul li a:hover {
-    color: #666;
+    color: #1a344dc2;
   }
   
   nav.nav_menu ul li a {

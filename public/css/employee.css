@@ -4,17 +4,17 @@
     box-sizing: border-box;
 }
 
-
-
 #employeeDetails{
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande","Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
-  border: 2px solid gray;
-  border-bottom: 5px double gray;
+  /* border: 2px solid gray;
+  border-bottom: 5px double gray; */
   padding: .5%;
   color: #333;
   margin: 2% 38% 4% 38%;
   font-size: 160%;
   border-radius: 0 20px 0 20px;
+  box-shadow: 0 0 25px rgba(195, 195, 216, 100);
+  background-color: white;
   text-transform: uppercase;
 }
 
@@ -27,35 +27,45 @@
     border-radius: 5px 5px 0  0;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    margin: auto 2px;
 }
 
 .content-table thead tr{
-    background-color: #009879;
+    /* background-color: #009879; */
+    background-color: #5ca1e1;
+    /* background-color: #5ca1e17e; */
     color: white;
     text-align: left;
     font-weight: bold;
     /* text-transform: uppercase; */
 }
 
-.content-table th, .content-table td{
-    padding: 15px 15px;
+.content-table td{
+    padding: 15px 15px 0 15px;
+}
+
+.content-table th{
+  padding: 20px;
+  font-size: 125%;
 }
 
 .content-table tbody tr{
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid black;
 }
 
 .content-table tbody tr:nth-of-type(even)
 {
-    background-color: rgb(206, 206, 206);
+    /* background-color: rgb(206, 206, 206); */
+    background-color: rgba(195, 195, 216, 0.5);
 }
 
 .content-table tbody tr:last-of-type{
-    border-bottom: 2px solid #009879 ;
+    border-bottom: 3px solid #5ca1e1 ;
 }
 
 .buttons{
     display: inline-flex;
+    padding-right: 15px;
 }
 
 /* .deleteBtn{
