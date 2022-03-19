@@ -7,7 +7,7 @@ const session = require('express-session');
 // uuid module to create Hash string (v4 means Version 4)
 const {v4: uuidv4} = require("uuid");
 // set up router
-const loginRouter = require('./routes/router');
+const router = require('./routes/router');
 
 // set up DataBase connection
 const mongoose = require('mongoose');
@@ -36,7 +36,7 @@ ourApp.use(session({
     saveUninitialized: true
 }));
 // using router
-ourApp.use('/', loginRouter);
+ourApp.use('/', router);
 
 
 // set up the path to public folder and views
@@ -51,4 +51,4 @@ ourApp.set('view engine', 'ejs');
 ourApp.listen(8080);
 
 // just printing execution successful
-console.log("execute successfully: localhost:8080");
+console.log("execute successfully: http://localhost:8080/");
