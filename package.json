@@ -24,6 +24,7 @@
     "express-validator": "*",
     "mongoose": "*",
     "nodemon": "*",
-    "express-session": "*"
+    "express-session": "*",
+    "uuid": "*"
   }
 }
