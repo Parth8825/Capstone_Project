@@ -1,6 +1,7 @@
 
 body {
   text-transform: uppercase;
+  background-color: rgba(195, 195, 216, 0.3);
 }
 
 form {
@@ -25,7 +26,16 @@ form {
 }
 
 form {
-  float: left;
+  position: relative;
+  margin: 1% 0 5% 29.5%;
+  font-size: 175%;
+  width: 40%;
+  width: 600px;
+  height: 510px;
+  padding: 2.5% 0 0 4%;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0,0,0,.15);
 }
 
 .errors {
@@ -124,12 +134,13 @@ a {
   transition: 1s;
   border-radius: 3px;
   text-transform: uppercase;
+  color: maroon ;
 }
 
 .btnCancel::before,
 .btnCancel::after {
   position: absolute;
-  background: #eee;
+  background: white;
   z-index: -1;
   transition: 1s;
   content: "";
@@ -185,12 +196,14 @@ a {
   transition: 1s;
   border-radius: 3px;
   text-transform: uppercase;
+  background: white;
+  color: darkgreen;
 }
 
 .btnSubmit::before,
 .btnSubmit::after {
   position: absolute;
-  background: #eee;
+  background: white;
   z-index: -1;
   transition: 1s;
   content: "";
