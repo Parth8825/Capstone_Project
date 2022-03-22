@@ -1,59 +1,65 @@
 /* NAVIGATION BAR CSS*/
 nav {
-    width: 100%;
-    margin: 0 auto;
-    /* background: white; */
-    padding: 25px 0;
-    box-shadow: 0px 5px 0px black;
-  }
-  
-  nav ul {
-    list-style: none;
-    text-align: center;
-  }
-  nav ul li {
-    display: inline-block;
-  }
-  nav ul li a {
-    display: block;
-    padding: 1px 15px 1px 15px;
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin: 0;
-    font-size: 135%;
-  }
-  nav ul li a,
-  nav ul li a:after,
-  nav ul li a:before {
-    transition: all 0.5s;
-  }
-  nav ul li a:hover {
-    color: #666;
-  }
-  
-  nav.nav_menu ul li a {
-    position: relative;
-  }
-  nav.nav_menu ul li a:after {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 0%;
-    content: ".";
-    color: transparent;
-    background: black;
-    height: 2px;
-  }
-  nav.nav_menu ul li a:hover:after {
-    width: 100%;
-  }
-  
-  @media (max-width: 600px) {
-    /*    
+  width: 100%;
+  margin: 0 auto;
+  /* background: rgba(195, 195, 216, 0.5); */
+  background-color: #5ca1e17e;
+  padding: 20px 0;
+  font-weight: 300;
+}
+
+body {
+  background-color: black;
+}
+
+nav ul {
+  list-style: none;
+  text-align: center;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li a {
+  display: block;
+  padding: 1px 15px 1px 15px;
+  text-decoration: none;
+  /* color: #1a344d; */
+  color: #bed6ec;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 135%;
+}
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all 0.5s;
+}
+nav ul li a:hover {
+  color: #a0cef8;
+}
+
+nav.nav_menu ul li a {
+  position: relative;
+}
+nav.nav_menu ul li a:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: ".";
+  color: transparent;
+  background: #bed9f3;
+  height: 2px;
+}
+nav.nav_menu ul li a:hover:after {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  /*    
       #nav_menu ul li { 
           float: left;
           width: 50%;
@@ -64,22 +70,22 @@ nav {
           width: 100%;
           height: auto;
       } */
-  
-    nav ul li a {
-      padding: 20px;
-    }
-  
-    header h2 {
-      margin: 0 15%;
-    }
+
+  nav ul li a {
+    padding: 20px;
   }
 
-  @media (max-width: 1000px) {
-    nav ul li a {
-      padding: 20px;
-    }
-  
-    header h2 {
-      margin: 0 15%;
-    }
+  header h2 {
+    margin: 0 15%;
   }
+}
+
+@media (max-width: 1000px) {
+  nav ul li a {
+    padding: 20px;
+  }
+
+  header h2 {
+    margin: 0 15%;
+  }
+}
