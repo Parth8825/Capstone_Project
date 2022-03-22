@@ -333,7 +333,7 @@ ourApp.post('/login', function (req, res) {
 });
 // sign-up form
 ourApp.post('/signup', [
-    check('newUsername', 'username is required').not().isEmpty(),
+    check('newUsername', 'username is required').not().isEmpty(), 
     check('newEmail', 'E-mail is required').isEmail(),
     check('newPassword', 'password is required').not().isEmpty()
 ], function (req, res) {
