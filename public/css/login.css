@@ -12,7 +12,7 @@
 
 .loginBody {
   height: 100vh;
-  background: #e8e8e8;
+  background-color: rgba(195, 195, 216, 0.5);
   font-family: "Source Sans Pro", sans-serif;
   overflow: hidden;
 }
@@ -110,7 +110,7 @@
 /* LOGIN & LEFT SIDE ISGNUP BUTTON CSS */
 .button {
   border-radius: 4px;
-  background-color: #5ca1e1;
+  background-color: #1c5b97cc;
   border: none;
   color: white;
   text-align: center;
@@ -151,7 +151,8 @@
 /*RIGHT SIDE SIGNUP BUTTON CSS */
 .buttonSignup {
   border-radius: 4px;
-  background-color: #5ca1e1;
+  /* background-color: #5ca1e1; */
+  background-color: #1c5b97cc;
   border: none;
   color: white;
   text-align: center;
@@ -189,8 +190,30 @@
   right: 10px;
 }
 
+/* LOGIN ERROR MESSAGE */
 
+.signupError, .loginError{
+  /* background-color: #5ca1e17e; */
+  background: rgba(195, 195, 216, 0.6);
+  position: relative;
+  float:left;
+  text-align: center;
+  align-items: center;
+  top: 10px;
+  left: 15px;
+  text-transform: uppercase;
+  padding: 2.5% 4.5%;
+  font-family: "Playfair Display", serif;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.6);
+  border-radius: 5px;
+}
 
-
-
-
+.logoutMessage{
+  text-transform: uppercase;
+  padding: 1.25%;
+  margin: 2%;
+  font-family: "Playfair Display", serif;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.5);
+}

@@ -1,11 +1,12 @@
 <%- include('layouts/header'); -%>
-   
+
     <link href="/css/employee.css" rel="stylesheet">
     </head>
 
     <body>
         <header>
             <h2>Employee Management System</h2>
+
         </header>
         <%- include('layouts/navigation'); -%>
 
@@ -57,7 +58,8 @@
                                             <td>
                                                 <div class="buttons">
                                                     <a class="editButton" href="/edit/<%= employee._id %>">Edit</a>
-                                                    <a class="deleteButton" href="/delete/<%= employee._id %>">Delete</a>
+                                                    <a class="deleteButton"
+                                                        href="/delete/<%= employee._id %>">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>

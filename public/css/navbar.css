@@ -6,8 +6,13 @@ nav {
     background-color: #5ca1e17e;
     padding: 20px 0;
     font-weight: 300;
+    
   }
   
+body{
+  background-color: black;
+}
+
   nav ul {
     list-style: none;
     text-align: center;
@@ -19,7 +24,8 @@ nav {
     display: block;
     padding: 1px 15px 1px 15px;
     text-decoration: none;
-    color: #1a344d;
+    /* color: #1a344d; */
+    color: #bed6ec;
     font-weight: 500;
     text-transform: uppercase;
     margin: 0;
@@ -31,7 +37,7 @@ nav {
     transition: all 0.5s;
   }
   nav ul li a:hover {
-    color: #1a344dc2;
+    color: #a0cef8;
   }
   
   nav.nav_menu ul li a {
@@ -46,7 +52,7 @@ nav {
     width: 0%;
     content: ".";
     color: transparent;
-    background: black;
+    background: #bed9f3;
     height: 2px;
   }
   nav.nav_menu ul li a:hover:after {

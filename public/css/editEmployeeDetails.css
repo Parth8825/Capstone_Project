@@ -20,7 +20,8 @@ h2{
   margin: 2% 28%;
   font-size: 160%;
   border-radius: 0 20px 0 20px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 0 25px rgba(0, 0, 0, 0.15); */
+  box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
   text-transform: uppercase; 
   /* border-bottom: 4px double black; */
   /* border-top: 3px solid gray; */
@@ -31,7 +32,7 @@ table{
     /* position: relative; */
     /* border: 5px double gray; */
     margin: 5% auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
     border-radius: 0 25px 0 25px;
     background-color: white;
     padding: 1%;

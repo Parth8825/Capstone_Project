@@ -32,9 +32,10 @@
 
 .content-table thead tr{
     /* background-color: #009879; */
-    background-color: #5ca1e1;
+    background-color: #1c5b97cc;
+    /* background-color: #5ca1e1; */
     /* background-color: #5ca1e17e; */
-    color: white;
+    color: rgb(184, 225, 250);
     text-align: left;
     font-weight: bold;
     /* text-transform: uppercase; */
@@ -60,7 +61,7 @@
 }
 
 .content-table tbody tr:last-of-type{
-    border-bottom: 3px solid #5ca1e1 ;
+    border-bottom: 3px solid #1c5b97cc ;
 }
 
 .buttons{
@@ -206,3 +207,8 @@
   .deleteButton:hover:after{
     top: 0;
   }
+
+
+
+
+
