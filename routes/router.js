@@ -5,6 +5,7 @@ module.exports = router;
 const Admin = require('../models/adminModel');
 const Employee = require('../models/employeeModel');
 
+
 //setting up express validator
 const { check, validationResult } = require('express-validator');// ES6 standard for destructuring an object
 //login page
@@ -43,7 +44,8 @@ router.get('/', function (req, res) {
                 res(err)
             }
             else {
-                res.render('employee', { employees: employees });
+                const message = req.flash('msg');
+                res.render('employee', { employees: employees, message});
             }
 
         });
@@ -106,9 +108,8 @@ router.post('/addEmployee', [
         ourEmployees.save().then(function () {
             console.log('New Employee created');
         });
+        req.flash('msg', 'Employee added successfully !!!');
         res.redirect('/');
-        // To display employee data
-        //res.render('employee', {message: "Employee data created"} );
     }
 });
 
@@ -149,9 +150,7 @@ router.post('/edit/:id', [
         Employee.findOne({ _id: employeeId }).exec(function (err, employee) {
             console.log('Error: ' + err);
             console.log('Employee: ' + employee);
-          
             res.render('employee/editEmployee', { employee: employee, errors: errors.array()});
-          
         });
     }
     else {
@@ -201,8 +200,9 @@ router.get('/delete/:employeeId', function (req, res) {
         Employee.findByIdAndDelete({ _id: employeeId }).exec(function (err, employee) {
             console.log('Error: ' + err);
             console.log('Employee: ' + employee);
-            res.redirect('/');
         });
+        req.flash('msg', 'Employee deleted successfully !!!');
+        res.redirect('/');
     }
     else {
         res.redirect('/login');

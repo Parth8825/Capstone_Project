@@ -25,6 +25,8 @@
     "mongoose": "*",
     "nodemon": "*",
     "express-session": "*",
-    "uuid": "*"
+    "uuid": "*",
+    "connect-flash": "*",
+    "cookie-parser": "*"
   }
 }

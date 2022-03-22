@@ -4,10 +4,14 @@ const path = require('path');
 const bodyParser = require('body-parser');
 // get expression session
 const session = require('express-session');
+// get cookies 
+const cookieParse = require('cookie-parser');
 // uuid module to create Hash string (v4 means Version 4)
-const {v4: uuidv4} = require("uuid");
-// set up router
+const {v4: uuidv4} = require('uuid');
+// get router
 const router = require('./routes/router');
+// flash message
+const flash = require('connect-flash');
 
 // set up DataBase connection
 const mongoose = require('mongoose');
@@ -18,24 +22,30 @@ mongoose.connect('mongodb://localhost:27017/CapstoneProject', {
 const database = mongoose.connection
 database.on('error', (error) => {
     console.log(error)
-})
+});
 database.once('connected', () => {
     console.log('Database Connected');
-})
-
-
+});
 // set up variables to use packages
 // create an express
 var ourApp = express();
 // parse application/x-www-form-urlencoded
 ourApp.use(bodyParser.urlencoded({ extended: false }));
+// set up cookies
+ourApp.use(cookieParse('SecretStringForCookies'));
+
 // set up session
 ourApp.use(session({
+    // uuid will provide unique Hash code for secret session
     secret: uuidv4(), // '1b9d6bcd-bbfd-4b3s-9d6f-sd6sdffe6dx'
+    cookie: { maxAge: 60000},
     resave: false,
     saveUninitialized: true
 }));
-// using router
+
+// set up flash for messages
+ourApp.use(flash());
+// set up router
 ourApp.use('/', router);
 
 
@@ -43,12 +53,12 @@ ourApp.use('/', router);
 ourApp.set('views', path.join(__dirname, 'views'));
 // set up the path for public stuff like CSS and javascript
 ourApp.use(express.static(__dirname + '/public'));
-
 // define the view engine
 ourApp.set('view engine', 'ejs');
 
+// port number
+const port = process.env.PORT || 8080;
 // listen for request at port 8080
-ourApp.listen(8080);
-
+ourApp.listen(port);
 // just printing execution successful
-console.log("execute successfully: http://localhost:8080/");
+console.log("executed successfully: http://localhost:8080/");
