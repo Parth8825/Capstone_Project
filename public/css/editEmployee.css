@@ -133,7 +133,6 @@ a {
   transition: 1s;
   border-radius: 3px;
   text-transform: uppercase;
-  color: maroon;
 }
 
 .btnCancel::before,
@@ -196,7 +195,6 @@ a {
   border-radius: 3px;
   text-transform: uppercase;
   background: white;
-  color: darkgreen;
 }
 
 .btnSubmit::before,
