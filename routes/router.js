@@ -145,7 +145,7 @@ router.post('/edit/:id', [
 ], function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        var employeeId = req.params.employeeId;
+        var employeeId = req.params.id;
         console.log(employeeId);
         Employee.findOne({ _id: employeeId }).exec(function (err, employee) {
             console.log('Error: ' + err);
@@ -236,6 +236,17 @@ router.get('/inventory', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
         res.render('inventory/inventory');
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+// ADD ITEM IN INVENTORY
+router.get('/addInventory', function (req, res) {
+    // check if thr user is logged in 
+    if (req.session.userLoggedIn) {
+        res.render('inventory/addInventory');
     }
     else {
         res.redirect('/login');
