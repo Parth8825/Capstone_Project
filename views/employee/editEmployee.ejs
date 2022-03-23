@@ -38,11 +38,23 @@
 
             </div>
             <div class="buttons">
-                <button class="btnSubmit" id="submit"> Submit </button>
+                <button class="btnSubmit" type="submit" id="submit"> Submit </button>
 
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="/" id="cancel" class="btnCancel">Cancel </a>
             </div>
 
         </form>
-        <%- include('../layouts/footer'); -%>
+        <section class="errors">
+            <% if(typeof(errors) !='undefined' ){ %>
+                <div style="border-radius: 0 25px 0 25px;">
+                    <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                        <p>
+                            <%= error.msg %>
+                        </p>
+                        <% } } %>
+                </div>
+                <% } %>
+        </section>
+    </body>
+    <%- include('../layouts/footer'); -%>
