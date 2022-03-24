@@ -1,5 +1,6 @@
 body {
   text-transform: uppercase;
+  background-image: url("../../images/background.png");
   background-color: rgba(195, 195, 216, 0.3);
 }
 
@@ -20,7 +21,7 @@ form {
     "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
   /* border: 2px solid gray;
   border-bottom: 4px double gray; */
-  padding:1% 0.5%;
+  padding: 1% 0.5%;
   color: #333;
   background-color: white;
   margin: 2% 35%;
