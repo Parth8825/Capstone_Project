@@ -9,7 +9,11 @@ const cookieParse = require('cookie-parser');
 // uuid module to create Hash string (v4 means Version 4)
 const {v4: uuidv4} = require('uuid');
 // get router
-const router = require('./routes/router');
+const mainRouter = require('./routes/mainRouter');
+const invnetoryRouter = require('./routes/inventoryRouter');
+const scheduleRouter = require('./routes/scheduleRouter');
+const attendanceRouter = require('./routes/attendanceRouter');
+const paystubRouter = require('./routes/paystubRouter');
 // flash message
 const flash = require('connect-flash');
 
@@ -46,8 +50,11 @@ ourApp.use(session({
 // set up flash for messages
 ourApp.use(flash());
 // set up router
-ourApp.use('/', router);
-
+ourApp.use('/', mainRouter);
+ourApp.use('/inventory', invnetoryRouter);
+ourApp.use('/schedule', scheduleRouter);
+ourApp.use('/attendance', attendanceRouter);
+ourApp.use('/paystub', paystubRouter);
 
 // set up the path to public folder and views
 ourApp.set('views', path.join(__dirname, 'views'));
