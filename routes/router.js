@@ -247,6 +247,17 @@ router.get('/inventory', function (req, res) {
     }
 });
 
+// ADD ITEM IN INVENTORY
+router.get('/addInventory', function (req, res) {
+    // check if thr user is logged in 
+    if (req.session.userLoggedIn) {
+        res.render('inventory/addInventory');
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
 // Attendance page
 router.get('/attendance', function (req, res) {
     // check if thr user is logged in 
