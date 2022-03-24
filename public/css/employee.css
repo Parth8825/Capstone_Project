@@ -9,7 +9,7 @@
     "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
   /* border: 2px solid gray;
   border-bottom: 5px double gray; */
-  padding: 0.5%;
+  padding: 1% 0.5%;
   color: #333;
   margin: 2% 38% 4% 38%;
   font-size: 160%;
@@ -18,6 +18,19 @@
   background-color: white;
   text-transform: uppercase;
 }
+
+/* MESSAGE CSS */
+.messages{
+  text-align: center;
+  position: relative;
+  align-items: center;
+  background-color: lightgreen;
+  color: darkgreen;
+  border-radius: 5px;
+  font-size: 150%;
+  margin: 0 0 2% 0;
+}
+
 
 .content-table {
   border-collapse: collapse;
