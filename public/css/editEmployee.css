@@ -38,11 +38,12 @@ form {
 }
 
 .errors {
+  background-color: white;
   position: relative;
   float: left;
   text-align: center;
   align-items: center;
-  top: 40px;
+  top: 60px;
   left: 100px;
   animation: animation 1s;
   /* animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95); */

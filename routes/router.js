@@ -145,12 +145,17 @@ router.post('/edit/:id', [
 ], function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        var employeeId = req.params.employeeId;
-        console.log(employeeId);
+        var employeeId = req.params.id;
         Employee.findOne({ _id: employeeId }).exec(function (err, employee) {
             console.log('Error: ' + err);
             console.log('Employee: ' + employee);
-            res.render('employee/editEmployee', { employee: employee, errors: errors.array()});
+            if(employee){
+                res.render('employee/editEmployee', { employee:employee, errors: errors.array()});
+            }
+            else{
+                res.send('no order found with that id...');
+            }
+        
         });
     }
     else {
