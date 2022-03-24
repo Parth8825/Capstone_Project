@@ -213,62 +213,6 @@ router.get('/delete/:employeeId', function (req, res) {
         res.redirect('/login');
     }
 });
-// schedule page
-router.get('/schedule', function (req, res) {
-    // check if thr user is logged in 
-    if (req.session.userLoggedIn) {
-        res.render('schedule/schedule');
-    }
-    else {
-        res.redirect('/login');
-    }
-
-});
-
-// Pay stub page
-router.get('/paystub', function (req, res) {
-    // check if thr user is logged in 
-    if (req.session.userLoggedIn) {
-        res.render('paystub/paystub');
-    }
-    else {
-        res.redirect('/login');
-    }
-});
-
-// Inventory page
-router.get('/inventory', function (req, res) {
-    // check if thr user is logged in 
-    if (req.session.userLoggedIn) {
-        res.render('inventory/inventory');
-    }
-    else {
-        res.redirect('/login');
-    }
-});
-
-// ADD ITEM IN INVENTORY
-router.get('/addInventory', function (req, res) {
-    // check if thr user is logged in 
-    if (req.session.userLoggedIn) {
-        res.render('inventory/addInventory');
-    }
-    else {
-        res.redirect('/login');
-    }
-});
-
-// Attendance page
-router.get('/attendance', function (req, res) {
-    // check if thr user is logged in 
-    if (req.session.userLoggedIn) {
-        res.render('attendance/attendance');
-    }
-    else {
-        res.redirect('/login');
-    }
-
-});
 
 // sign-up form
 router.post('/signup', [
