@@ -1,7 +1,11 @@
 body {
   text-transform: uppercase;
-  background-image: url("../../images/background.png");
+  background-image: url("../../images/image3.png");
+  background-repeat: no-repeat;
   background-color: rgba(195, 195, 216, 0.3);
+  background-position: right;
+  background-size:cover;
+  opacity: .9;
 }
 
 form {

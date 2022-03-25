@@ -4,7 +4,7 @@ nav {
   margin: 0 auto;
   /* background: rgba(195, 195, 216, 0.5); */
   /* background-color: #5ca1e17e; */
-  background-color: #143450de;
+  background-color: #1b4468cc;
   padding: 20px 0;
   font-weight: 300;
 }
@@ -26,7 +26,8 @@ nav ul li a {
   padding: 1px 15px 1px 15px;
   text-decoration: none;
   /* color: #1a344d; */
-  color: #bed6ec;
+  color: #c7e4ff;
+  /* color: #001120; */
   font-weight: 500;
   text-transform: uppercase;
   margin: 0;

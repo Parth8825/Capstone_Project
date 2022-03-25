@@ -1,5 +1,6 @@
 body {
   text-transform: uppercase;
+  background-image: none;
   background-color: rgba(195, 195, 216, 0.3);
 }
 
