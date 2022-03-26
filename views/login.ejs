@@ -8,59 +8,61 @@
         <header>
             <h2>Employee Management System</h2>
         </header>
-        <main>
-            <div class="loginBody">
-                <% if(typeof(logout) !='undefined' ){ %>
-                    <div class="logoutMessage">
-                        <% if(locals.logout){%>
-                            <%= logout %>
-                                <% } %>
-                    </div>
-                    <% } %>
-                        <div class="container">
-                            <div class="message signup">
-                                <div class="btn-wrapper">
-                                    <button class="buttonSignup" id="signup">Sign Up</button>
-                                    <button class="button " id="login"> Login</button>
-                                </div>
-                            </div>
-                            <div class="form form--signup">
-                                <div class="form--heading">Welcome! Sign Up</div>
-                                <form autocomplete="off" class="loginForm" method="post" action="/signup">
-                                    <input type="text" placeholder="Name" name="newUsername">
-                                    <input type="email" placeholder="Email" name="newEmail">
-                                    <input type="password" placeholder="Password" name="newPassword">
-                                    <button type="submit" id="signup" class="button" name="signupBtn"
-                                        formaction="signup">Sign
-                                        Up</button>
-
-                                    <% if(typeof(errors) !='undefined' ){ %>
-                                        <div class="signupError">
-                                            <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-                                                <p>
-                                                    <%= error.msg %>
-                                                </p>
-                                                <% } } %>
-                                        </div>
-                                        <% } %>
-                                            <% if(locals.loginError){ %>
-                                                <div class="loginError">
-                                                    <%= loginError%>
-                                                </div>
-                                                <% } %>
-                                </form>
-                            </div>
-                            <div class="form form--login">
-                                <div class="form--heading">Welcome back! </div>
-                                <form autocomplete="off" class="loginForm" method="post" action="/login">
-                                    <input type="text" placeholder="Name" name="username">
-                                    <input type="password" placeholder="Password" name="password">
-                                    <button type="submit" class="button" name="loginBtn" id="login"
-                                        formaction="login">Login</button>
-                                </form>
-                            </div>
-
+        <section>
+            <main>
+                <div class="loginBody">
+                    <% if(typeof(logout) !='undefined' ){ %>
+                        <div class="logoutMessage">
+                            <% if(locals.logout){%>
+                                <%= logout %>
+                                    <% } %>
                         </div>
-            </div>
-        </main>
+                        <% } %>
+                            <div class="container">
+                                <div class="message signup">
+                                    <div class="btn-wrapper">
+                                        <button class="buttonSignup" id="signup">Sign Up</button>
+                                        <button class="button " id="login"> Login</button>
+                                    </div>
+                                </div>
+                                <div class="form form--signup">
+                                    <div class="form--heading">Welcome! Sign Up</div>
+                                    <form autocomplete="off" class="loginForm" method="post" action="/signup">
+                                        <input type="text" placeholder="Name" name="newUsername">
+                                        <input type="email" placeholder="Email" name="newEmail">
+                                        <input type="password" placeholder="Password" name="newPassword">
+                                        <button type="submit" id="signup" class="button" name="signupBtn"
+                                            formaction="signup">Sign
+                                            Up</button>
+
+                                        <% if(typeof(errors) !='undefined' ){ %>
+                                            <div class="signupError">
+                                                <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                                                    <p>
+                                                        <%= error.msg %>
+                                                    </p>
+                                                    <% } } %>
+                                            </div>
+                                            <% } %>
+                                                <% if(locals.loginError){ %>
+                                                    <div class="loginError">
+                                                        <%= loginError%>
+                                                    </div>
+                                                    <% } %>
+                                    </form>
+                                </div>
+                                <div class="form form--login">
+                                    <div class="form--heading">Welcome back! </div>
+                                    <form autocomplete="off" class="loginForm" method="post" action="/login">
+                                        <input type="text" placeholder="Name" name="username">
+                                        <input type="password" placeholder="Password" name="password">
+                                        <button type="submit" class="button" name="loginBtn" id="login"
+                                            formaction="login">Login</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                </div>
+            </main>
+        </section>
         <%- include('layouts/footer'); -%>
