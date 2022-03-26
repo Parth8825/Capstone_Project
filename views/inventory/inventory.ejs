@@ -10,6 +10,13 @@
         <%- include('../layouts/navigation'); -%>
         <section>
             <main>
+                <% if(typeof(message) !='undefined' ){ %>
+                    <div class="messages">
+                        <% if(locals.message){ %>
+                            <%= message%>
+                                <% }%>
+                                    <% } %>
+                    </div>
                 <div class="btn">
                     <a href="/inventory/addInventory">
                         <button class="btn">Add Item</button>
@@ -23,28 +30,36 @@
                         <th>Item Name</th>
                         <th>Quantity</th>
                         <th>Rate</th>
-                        <th>Description</th>
+                        <th>Added By</th>
                         <th>Received Date & Time</th>
                         <th>Remaied Item</th>
-                        <th>Added By</th>
+                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <% for(var inventory of inventories){ %>
                     <tr>
                         <td>
+                            <%= inventory.itemname %>
                         </td>
                         <td>
+                            <%= inventory.quantity %>
                         </td>
                         <td>
+                            <%= inventory.rate%>
                         </td>
                         <td>
+                            <%= inventory.addedby %>
                         </td>
                         <td>
+                            <%= inventory.receiveddatetime %>
                         </td>
                         <td>
+                            <%= inventory.remaineditem %>
                         </td>
                         <td>
+                            <%= inventory.description %>
                         </td>
                         <td>
                             <div class="buttons">
@@ -53,6 +68,7 @@
                             </div>
                         </td>
                     </tr>
+                    <% } %>
                 </tbody>
             </table>
         </main>

@@ -5,7 +5,6 @@ module.exports = router;
 const Admin = require('../models/adminModel');
 const Employee = require('../models/employeeModel');
 
-
 //setting up express validator
 const { check, validationResult } = require('express-validator');// ES6 standard for destructuring an object
 //login page
@@ -20,7 +19,7 @@ router.post('/login', function (req, res) {
 
     Admin.findOne({ username: user, password: pass }).exec(function (err, admin) {
         console.log('Error: ' + err);
-        console.log('Adming: ' + admin);
+        console.log('Admin: ' + admin);
         if (admin) {
             // store username in session and set logged in true
             req.session.username = admin.username;

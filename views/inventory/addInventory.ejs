@@ -54,49 +54,49 @@
             <% } } %>
         </div>
         <% } %>
-          <% if(typeof(payrate) !='undefined' ){ %>
-            <h2>Employee Data</h2>
+          <% if(typeof(description) !='undefined' ){ %>
+            <h2>Inventory</h2>
             <table>
               <tr>
-                <th>Name: </th>
+                <th>Item Name: </th>
                 <td>
-                  <%= name %>
+                  <%= itemname %>
                 </td>
               </tr>
               <tr>
-                <th>Email: </th>
+                <th>Quantity: </th>
                 <td>
-                  <%= email %>
+                  <%= quantity %>
                 </td>
               </tr>
               <tr>
-                <th>Phone: </th>
+                <th>Rate: </th>
                 <td>
-                  <%= phone %>
+                  <%= rate %>
                 </td>
               </tr>
               <tr>
-                <th>Address: </th>
+                <th>Added By: </th>
                 <td>
-                  <%= address %>
+                  <%= addedby %>
                 </td>
               </tr>
               <tr>
-                <th>Postcode: </th>
+                <th>Recieved Date & Time: </th>
                 <td>
-                  <%= postcode %>
+                  <%= receiveddatetime %>
                 </td>
               </tr>
               <tr>
-                <th>Position: </th>
+                <th>Remained Item: </th>
                 <td>
-                  <%= position %>
+                  <%= remaineditem %>
                 </td>
               </tr>
               <tr>
-                <th>Payrate: </th>
+                <th>Description: </th>
                 <td>
-                  <%= payrate %>
+                  <%= description %>
                 </td>
               </tr>
             </table>
