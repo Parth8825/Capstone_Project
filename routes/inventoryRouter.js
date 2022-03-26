@@ -43,9 +43,9 @@ router.get('/addInventory', function (req, res) {
 router.post('/addInventory', [
     check('itemname', 'Item name is required').not().isEmpty(),
     check('addedby', 'Added by whom is required').not().isEmpty(),
-    check('quantity').custom(customPositiveNumberValication),
-    check('rate').custom(customPositiveNumberValication),
-    check('remaineditem').custom(customPositiveNumberValication)
+    check('quantity').custom(customQuantityValication),
+    check('rate').custom(customRateValication),
+    check('remaineditem').custom(customremainedItemValication)
 
 ], function (req, res) {
     const errors = validationResult(req);
@@ -83,6 +83,23 @@ router.post('/addInventory', [
     }
 });
 
+// DELETE INVENTORY ITEM FROM THE DATABASE
+router.get('/delete/:itemId', function (req, res) {
+    // check if thr user is logged in 
+    if (req.session.userLoggedIn) {
+        var itemId = req.params.itemId;
+        console.log(itemId);
+        Inventory.findByIdAndDelete({ _id: itemId }).exec(function (err, inventory) {
+            console.log('Error: ' + err);
+            console.log('Item: ' + inventory);
+        });
+        req.flash('msg', 'Iten from Inventory deleted successfully !!!');
+        res.redirect('/inventory');
+    }
+    else {
+        res.redirect('/login');
+    }
+});
 
 // Validations
 // Defining regular expressions
@@ -99,9 +116,23 @@ function checkRegex(userInput, regex) {
 }
 
 // custom quantity validation function
-function customPositiveNumberValication(value) {
+function customQuantityValication(value) {
     if (!checkRegex(value, positiveNum)) {
-        throw new Error('Payrate has to be postive number');
+        throw new Error('Quantity has to be postive number');
+    }
+    return true;
+}
+
+function customRateValication(value) {
+    if (!checkRegex(value, positiveNum)) {
+        throw new Error('Rate has to be postive number');
+    }
+    return true;
+}
+
+function customremainedItemValication(value) {
+    if (!checkRegex(value, positiveNum)) {
+        throw new Error('Remaied Item has to be postive number');
     }
     return true;
 }
