@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400");
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display");
+body{
+  background-image: none;
+}
+
 .loginBody,
 .message,
 .form,
@@ -10,22 +14,17 @@
   flex-direction: column;
 }
 
-body{
-  /* width: 100%; */
-}
-
 .loginBody {
   background-image: url("../../images/image3.png");
   background-size: cover;
   background-position: right;
-
   height: 100vh;
   background-color: rgba(195, 195, 216, 0.5);
   font-family: "Source Sans Pro", sans-serif;
   overflow: hidden;
 }
 .container {
-  opacity: .95;
+  opacity: .92;
   width: 950px;
   height: 550px;
   background: white;
