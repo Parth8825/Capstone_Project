@@ -8,13 +8,13 @@
             <h2>Employee Management System</h2>
         </header>
         <%- include('../layouts/navigation'); -%>
+        <section>
             <main>
                 <div class="btn">
                     <a href="/inventory/addInventory">
                         <button class="btn">Add Item</button>
                     </a>
                 </div>
-            </main>
 
             <h1 id="itemDetails">Items In Inventory</h1>
             <table class="content-table">
@@ -55,5 +55,6 @@
                     </tr>
                 </tbody>
             </table>
-
+        </main>
+    </section>
             <%- include('../layouts/footer'); -%>

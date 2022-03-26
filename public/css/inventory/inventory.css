@@ -11,7 +11,7 @@
     border-bottom: 5px double gray; */
     padding: 1% 0.5%;
     color: #333;
-    margin: 7.5% 38% 4% 38%;
+    margin: 2% 38% 4% 38%;
     font-size: 160%;
     border-radius: 0 20px 0 20px;
     box-shadow: 0 0 25px rgba(195, 195, 216, 100);
@@ -34,14 +34,14 @@
   
   .content-table {
     border-collapse: collapse;
-    width: 98%;
+    width: 100%;
     font-size: 115%;
     /* border: 4px double gray; */
     min-width: 400px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    margin: auto 30px 10px 15px;
+    margin: auto 2px;
   }
   
   .content-table thead tr {
@@ -74,7 +74,7 @@
   }
   
   .content-table tbody tr:last-of-type {
-    border-bottom: 3px solid #1c5b97cc;
+    border-bottom: 4px solid #1c5b97cc;
   }
   
   .buttons {

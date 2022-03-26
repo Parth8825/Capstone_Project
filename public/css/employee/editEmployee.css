@@ -1,6 +1,11 @@
 body {
   text-transform: uppercase;
-  background-image: none;
+  background-image: url("../../images/image6.png");
+  background-repeat: no-repeat;
+  background-color: rgba(195, 195, 216, 0.3);
+  background-position: bottom;
+  background-size:contain;
+  opacity: .9;
   background-color: rgba(195, 195, 216, 0.3);
 }
 
