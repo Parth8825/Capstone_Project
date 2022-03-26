@@ -8,6 +8,7 @@ const Employee = require('../models/employeeModel');
 
 //setting up express validator
 const { check, validationResult } = require('express-validator');// ES6 standard for destructuring an object
+const e = require('connect-flash');
 //login page
 router.get('/login', function (req, res) {
     res.render('login');
@@ -213,7 +214,22 @@ router.get('/delete/:employeeId', function (req, res) {
         res.redirect('/login');
     }
 });
-
+ router.get('/employeeDetail/:id', function (req,res){
+    if(req.session.userLoggedIn){
+        var id = req.params.id;
+        Employee.findOne({_id: id}, function (err, employee){
+            if(employee){
+                res.render('employee/employeeDetail', {employee: employee});
+            }
+            else{
+                res.send('Sorry... No data found');
+            }
+        })
+    }
+    else{
+        res.redirect('/login');
+    }
+ });
 // sign-up form
 router.post('/signup', [
     check('newUsername', 'username is required').not().isEmpty(),
