@@ -8,68 +8,71 @@
             <h2>Employee Management System</h2>
         </header>
         <%- include('layouts/navigation'); -%>
-            <main>
-                <% if(typeof(message) !='undefined' ){ %>
-                    <div class="messages">
-                        <% if(locals.message){ %>
-                            <%= message%>
-                                <% }%>
-                                    <% } %>
-                    </div>
-                    <div class="btn">
-                        <a href="/addEmployee">
-                            <button class="btn">Add Employee</button>
-                        </a>
-                    </div>
-                    <h1 id="employeeDetails">Employee Details</h1>
-                    <table class="content-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Postal Code</th>
-                                <th>Position</th>
-                                <th>Payrate</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for(var employee of employees){ %>
+            <section>
+                <main>
+                    <% if(typeof(message) !='undefined' ){ %>
+                        <div class="messages">
+                            <% if(locals.message){ %>
+                                <%= message%>
+                                    <% }%>
+                                        <% } %>
+                        </div>
+                        <div class="btn">
+                            <a href="/addEmployee">
+                                <button class="btn">Add Employee</button>
+                            </a>
+                        </div>
+                        <h1 id="employeeDetails">Employee Details</h1>
+                        <table class="content-table">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <a href="/employeeDetail/<%= employee._id %>">
-                                            <%= employee.name %>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <%= employee.email %>
-                                    </td>
-                                    <td>
-                                        <%= employee.phone %>
-                                    </td>
-                                    <td>
-                                        <%= employee.address %>
-                                    </td>
-                                    <td>
-                                        <%= employee.postcode %>
-                                    </td>
-                                    <td>
-                                        <%= employee.position %>
-                                    </td>
-                                    <td>
-                                        <%= employee.payrate %>
-                                    </td>
-                                    <td>
-                                        <div class="buttons">
-                                            <a class="editButton" href="/edit/<%= employee._id %>">Edit</a>
-                                            <a class="deleteButton" href="/delete/<%= employee._id %>">Delete</a>
-                                        </div>
-                                    </td>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Postal Code</th>
+                                    <th>Position</th>
+                                    <th>Payrate</th>
+                                    <th>Action</th>
+
                                 </tr>
-                                <% } %>
-                        </tbody>
-                    </table>
-            </main>
+                            </thead>
+                            <tbody>
+                                <% for(var employee of employees){ %>
+                                    <tr>
+                                      <td>
+                                          <a href="/employeeDetail/<%= employee._id %>">
+                                              <%= employee.name %>
+                                          </a>
+                                      </td>
+                                      <td>
+                                          <%= employee.email %>
+                                      </td>
+                                      <td>
+                                          <%= employee.phone %>
+                                      </td>
+                                      <td>
+                                          <%= employee.address %>
+                                      </td>
+                                      <td>
+                                          <%= employee.postcode %>
+                                      </td>
+                                      <td>
+                                          <%= employee.position %>
+                                      </td>
+                                      <td>
+                                          <%= employee.payrate %>
+                                      </td>
+                                      <td>
+                                          <div class="buttons">
+                                              <a class="editButton" href="/edit/<%= employee._id %>">Edit</a>
+                                              <a class="deleteButton" href="/delete/<%= employee._id %>">Delete</a>
+                                          </div>
+                                      </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                </main>
+            </section>
             <%- include('layouts/footer'); -%>
