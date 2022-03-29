@@ -181,7 +181,7 @@ router.get('/delete/:inventoryId', function (req, res) {
             console.log('Error: ' + err);
             console.log('Item: ' + inventory);
         });
-        req.flash('msg', 'Iten from Inventory deleted successfully !!!');
+        req.flash('msg', 'Item from Inventory deleted successfully !!!');
         res.redirect('/inventory');
     }
     else {
