@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Parth8825/Capstone_Project#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "*",
     "connect-flash": "*",
     "cookie-parser": "*",
