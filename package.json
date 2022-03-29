@@ -18,15 +18,16 @@
   },
   "homepage": "https://github.com/Parth8825/Capstone_Project#readme",
   "dependencies": {
-    "express": "^4.17.3",
-    "ejs": "*",
     "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "*",
+    "dayjs": "^1.11.0",
+    "ejs": "*",
+    "express": "^4.17.3",
+    "express-session": "*",
     "express-validator": "*",
     "mongoose": "*",
     "nodemon": "*",
-    "express-session": "*",
-    "uuid": "*",
-    "connect-flash": "*",
-    "cookie-parser": "*"
+    "uuid": "*"
   }
 }

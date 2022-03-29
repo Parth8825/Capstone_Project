@@ -2,11 +2,16 @@ var express = require('express');
 var router = express.Router();
 module.exports = router;
 
+const dayjs = require('dayjs');
+let receiveddatetime = dayjs();
+receiveddatetime.format('DD/MM/YYYY');
+
 //IMPORTING inventoryModel FROM THE MODEL FOLDER
 const Inventory = require('../models/inventoryModel')
 
 //setting up express validator
 const { check, validationResult } = require('express-validator');
+const e = require('connect-flash');
 
 // Inventory page
 router.get('/', function (req, res) {
@@ -20,7 +25,6 @@ router.get('/', function (req, res) {
                 const message = req.flash('msg');
                 res.render('inventory/inventory', { inventories: inventories, message});
             }
-
         });
     }
     else {
@@ -43,9 +47,9 @@ router.get('/addInventory', function (req, res) {
 router.post('/addInventory', [
     check('itemname', 'Item name is required').not().isEmpty(),
     check('addedby', 'Added by whom is required').not().isEmpty(),
-    check('quantity').custom(customPositiveNumberValication),
-    check('rate').custom(customPositiveNumberValication),
-    check('remaineditem').custom(customPositiveNumberValication)
+    check('quantity').custom(customQuantityValication),
+    check('rate').custom(customRateValication),
+    check('remaineditem').custom(customremainedItemValication)
 
 ], function (req, res) {
     const errors = validationResult(req);
@@ -58,8 +62,8 @@ router.post('/addInventory', [
         var itemname = req.body.itemname;
         var quantity = req.body.quantity;
         var rate = req.body.rate;
-        var addedby = req.body.addedby;
-        var receiveddatetime = req.body.receiveddatetime;
+        var addedby = req.body.addedby;   
+        receiveddatetime = req.body.receiveddatetime;
         var remaineditem = req.body.remaineditem;
         var description = req.body.description;
 
@@ -83,6 +87,107 @@ router.post('/addInventory', [
     }
 });
 
+// EDIT INVENTORY DETAILS [GET]
+router.get('/edit/:inventoryId', function (req, res) {
+    // check if the user is logged in 
+    if (req.session.userLoggedIn) {
+        var inventoryId = req.params.inventoryId;
+        console.log(inventoryId);
+        Inventory.findOne({ _id: inventoryId }).exec(function (err, inventory) {
+            console.log('Error: ' + err);
+            console.log('Inventory: ' + inventory);
+            if (inventory) {
+                res.render('inventory/editInventory', { inventory: inventory });
+            }
+            else {
+                res.send('No Inventory found with that id..');
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+// EDIT INVENTORY DETAILS [POST]
+router.post('/edit/:inventoryId', [
+    check('itemname', 'Item name is required').not().isEmpty(),
+    check('addedby', 'Added by whom is required').not().isEmpty(),
+    check('quantity').custom(customQuantityValication),
+    check('rate').custom(customRateValication),
+    check('remaineditem').custom(customremainedItemValication)
+
+], function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        var inventoryId = req.params.inventoryId;
+        Inventory.findOne({ _id: inventoryId }).exec(function (err, inventory) {
+            console.log('Error: ' + err);
+            console.log('Inventory: ' + inventory);
+            if(inventory){
+                res.render('inventory/editInventory', { inventory:inventory, errors: errors.array()});
+            }
+            else{
+                res.send('no order found with that id...');
+            }
+        
+        });
+    }
+    else {
+        var itemname = req.body.itemname;
+        var quantity = req.body.quantity;
+        var rate = req.body.rate;
+        var addedby = req.body.addedby;   
+        var receiveddatetime = req.body.receiveddatetime;
+        var remaineditem = req.body.remaineditem;
+        var description = req.body.description;
+
+        // storing values in object called "employeeData"
+        var inventoryData = {
+            itemname: itemname,
+            quantity: quantity,
+            rate: rate,
+            addedby: addedby,
+            receiveddatetime: receiveddatetime,
+            remaineditem: remaineditem,
+            description: description
+        }
+
+        var id = req.params.id;
+        Inventory.findOne({ _id: id }, function (err, inventory) {
+            inventory.itemname = itemname;
+            inventory.quantity = quantity;
+            inventory.rate = rate;
+            inventory.addedby = addedby;
+            inventory.receiveddatetime = receiveddatetime;
+            inventory.remaineditem = remaineditem;
+            inventory.description = description;
+            inventory.save().then(function () {
+                console.log('Inventory updated');
+            });
+        });
+        res.render('inventory/editedInventoryDetail', inventoryData);
+
+    }
+});
+
+// DELETE INVENTORY ITEM FROM THE DATABASE
+router.get('/delete/:inventoryId', function (req, res) {
+    // check if thr user is logged in 
+    if (req.session.userLoggedIn) {
+        var inventoryId = req.params.inventoryId;
+        console.log(inventoryId);
+        Inventory.findByIdAndDelete({ _id: inventoryId }).exec(function (err, inventory) {
+            console.log('Error: ' + err);
+            console.log('Item: ' + inventory);
+        });
+        req.flash('msg', 'Iten from Inventory deleted successfully !!!');
+        res.redirect('/inventory');
+    }
+    else {
+        res.redirect('/login');
+    }
+});
 
 // Validations
 // Defining regular expressions
@@ -99,9 +204,23 @@ function checkRegex(userInput, regex) {
 }
 
 // custom quantity validation function
-function customPositiveNumberValication(value) {
+function customQuantityValication(value) {
     if (!checkRegex(value, positiveNum)) {
-        throw new Error('Payrate has to be postive number');
+        throw new Error('Quantity has to be postive number');
+    }
+    return true;
+}
+
+function customRateValication(value) {
+    if (!checkRegex(value, positiveNum)) {
+        throw new Error('Rate has to be postive number');
+    }
+    return true;
+}
+
+function customremainedItemValication(value) {
+    if (!checkRegex(value, positiveNum)) {
+        throw new Error('Remaied Item has to be postive number');
     }
     return true;
 }

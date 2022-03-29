@@ -1,0 +1,65 @@
+<%- include('../layouts/header'); -%>
+    <link href="/css/inventory/addInventory.css" rel="stylesheet">
+    </head>
+
+    </head>
+
+    <body>
+        <header>
+            <h2>Employee Management System</h2>
+        </header>
+        <h1 id="addItem">edit Item In Inventory</h1>
+        <form name="Inventory" method="post" action="">
+            <div class="textboxes">
+                <label>Item Name: </label>
+                <input id="itemname" placeholder="Item Name" type="text" name="itemname" class="space"
+                    value="<% inventory.itemname %>"><br />
+
+                <label>Quantity: </label>
+                <input id="quantity" placeholder="Quantity" type="number" name="quantity" class="space"
+                    value="<% inventory.quantity %>"><br />
+
+                <label>Rate: </label>
+                <input id="rate" placeholder="$25" type="number" name="rate" class="space"
+                    value="<% inventory.rate %>"><br />
+
+                <label>Added By: </label>
+                <input id="addedby" placeholder="Employee Name" type="text" name="addedby" class="space"
+                    value="<% inventory.addedby %>"><br />
+
+                <label>Received Date & Time: </label>
+                <input id="receiveddatetime" placeholder="YYYY-MM-DD" type="datetime" name="receiveddatetime"
+                    class="space" value="<% inventory.receiveddatetime %>"><br />
+
+                <label>Remained Item: </label>
+                <input id="remaineditem" type="number" name="remaineditem" class="space"
+                    value="<% inventory.remaineditem %>"><br />
+
+                <label>Description: </label>
+                <input id="description" type="text" name="description" class="space"
+                    value="<% inventory.description %>"><br />
+
+                <p id="errors"></p>
+
+            </div>
+            <div class="buttons">
+                <button class="btnSubmit" id="submit"> Submit </button>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/inventory" id="cancel" class="btnCancel">Cancel </a>
+            </div>
+
+        </form>
+        <section class="errors">
+            <% if(typeof(errors) !='undefined' ){ %>
+                <div style="border-radius: 0 25px 0 25px;">
+                    <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                        <p>
+                            <%= error.msg %>
+                        </p>
+                        <% } } %>
+                </div>
+                <% } %>
+        </section>
+    </body>
+    <!-- <%- include('../layouts/footer'); -%> -->
