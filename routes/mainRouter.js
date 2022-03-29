@@ -1,4 +1,5 @@
-var express = require('express');
+const express = require('express');
+const bcrypt = require('bcrypt'); // for password encryption
 var router = express.Router();
 module.exports = router;
 
@@ -14,26 +15,97 @@ router.get('/login', function (req, res) {
 });
 
 // login user
-router.post('/login', function (req, res) {
+router.post('/login', async function (req, res) {
     var user = req.body.username;
     var pass = req.body.password;
 
-    Admin.findOne({ username: user, password: pass }).exec(function (err, admin) {
+    Admin.findOne({ username: user}).exec(async function (err, admin) {
         console.log('Error: ' + err);
         console.log('Admin: ' + admin);
-        if (admin) {
-            // store username in session and set logged in true
-            req.session.username = admin.username;
-            req.session.userLoggedIn = true;
-            // redirect to the dashboard
-            res.redirect('/');
+        if(user == null){
+            return res.render('login', { loginError: 'Soory, cannot find user !!' })
         }
-        else {
+        try{
+            if(await bcrypt.compare(pass, admin.password)){
+                // store username in session and set logged in true
+                req.session.username = admin.username;
+                req.session.userLoggedIn = true;
+                // redirect to the dashboard
+                res.redirect('/');
+            }
+            else {
             res.render('login', { loginError: 'Soory, cannot login! Please Signup' });
+            }
         }
+        catch{
+            res.status(500).send();
+        }
+        // if (admin) {
+        //     // store username in session and set logged in true
+        //     req.session.username = admin.username;
+        //     req.session.userLoggedIn = true;
+        //     // redirect to the dashboard
+        //     res.redirect('/');
+        // }
+        // else {
+        //     res.render('login', { loginError: 'Soory, cannot login! Please Signup' });
+        // }
     });
 });
+// sign-up form
+router.post('/signup', [
+    check('newUsername', 'username is required').not().isEmpty(),
+    check('newEmail', 'E-mail is required').isEmail(),
+    check('newPassword', 'password is required').not().isEmpty()
+],async function (req, res) {
+    const errors = validationResult(req);
+    try{
+        if (!errors.isEmpty()) {
+            res.render('login', {
+                errors: errors.array()
+            });
+        }
+        else{
+            //creates a salt to generate new hash value every time.
+            const salt = await bcrypt.genSalt();
+            const hashedPassword = await bcrypt.hash(req.body.newPassword, salt); //converts password into hashcode and store into hashedPassword
+            console.log(salt);
+            console.log(hashedPassword);
+            var newUser = req.body.newUsername;
+            var newEmail = req.body.newEmail;
+            var newPassword = hashedPassword;
+    
+            var loginData = {
+                username: newUser,
+                mail: newEmail,
+                password: newPassword
+            }
+            
+            var userLoginData = new Admin(loginData);
+            userLoginData.save().then(function (){
+                console.log('Login data saved');
+            });
+            res.render('login');
+        }
+    }
+    catch{
+        res.status(500).send();
+    }
+    
+});
 
+// logout process
+router.get('/logout', function (req, res) {
+    req.session.destroy(function (err) {
+        if (err) {
+            console.log(err);
+            res.send("Error")
+        }
+        else {
+            res.render('login', { logout: "logout successfully....!" })
+        }
+    })
+});
 // Home page (Employee page)
 router.get('/', function (req, res) {
     //res.send('this one was showing in the browser');
@@ -229,50 +301,7 @@ router.get('/delete/:employeeId', function (req, res) {
         res.redirect('/login');
     }
  });
-// sign-up form
-router.post('/signup', [
-    check('newUsername', 'username is required').not().isEmpty(),
-    check('newEmail', 'E-mail is required').isEmail(),
-    check('newPassword', 'password is required').not().isEmpty()
-], function (req, res) {
-    const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-        res.render('login', {
-            errors: errors.array()
-        });
-    }
-    else{
-        var newUser = req.body.newUsername;
-        var newEmail = req.body.newEmail;
-        var newPassword = req.body.newPassword;
-
-        var loginData = {
-            username: newUser,
-            mail: newEmail,
-            password: newPassword
-        }
-        
-        var userLoginData = new Admin(loginData);
-        userLoginData.save().then(function (){
-            console.log('Login data saved');
-        });
-        res.render('login');
-    }
-});
-
-// logout process
-router.get('/logout', function (req, res) {
-    req.session.destroy(function (err) {
-        if (err) {
-            console.log(err);
-            res.send("Error")
-        }
-        else {
-            res.render('login', { logout: "logout successfully....!" })
-        }
-    })
-});
 
 
 // Validations

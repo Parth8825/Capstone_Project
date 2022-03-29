@@ -35,6 +35,7 @@ database.once('connected', () => {
 var ourApp = express();
 // parse application/x-www-form-urlencoded
 ourApp.use(bodyParser.urlencoded({ extended: false }));
+ourApp.use(bodyParser.json());
 // set up cookies
 ourApp.use(cookieParse('SecretStringForCookies'));
 
