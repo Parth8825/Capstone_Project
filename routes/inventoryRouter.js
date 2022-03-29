@@ -166,7 +166,7 @@ router.post('/edit/:inventoryId', [
                 console.log('Inventory updated');
             });
         });
-        res.render('inventory/editedEmployeeDetail', employeeData);
+        res.render('inventory/editedInventoryDetail', inventoryData);
 
     }
 });
