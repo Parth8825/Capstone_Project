@@ -2,10 +2,6 @@ var express = require('express');
 var router = express.Router();
 module.exports = router;
 
-const dayjs = require('dayjs');
-let receiveddatetime = dayjs();
-receiveddatetime.format('DD/MM/YYYY');
-
 //IMPORTING inventoryModel FROM THE MODEL FOLDER
 const Inventory = require('../models/inventoryModel')
 
