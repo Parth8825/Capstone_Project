@@ -32,7 +32,7 @@
                         <th>Rate</th>
                         <th>Added By</th>
                         <th>Received Date & Time</th>
-                        <th>Remaied Item</th>
+                        <th>Total Item</th>
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
@@ -53,10 +53,10 @@
                             <%= inventory.addedby %>
                         </td>
                         <td>
-                            <%= inventory.receiveddatetime %>
+                            <%= moment(inventory.receiveddatetime).format('hh:mm a MMM DD YYYY') %>
                         </td>
                         <td>
-                            <%= inventory.remaineditem %>
+                            <%= inventory.remaineditem + inventory.quantity %>
                         </td>
                         <td>
                             <%= inventory.description %>

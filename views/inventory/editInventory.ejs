@@ -8,36 +8,36 @@
         <header>
             <h2>Employee Management System</h2>
         </header>
-        <h1 id="addItem">edit Item In Inventory</h1>
+        <h1 id="addItem">Edit Item to Inventory</h1>
         <form name="Inventory" method="post" action="">
             <div class="textboxes">
                 <label>Item Name: </label>
                 <input id="itemname" placeholder="Item Name" type="text" name="itemname" class="space"
-                    value="<% inventory.itemname %>"><br />
+                    value="<%= inventory.itemname %>"><br />
 
                 <label>Quantity: </label>
                 <input id="quantity" placeholder="Quantity" type="number" name="quantity" class="space"
-                    value="<% inventory.quantity %>"><br />
+                    value="<%= inventory.quantity %>"><br />
 
                 <label>Rate: </label>
                 <input id="rate" placeholder="$25" type="number" name="rate" class="space"
-                    value="<% inventory.rate %>"><br />
+                    value="<%= inventory.rate %>"><br />
 
                 <label>Added By: </label>
                 <input id="addedby" placeholder="Employee Name" type="text" name="addedby" class="space"
-                    value="<% inventory.addedby %>"><br />
+                    value="<%= inventory.addedby %>"><br />
 
                 <label>Received Date & Time: </label>
                 <input id="receiveddatetime" placeholder="YYYY-MM-DD" type="datetime" name="receiveddatetime"
-                    class="space" value="<% inventory.receiveddatetime %>"><br />
+                    class="space" value="<%= inventory.receiveddatetime %>"><br />
 
                 <label>Remained Item: </label>
                 <input id="remaineditem" type="number" name="remaineditem" class="space"
-                    value="<% inventory.remaineditem %>"><br />
+                    value="<%= inventory.remaineditem %>"><br />
 
                 <label>Description: </label>
                 <input id="description" type="text" name="description" class="space"
-                    value="<% inventory.description %>"><br />
+                    value="<%= inventory.description %>"><br />
 
                 <p id="errors"></p>
 

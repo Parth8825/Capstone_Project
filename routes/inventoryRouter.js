@@ -110,7 +110,7 @@ router.get('/edit/:inventoryId', function (req, res) {
 });
 
 // EDIT INVENTORY DETAILS [POST]
-router.post('/edit/:inventoryId', [
+router.post('/edit/:id', [
     check('itemname', 'Item name is required').not().isEmpty(),
     check('addedby', 'Added by whom is required').not().isEmpty(),
     check('quantity').custom(customQuantityValication),
@@ -120,7 +120,7 @@ router.post('/edit/:inventoryId', [
 ], function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        var inventoryId = req.params.inventoryId;
+        var inventoryId = req.params.id;
         Inventory.findOne({ _id: inventoryId }).exec(function (err, inventory) {
             console.log('Error: ' + err);
             console.log('Inventory: ' + inventory);
