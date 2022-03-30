@@ -1,0 +1,73 @@
+<%- include('../layouts/header'); -%>
+
+    <link href="/css/employee/editEmployeeDetails.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h2>Employee Management System</h2>
+        </header>
+        <section class="page">
+            <% if(typeof(errors) !='undefined' ){ %>
+                <div style="border: 3px double gray; border-bottom: 5px double gray; border-radius: 0 25px 0 25px;">
+                    <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                        <p>
+                            <%= error.msg %>
+                        </p>
+                        <% } } %>
+                </div>
+                <% } %>
+                    <% if(typeof(description) !='undefined' ){ %>
+                        <h2>Inventory Data successfully updated!!</h2>
+                        <table>
+                            <tr>
+                                <th>Item Name: </th>
+                                <td>
+                                    <%= itemname %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Quantity: </th>
+                                <td>
+                                    <%= quantity %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rate: </th>
+                                <td>
+                                    <%= rate %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Added By: </th>
+                                <td>
+                                    <%= addedby %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Received Date & Time: </th>
+                                <td>
+                                    <%= formatDate(receiveddatetime) %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Remaied Item: </th>
+                                <td>
+                                    <%= remaineditem %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Description: </th>
+                                <td>
+                                    <%= description %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <a href="/inventory" class="button">Go back to Main</a>
+                                </th>
+                            </tr>
+
+                        </table>
+                        <% } %>
+                            <!-- <%- include('../layouts/footer'); -%> -->

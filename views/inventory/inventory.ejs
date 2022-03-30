@@ -32,7 +32,7 @@
                         <th>Rate</th>
                         <th>Added By</th>
                         <th>Received Date & Time</th>
-                        <th>Remaied Item</th>
+                        <th>Total Item</th>
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
@@ -56,15 +56,15 @@
                             <%= inventory.receiveddatetime %>
                         </td>
                         <td>
-                            <%= inventory.remaineditem %>
+                            <%= inventory.remaineditem + inventory.quantity %>
                         </td>
                         <td>
                             <%= inventory.description %>
                         </td>
                         <td>
                             <div class="buttons">
-                                <a class="editButton" href="">Edit</a>
-                                <a class="deleteButton" href="">Delete</a>
+                                <a class="editButton" href="../inventory/edit/<%= inventory._id %>">Edit</a>
+                                <a class="deleteButton" href="../inventory/delete/<%= inventory._id %>">Delete</a>
                             </div>
                         </td>
                     </tr>
