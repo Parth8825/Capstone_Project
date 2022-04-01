@@ -9,8 +9,54 @@
         <%- include('../layouts/navigation'); -%>
             <section>
                 <main>
-                    <button class="btn">Create Schedule</button>
-                    <h1>Schedule</h1>
+                    <% if(typeof(message) !='undefined' ){ %>
+                        <div class="messages">
+                            <% if(locals.message){ %>
+                                <%= message%>
+                                    <% }%>
+                                        <% } %>
+                        </div>
+                        <div class="btn">
+                            <a href="/schedule/addSchedule">
+                                <button class="btn">Create Schedule</button>
+                            </a>
+                        </div>
+                        <h1>Schedule</h1>
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Day</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var schedule of schedules){ %>
+                                    <tr>
+                                        <td>
+                                            <%= schedule.employeeName %>
+                                        </td>
+                                        <td>
+                                            <%= schedule.day %>
+                                        </td>
+                                        <td>
+                                            <%= schedule.startTime %>
+                                        </td>
+                                        <td>
+                                            <%= schedule.endTime %>
+                                        </td>
+                                        <td>
+                                            <div class="buttons">
+                                                <a class="editButton" href="#">Edit</a>
+                                                <a class="deleteButton" href="#">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+
                 </main>
             </section>
             <%- include('../layouts/footer'); -%>

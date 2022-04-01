@@ -1,0 +1,84 @@
+<%- include('../layouts/header'); -%>
+    <link href="/css/inventory/addInventory.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h2>Employee Management System</h2>
+        </header>
+        <%- include('../layouts/navigation'); -%>
+            <section>
+                <main>
+                    <button class="btn">Create Schedule</button>
+                    <h1>Schedule</h1>
+                    <form name="Inventory" method="post" action="/schedule/addSchedule">
+                        <div class="textboxes">
+                            <label>Employee Name: </label>
+                            <select name="eName" id="eName">
+                                <option value="---Select Employee---">---Select Employee---</option>
+                                <% for(var employee of employees){ %>
+                                    <% var name=employee.name%>
+                                        <option value="<%= name %>">
+                                            <%= name %>
+                                        </option>
+                                        <% }%>
+
+                            </select>
+
+                            <label>What Day ?: </label>
+                            <select name="sDay" id="sDay">
+                                <option value="Select">---Select Day---</option>
+                                <option value="Sunday">Sunday</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                            </select>
+
+                            <label>Start Time: </label>
+                            <select name="startTime" id="startTime">
+                                <option value="---Start Time---">---Start Time---</option>
+                                <% for(var i=0; i < 12; i++) {%>
+                                    <option value="<%= i %> AM">
+                                        <%= i %> AM
+                                    </option>
+                                    <% } %>
+                                        <% for(var j=12; j < 24; j++) {%>
+                                            <option value="<%= j %> PM">
+                                                <%= j %> PM
+                                            </option>
+                                            <% } %>
+                            </select>
+
+                            <label>End Time: </label>
+                            <select name="endTime" id="endTime">
+                                <option value="---End Time---">---End Time---</option>
+                                <% for(var i=0; i < 12; i++) {%>
+                                    <option value="<%= i %> AM">
+                                        <%= i %> AM
+                                    </option>
+                                    <% } %>
+                                        <% for(var j=12; j < 24; j++) {%>
+                                            <option value="<%= j %> PM">
+                                                <%= j %> PM
+                                            </option>
+                                            <% } %>
+                            </select>
+
+
+                            <p id="errors"></p>
+
+                        </div>
+                        <div class="buttons">
+                            <button class="btnSubmit" id="submit"> Add Schedule </button>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/" id="cancel" class="btnCancel">Cancel </a>
+                        </div>
+
+                    </form>
+                </main>
+            </section>
+            <%- include('../layouts/footer'); -%>
