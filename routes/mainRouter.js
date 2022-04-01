@@ -9,11 +9,11 @@ const Employee = require('../models/employeeModel');
 //setting up express validator
 const { check, validationResult } = require('express-validator');// ES6 standard for destructuring an object
 const e = require('connect-flash');
+
 //login page
 router.get('/login', function (req, res) {
     res.render('login');
 });
-
 // login user
 router.post('/login', async function (req, res) {
     var user = req.body.username;
@@ -40,16 +40,6 @@ router.post('/login', async function (req, res) {
         catch{
             res.status(500).send();
         }
-        // if (admin) {
-        //     // store username in session and set logged in true
-        //     req.session.username = admin.username;
-        //     req.session.userLoggedIn = true;
-        //     // redirect to the dashboard
-        //     res.redirect('/');
-        // }
-        // else {
-        //     res.render('login', { loginError: 'Soory, cannot login! Please Signup' });
-        // }
     });
 });
 // sign-up form
