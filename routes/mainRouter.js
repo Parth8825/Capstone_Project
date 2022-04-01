@@ -59,8 +59,6 @@ router.post('/signup', [
             //creates a salt to generate new hash value every time.
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(req.body.newPassword, salt); //converts password into hashcode and store into hashedPassword
-            console.log(salt);
-            console.log(hashedPassword);
             var newUser = req.body.newUsername;
             var newEmail = req.body.newEmail;
             var newPassword = hashedPassword;
@@ -75,7 +73,7 @@ router.post('/signup', [
             userLoginData.save().then(function (){
                 console.log('Login data saved');
             });
-            res.render('login');
+            res.render('login', { message: "Singed up  successfully....!" });
         }
     }
     catch{
@@ -92,7 +90,7 @@ router.get('/logout', function (req, res) {
             res.send("Error")
         }
         else {
-            res.render('login', { logout: "logout successfully....!" })
+            res.render('login', { message: "logout successfully....!" })
         }
     })
 });
