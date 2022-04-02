@@ -24,6 +24,19 @@ header {
   background-image: none;
 }
 
+@keyframes animation{
+  from {
+    font-size: 0;
+    margin: -10% 28% 30% 28%;
+    opacity: .1;
+    border: none;
+  }
+  
+  to{
+    margin: 2% 28%;
+  }
+}
+
 header h2 {
   background-image: url("../../images/image3.png");
   background-size: cover;
@@ -39,6 +52,8 @@ header h2 {
   border-radius: 13px;
   padding: 7.5px 0;
   background-color: rgba(195, 195, 216, 0.3);
+
+  animation: animation 1.15s;
 }
 
 main {

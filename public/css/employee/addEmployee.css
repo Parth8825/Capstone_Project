@@ -39,13 +39,14 @@ form {
 }
 
 .errors {
+  padding: 0 60px;
   background-color: white;
   position: relative;
   float: left;
   text-align: center;
   align-items: center;
   top: 60px;
-  left: 100px;
+  left: 80px;
   animation: animation 1s;
   /* animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95); */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -56,7 +57,7 @@ form {
 @keyframes animation {
   from {
     top: 60px;
-    left: 100px;
+    left: 80px;
     width: px;
     font-size: 0;
     text-align: center;
@@ -67,7 +68,7 @@ form {
 
   to {
     top: 60px;
-    left: 100px;
+    left: 80px;
   }
 }
 

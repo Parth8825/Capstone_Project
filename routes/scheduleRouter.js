@@ -84,7 +84,7 @@ router.post('/addSchedule', [
         ourSchedule.save().then(function(){
             console.log('Schedule saved successfully');
         });
-        req.flash('msg', 'Schedule added successfully !!!');
+        req.flash('msg', 'Schedule Added successfully !!!');
         res.redirect('/schedule');
     }
 });
@@ -97,7 +97,7 @@ router.get('/delete/:id', function (req, res){
             console.log('Error: ' + err);
             console.log('Schedule: ' + schedule);
         });
-        req.flash('msg', 'Employee deleted successfully !!!');
+        req.flash('msg', 'Schedule deleted successfully !!!');
         res.redirect('/schedule');
     }
     else {
