@@ -11,7 +11,7 @@
             <% if(typeof(errors) !='undefined' ){ %>
                 <div style="border: 3px double gray; border-bottom: 5px double gray; border-radius: 0 25px 0 25px;">
                     <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-                        <p>
+                        <p style="color:red;">
                             <%= error.msg %>
                         </p>
                         <% } } %>
