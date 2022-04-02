@@ -54,13 +54,16 @@ router.post('/addSchedule', [
     check('startTime').custom(checkStartTimeEndTimeNotSame)
 ], function (req, res) {
     const errors = validationResult(req);
+   
     if (!errors.isEmpty()) {
         Employee.find({}).exec(function (err, employees) {
             if (err) {
                 res(err)
             }
             else {
-                res.render('schedule/addSchedule', {employees: employees,  errors: errors.array()});
+                
+                res.render('schedule/addSchedule', {employees: employees, errors: errors.array()});
+                return;
             }
         });
     }

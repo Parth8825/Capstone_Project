@@ -10,11 +10,11 @@
             <section>
                 <main>
                     <button class="btn">Create Schedule</button>
-                    <h1>Schedule</h1>
+                    <h1 id="addItem">Create a Schedule</h1>
                     <form name="Inventory" method="post" action="/schedule/addSchedule">
                         <div class="textboxes">
                             <label>Employee Name: </label>
-                            <select name="eName" id="eName">
+                            <select name="eName" id="eName" class="space">
                                 <option value="---Select Employee---">---Select Employee---</option>
                                 <% for(var employee of employees){ %>
                                     <% var name=employee.name%>
@@ -22,11 +22,10 @@
                                             <%= name %>
                                         </option>
                                         <% }%>
-
                             </select>
 
                             <label>What Day ?: </label>
-                            <select name="sDay" id="sDay">
+                            <select name="sDay" id="sDay" class="space">
                                 <option value="---Select Day---">---Select Day---</option>
                                 <option value="Sunday">Sunday</option>
                                 <option value="Monday">Monday</option>
@@ -38,7 +37,7 @@
                             </select>
 
                             <label>Start Time: </label>
-                            <select name="startTime" id="startTime">
+                            <select name="startTime" id="startTime" class="space">
                                 <option value="---Start Time---">---Start Time---</option>
                                 <% for(var i=0; i < 12; i++) {%>
                                     <option value="<%= i %> AM">
@@ -53,7 +52,7 @@
                             </select>
 
                             <label>End Time: </label>
-                            <select name="endTime" id="endTime">
+                            <select name="endTime" id="endTime" class="space">
                                 <option value="---End Time---">---End Time---</option>
                                 <% for(var i=0; i < 12; i++) {%>
                                     <option value="<%= i %> AM">
@@ -83,7 +82,7 @@
                         <% if(typeof(errors) !='undefined' ){ %>
                             <div style="border-radius: 0 25px 0 25px;">
                                 <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-                                    <p>
+                                    <p style="color:red;">
                                         <%= error.msg %>
                                     </p>
                                     <% } } %>

@@ -12,26 +12,31 @@
     <form name="Employee" method="post" action="/inventory/addInventory">
       <div class="textboxes">
         <label>Item Name: </label>
-        <input id="itemname" placeholder="Item Name" type="text" name="itemname" class="space"><br />
+        <input id="itemname" placeholder="Item Name" type="text" name="itemname" class="space"
+          value="<%= form.itemnameHolder %>"><br />
 
         <label>Quantity: </label>
-        <input id="quantity" placeholder="Quantity" type="number" name="quantity" class="space"><br />
+        <input id="quantity" placeholder="Quantity" type="number" name="quantity" class="space"
+          value="<%= form.quantityHolder %>"><br />
 
         <label>Rate: </label>
-        <input id="rate" placeholder="$25" type="number" name="rate" class="space"><br />
+        <input id="rate" placeholder="$25" type="number" name="rate" class="space" value="<%= form.rateHolder %>"><br />
 
         <label>Added By: </label>
-        <input id="addedby" placeholder="Employee Name" type="text" name="addedby" class="space"><br />
+        <input id="addedby" placeholder="Employee Name" type="text" name="addedby" class="space"
+          value="<%= form.addedbyHolder %>"><br />
 
         <label>Received Date & Time: </label>
-        <input id="receiveddatetime" placeholder="YYYY-MM-DD" type="datetime" name="receiveddatetime"
-          class="space"><br />
+        <input id="receiveddatetime" placeholder="YYYY-MM-DD" type="datetime" name="receiveddatetime" class="space"
+          value="<%= form.receiveddateHolder %>"><br />
 
         <label>Remained Item: </label>
-        <input id="remaineditem" type="number" name="remaineditem" class="space"><br />
+        <input id="remaineditem" type="number" name="remaineditem" class="space"
+          value="<%= form.remaineditemHolder %>"><br />
 
         <label>Description: </label>
-        <input id="description" type="text" name="description" class="space"><br />
+        <input id="description" type="text" name="description" class="space"
+          value="<%= form.descriptionHolder %>"><br />
 
         <p id="errors"></p>
 
@@ -48,7 +53,7 @@
       <% if(typeof(errors) !='undefined' ){ %>
         <div style="border-radius: 0 25px 0 25px;">
           <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-            <p>
+            <p style="color:red;">
               <%= error.msg %>
             </p>
             <% } } %>
