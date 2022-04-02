@@ -9,11 +9,6 @@ body {
   opacity: .95;
 }
 
-form {
-  margin: 1% 0 0 7.5%;
-  font-size: 175%;
-  width: 40%;
-}
 
 #editEmployee {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
