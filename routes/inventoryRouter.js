@@ -32,7 +32,16 @@ router.get('/', function (req, res) {
 router.get('/addInventory', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
-        res.render('inventory/addInventory');
+        const form = {
+            itemnameHolder: req.body.itemname,
+            quantityHolder: req.body.quantity,
+            rateHolder: req.body.rate,
+            addedbyHolder: req.body.addedby,
+            datetimeHolder: req.body.receiveddatetime,
+            remaineditemHolder: req.body.remaineditem,
+            descriptionHolder: req.body.description
+        };
+        res.render('inventory/addInventory', {form: form});
     }
     else {
         res.redirect('/login');
@@ -48,9 +57,18 @@ router.post('/addInventory', [
     check('remaineditem').custom(customremainedItemValication)
 
 ], function (req, res) {
+    const form = {
+        itemnameHolder: req.body.itemname,
+        quantityHolder: req.body.quantity,
+        rateHolder: req.body.rate,
+        addedbyHolder: req.body.addedby,
+        datetimeHolder: req.body.receiveddatetime,
+        remaineditemHolder: req.body.remaineditem,
+        descriptionHolder: req.body.description
+    };
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        res.render('inventory/addInventory', {
+        res.render('inventory/addInventory', {form: form,
             errors: errors.array()
         });
     }
@@ -59,7 +77,7 @@ router.post('/addInventory', [
         var quantity = req.body.quantity;
         var rate = req.body.rate;
         var addedby = req.body.addedby;   
-        receiveddatetime = req.body.receiveddatetime;
+        var receiveddatetime = req.body.receiveddatetime;
         var remaineditem = req.body.remaineditem;
         var description = req.body.description;
 

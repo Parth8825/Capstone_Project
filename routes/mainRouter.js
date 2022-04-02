@@ -8,49 +8,53 @@ const Employee = require('../models/employeeModel');
 
 //setting up express validator
 const { check, validationResult } = require('express-validator');// ES6 standard for destructuring an object
-const e = require('connect-flash');
 //login page
 router.get('/login', function (req, res) {
     res.render('login');
 });
-
 // login user
-router.post('/login', async function (req, res) {
-    var user = req.body.username;
-    var pass = req.body.password;
-
-    Admin.findOne({ username: user}).exec(async function (err, admin) {
-        console.log('Error: ' + err);
-        console.log('Admin: ' + admin);
-        if(user == null){
-            return res.render('login', { loginError: 'Soory, cannot find user !!' })
+router.post('/login',[
+    check('username', 'username is required in Login').not().isEmpty(),
+    check('password', 'password is required in Login').not().isEmpty()
+], async function (req, res) {
+    const errors = validationResult(req);
+    try{
+        if (!errors.isEmpty()) {
+            res.render('login', {
+                errors: errors.array()
+            });
         }
-        try{
-            if(await bcrypt.compare(pass, admin.password)){
-                // store username in session and set logged in true
-                req.session.username = admin.username;
-                req.session.userLoggedIn = true;
-                // redirect to the dashboard
-                res.redirect('/');
-            }
-            else {
-            res.render('login', { loginError: 'Soory, cannot login! Please Signup' });
-            }
-        }
-        catch{
-            res.status(500).send();
-        }
-        // if (admin) {
-        //     // store username in session and set logged in true
-        //     req.session.username = admin.username;
-        //     req.session.userLoggedIn = true;
-        //     // redirect to the dashboard
-        //     res.redirect('/');
-        // }
-        // else {
-        //     res.render('login', { loginError: 'Soory, cannot login! Please Signup' });
-        // }
-    });
+        else{
+            var user = req.body.username;
+            var pass = req.body.password;
+            Admin.findOne({ username: user}).exec(async function (err, admin) {
+                console.log('Error: ' + err);
+                console.log('Admin: ' + admin);
+                if(!admin){
+                    return res.render('login', { loginError: 'Soory, cannot find user !!' });
+                }
+                try{
+                    if(await bcrypt.compare(pass, admin.password)){
+                        // store username in session and set logged in true
+                        req.session.username = admin.username;
+                        req.session.userLoggedIn = true;
+                        // redirect to the dashboard
+                        res.redirect('/');
+                    }
+                    else {
+                    res.render('login', { loginError: 'Soory, password is incorrect' });
+                    }
+                }
+                catch{
+                    res.status(500).send();
+                }
+            });
+        } 
+    }
+    catch{
+        res.status(500).send();
+    }
+    
 });
 // sign-up form
 router.post('/signup', [
@@ -66,13 +70,16 @@ router.post('/signup', [
             });
         }
         else{
+            var newUser = req.body.newUsername;
+            Admin.findOne({ username: newUser}).exec(async function (err, admin) {
+                if(admin){
+                    return res.render('login', { loginError: 'User under this name already exist, try different name' });
+                }
+            });
+            var newEmail = req.body.newEmail;
             //creates a salt to generate new hash value every time.
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(req.body.newPassword, salt); //converts password into hashcode and store into hashedPassword
-            console.log(salt);
-            console.log(hashedPassword);
-            var newUser = req.body.newUsername;
-            var newEmail = req.body.newEmail;
             var newPassword = hashedPassword;
     
             var loginData = {
@@ -85,7 +92,7 @@ router.post('/signup', [
             userLoginData.save().then(function (){
                 console.log('Login data saved');
             });
-            res.render('login');
+            res.render('login', { message: "Singed up  successfully....!" });
         }
     }
     catch{
@@ -102,7 +109,7 @@ router.get('/logout', function (req, res) {
             res.send("Error")
         }
         else {
-            res.render('login', { logout: "logout successfully....!" })
+           res.render('login', { message: "logout successfully....!" });
         }
     })
 });
@@ -127,11 +134,22 @@ router.get('/', function (req, res) {
     }
 });
 
+
 // Add Employee page
 router.get('/addEmployee', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
-        res.render('employee/addEmployee');
+        const form = {
+            firstnameHolder: req.body.firstname,
+            lastnameHolder: req.body.lastname,
+            emailHolder: req.body.email,
+            phoneHolder: req.body.phone,
+            addressHolder: req.body.address,
+            postcodeHolder: req.body.postcode,
+            positionHolder: req.body.position,
+            payrateHolder: req.body.payrate
+           };
+        res.render('employee/addEmployee', {form: form});
     }
     else {
         res.redirect('/login');
@@ -145,12 +163,24 @@ router.post('/addEmployee', [
     check('lastname', 'Last name is required').not().isEmpty(),
     check('email', 'Email is required').isEmail(),
     check('phone').custom(customPhoneValidation),
+    check('address', 'address is required').not().isEmpty(),
     check('postcode').custom(customPostcodeValidation),
+    check('position', 'position is required').not().isEmpty(),
     check('payrate').custom(customPayrateValication)
 ], function (req, res) {
+    const form = {
+        firstnameHolder: req.body.firstname,
+        lastnameHolder: req.body.lastname,
+        emailHolder: req.body.email,
+        phoneHolder: req.body.phone,
+        addressHolder: req.body.address,
+        postcodeHolder: req.body.postcode,
+        positionHolder: req.body.position,
+        payrateHolder: req.body.payrate
+       };
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        res.render('employee/addEmployee', {
+        res.render('employee/addEmployee', {form: form,
             errors: errors.array()
         });
     }
@@ -209,10 +239,13 @@ router.get('/edit/:employeeId', function (req, res) {
 
 // edit employee details [post]
 router.post('/edit/:id', [
-    check('name', 'Name is required').not().isEmpty(),
+    check('firstname', 'First name is required').not().isEmpty(),
+    check('lastname', 'Last name is required').not().isEmpty(),
     check('email', 'Email is required').isEmail(),
     check('phone').custom(customPhoneValidation),
+    check('address', 'address is required').not().isEmpty(),
     check('postcode').custom(customPostcodeValidation),
+    check('position', 'position is required').not().isEmpty(),
     check('payrate').custom(customPayrateValication)
 ], function (req, res) {
     const errors = validationResult(req);
@@ -306,9 +339,10 @@ router.get('/delete/:employeeId', function (req, res) {
 
 // Validations
 // Defining regular expressions
-var phoneRegex = /^[0-9]{10}$/;
+var phoneRegex = /^[0-9]{3}[-][0-9]{3}[-][0-9]{4}$/;
 var positiveNum = /^[1-9][0-9]*$/;
 var postcoderegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
+//var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // function to check a value using regular expression
 function checkRegex(userInput, regex) {
@@ -321,21 +355,30 @@ function checkRegex(userInput, regex) {
 }
 // custom phone number validation function
 function customPhoneValidation(value) {
-    if (!checkRegex(value, phoneRegex)) {
-        throw new Error('Number has to be in 10 digits');
+    if(value === ''){
+        throw new Error('Phone Number is required');
+    }
+    else if (!checkRegex(value, phoneRegex)) {
+        throw new Error('Phone Number  format should be 123-123-1234');
     }
     return true;
 }
 // custom postcode validation function
 function customPostcodeValidation(value) {
-    if (!checkRegex(value, postcoderegex)) {
+    if(value === ''){
+        throw new Error('Post code is required');
+    }
+    else if (!checkRegex(value, postcoderegex)) {
         throw new Error('Postcode should be X0X 0X0');
     }
     return true;
 }
 // custom payrate validation function
 function customPayrateValication(value) {
-    if (!checkRegex(value, positiveNum)) {
+    if(value == ''){
+        throw new Error('Payrate is required');
+    }
+    else if (!checkRegex(value, positiveNum)) {
         throw new Error('Payrate has to be postive number');
     }
     return true;
