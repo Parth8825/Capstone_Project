@@ -4,11 +4,12 @@ module.exports = router;
 
 const Employee = require('../models/employeeModel');
 const Schedule = require('../models/scheduleModel');
+
 //setting up express validator
 const { check, validationResult } = require('express-validator');
 const { validate } = require('../models/employeeModel');
 
-// schedule page
+// SCHEDULE PAGE 
 router.get('/', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
@@ -28,7 +29,7 @@ router.get('/', function (req, res) {
 
 });
 
-// Add schedule page
+// ADD SCHEDULE PAGE [get]
 router.get('/addSchedule', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
@@ -46,6 +47,7 @@ router.get('/addSchedule', function (req, res) {
     }
 });
 
+// ADD SCHEDULE PAGE [post]
 router.post('/addSchedule', [
     check('eName').custom(customChecksNameSelected),
     check('sDay').custom(customChecksDaySelected),
@@ -69,13 +71,13 @@ router.post('/addSchedule', [
     }
     else {
         var employeeName = req.body.eName;
-        var dayPeek = req.body.sDay;
+        var dayPick = req.body.sDay;
         var startTime = req.body.startTime;
         var endTime= req.body.endTime;
 
         var scheduleData = {
             employeeName: employeeName,
-            day: dayPeek,
+            day: dayPick,
             startTime: startTime,
             endTime: endTime
         }
@@ -88,6 +90,108 @@ router.post('/addSchedule', [
         res.redirect('/schedule');
     }
 });
+
+// EDIT SCHEDULE DETAILS [GET]
+router.get('/edit/:scheduleId', function (req, res) {
+    // check if the user is logged in 
+    if (req.session.userLoggedIn) {
+        var scheduleId = req.params.scheduleId;
+        console.log(scheduleId);
+
+        Employee.find({}).exec(function (err, employees) {
+            if (err) {
+                res(err)
+            }
+            else {
+                
+                res.render('schedule/editSchedule', {employees: employees});
+
+            }
+        });
+
+        Schedule.findOne({ _id: scheduleId }).exec(function (err, schedule) {
+            console.log('Error: ' + err);
+            console.log('Schedule: ' + schedule);
+            if (schedule) {
+                res.render('schedule/editSchedule', { schedule: schedule });
+            }
+            else {
+                res.send('No Schedule found with that id..');
+            }
+        });
+
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+// EDIT SCHEDULE DETAILS [POST]
+router.post('/edit/:id', [
+    check('eName').custom(customChecksNameSelected),
+    check('sDay').custom(customChecksDaySelected),
+    check('startTime').custom(customChecksStartTimeSelected),
+    check('endTime').custom(customChecksEndTimeSelected),
+    check('startTime').custom(checkStartTimeEndTimeNotSame)
+
+], function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        var scheduleId = req.params.id;
+        Employee.find({}).exec(function (err, employees) {
+            if (err) {
+                res(err)
+            }
+            else {
+                
+                res.render('schedule/editSchedule', {employees: employees});
+
+            }
+        });
+
+        Schedule.findOne({ _id: scheduleId }).exec(function (err, schedule) {
+            console.log('Error: ' + err);
+            console.log('Schedule: ' + schedule);
+            if(schedule){
+                res.render('schedule/editSchedule', { schedule:schedule, errors: errors.array()});
+            }
+            else{
+                res.send('No Schedule found with that id...');
+            }
+        });
+
+    }
+    else {
+        var employeeName = req.body.eName;
+        var dayPeek = req.body.sDay;
+        var startTime = req.body.startTime;
+        var endTime= req.body.endTime;
+
+        // storing values in object called "scheduleData"
+        var scheduleData = {
+            employeeName: employeeName,
+            day: dayPeek,
+            startTime: startTime,
+            endTime: endTime
+        }
+
+        var id = req.params.id;
+        Schedule.findOne({ _id: id }, function (err, schedule) {
+            schedule.employeeName = employeeName;
+            schedule.dayPeek = dayPeek;
+            schedule.startTime = startTime;
+            schedule.endTime = endTime;
+
+            schedule.save().then(function () {
+                console.log('Schedule updated');
+            });
+        });
+        res.render('schedule/editedScheduleDetail', scheduleData);
+
+    }
+});
+
+
 
 router.get('/delete/:id', function (req, res){
     if (req.session.userLoggedIn) {

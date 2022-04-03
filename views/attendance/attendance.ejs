@@ -1,5 +1,8 @@
 <%- include('../layouts/header'); -%>
 
+    <link href="/css/attendance/attendance.css" rel="stylesheet">
+    </head>
+
     <body>
         <header>
             <h2>Employee Management System</h2>
@@ -7,8 +10,51 @@
         <%- include('../layouts/navigation'); -%>
             <section>
                 <main>
-                    <button class="btn">Take Attendance</button>
-                    <h1>Attendance</h1>
+                    <% if(typeof(message) !='undefined' ){ %>
+                        <div class="messages">
+                            <% if(locals.message){ %>
+                                <%= message%>
+                                    <% }%>
+                                        <% } %>
+                        </div>
+
+                        <div class="btn">
+                            <a href="/attendance/addAttendance">
+                                <button class="btn">Take Attendance</button>
+                            </a>
+                        </div>
+                        <h1 id="attendance">Take Attendance</h1>
+
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Date</th>
+                                    <th>Day</th>
+                                    <th>Absent/Present</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <div class="buttons">
+                                            <a class="editButton" href="#">Change</a>
+                                            <a class="deleteButton"
+                                                href="#">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                 </main>
             </section>
             <%- include('../layouts/footer'); -%>

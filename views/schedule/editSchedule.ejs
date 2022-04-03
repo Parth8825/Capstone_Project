@@ -1,0 +1,89 @@
+<%- include('../layouts/header'); -%>
+    <link href="/css/inventory/addInventory.css" rel="stylesheet">
+    </head>
+
+    </head>
+
+    <body>
+        <header>
+            <h2>Employee Management System</h2>
+        </header>
+        <h1 id="addItem">Change Schedule</h1>
+        <form name="Schedule" method="post" action="/schedule/edit/<%= employees.id %>">
+            <div class="textboxes">
+                <label>Employee Name: </label>
+                <select name="eName" id="eName" class="space">
+                    <option>-------------- Select Employee --------------</option>
+                    <% for(var employee of employees){ %>
+                        <% var name=employee.name%>
+                            <option value="<%= name %>">
+                                <%= name %>
+                            </option>
+                            <% }%>
+                </select>
+
+                <label>Day: </label>
+                <select name="sDay" id="sDay" class="space">
+                    <option>-------------- Select Day --------------</option>
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                </select>
+
+                <label>Start Time: </label>
+                <select name="startTime" id="startTime" class="space">
+                    <option>-------------- Start Time --------------</option>
+                    <% for(var i=0; i < 12; i++) {%>
+                        <option value="<%= i %> AM">
+                            <%= i %> AM
+                        </option>
+                        <% } %>
+                            <% for(var j=12; j < 24; j++) {%>
+                                <option value="<%= j %> PM">
+                                    <%= j %> PM
+                                </option>
+                                <% } %>
+                </select>
+
+                <label>End Time: </label>
+                <select name="endTime" id="endTime" class="space">
+                    <option>-------------- End Time --------------</option>
+                    <% for(var i=0; i < 12; i++) {%>
+                        <option value="<%= i %> AM">
+                            <%= i %> AM
+                        </option>
+                        <% } %>
+                            <% for(var j=12; j < 24; j++) {%>
+                                <option value="<%= j %> PM">
+                                    <%= j %> PM
+                                </option>
+                                <% } %>
+                </select>
+                <p id="errors"></p>
+
+            </div>
+            <div class="buttons">
+                <button class="btnSubmit" id="submit"> Submit </button>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/schedule" id="cancel" class="btnCancel">Cancel </a>
+            </div>
+
+        </form>
+        <section class="errors">
+            <% if(typeof(errors) !='undefined' ){ %>
+                <div style="border-radius: 0 25px 0 25px;">
+                    <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                        <p style="color:maroon;">
+                            <%= error.msg %>
+                        </p>
+                        <% } } %>
+                </div>
+                <% } %>
+        </section>
+    </body>
+    <!-- <%- include('../layouts/footer'); -%> -->
