@@ -239,8 +239,7 @@ router.get('/edit/:employeeId', function (req, res) {
 
 // edit employee details [post]
 router.post('/edit/:id', [
-    check('firstname', 'First name is required').not().isEmpty(),
-    check('lastname', 'Last name is required').not().isEmpty(),
+    check('fullname', 'First name is required').not().isEmpty(),
     check('email', 'Email is required').isEmail(),
     check('phone').custom(customPhoneValidation),
     check('address', 'address is required').not().isEmpty(),
@@ -264,7 +263,7 @@ router.post('/edit/:id', [
         });
     }
     else {
-        var name = req.body.name;
+        var name = req.body.fullname;
         var email = req.body.email;
         var phone = req.body.phone;
         var address = req.body.address;
@@ -339,7 +338,7 @@ router.get('/delete/:employeeId', function (req, res) {
 
 // Validations
 // Defining regular expressions
-var phoneRegex = /^[0-9]{3}[-][0-9]{3}[-][0-9]{4}$/;
+var phoneRegex = /^[0-9]{10}$/;
 var positiveNum = /^[1-9][0-9]*$/;
 var postcoderegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
 //var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -359,7 +358,7 @@ function customPhoneValidation(value) {
         throw new Error('Phone Number is required');
     }
     else if (!checkRegex(value, phoneRegex)) {
-        throw new Error('Phone Number  format should be 123-123-1234');
+        throw new Error('Phone Number  format should be 1231231234');
     }
     return true;
 }
