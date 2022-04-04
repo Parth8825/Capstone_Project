@@ -44,6 +44,7 @@ form {
 }
 
 .errors {
+  padding: 0 60px;
   background-color: white;
   position: relative;
   float: left;
