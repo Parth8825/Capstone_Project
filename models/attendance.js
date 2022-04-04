@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Attendance = new mongoose.Schema({
     eName: String,
-    date: Date,
+    date: String,
     sDay: String,
     attendance: String 
 });

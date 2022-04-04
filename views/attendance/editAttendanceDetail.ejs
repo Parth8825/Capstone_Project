@@ -1,0 +1,46 @@
+<%- include('../layouts/header'); -%>
+
+    <link href="/css/employee/editEmployeeDetails.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h2>Employee Management System</h2>
+        </header>
+        <section class="page">
+            <% if(typeof(takeAttendance) !='undefined' ){ %>
+                <h2>Schedule successfully updated!!</h2>
+                <table>
+                    <tr>
+                        <th>Employee Name: </th>
+                        <td>
+                            <%= eName %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Date: </th>
+                        <td>
+                            <%= date %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Day: </th>
+                        <td>
+                            <%= sDay %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Present/Absent: </th>
+                        <td>
+                            <%= takeAttendance %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <a href="/attendance" class="button">Go back to Main</a>
+                        </th>
+                    </tr>
+
+                </table>
+                <% } %>
+                    <!-- <%- include('../layouts/footer'); -%> -->

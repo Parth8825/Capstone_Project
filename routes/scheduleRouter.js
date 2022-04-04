@@ -7,7 +7,6 @@ const Schedule = require('../models/scheduleModel');
 
 //setting up express validator
 const { check, validationResult } = require('express-validator');
-const { validate } = require('../models/employeeModel');
 
 // SCHEDULE PAGE 
 router.get('/', function (req, res) {
@@ -113,7 +112,6 @@ router.get('/edit/:scheduleId', function (req, res) {
                         res.send('No Schedule found with that id..');
                     }
                 });
-              //  res.render('schedule/editSchedule', {employees: employees});
             }
         });  
     }
@@ -133,17 +131,23 @@ router.post('/edit/:id', [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         var scheduleId = req.params.id;
-        Schedule.findOne({ _id: scheduleId }).exec(function (err, schedule) {
-            console.log('Error: ' + err);
-            console.log('Schedule: ' + schedule);
-            if(schedule){
-                res.render('schedule/editSchedule', { schedule:schedule, errors: errors.array()});
+        Employee.find({}).exec(function (err, employees) {
+            if (err) {
+                res(err)
             }
-            else{
-                res.send('No Schedule found with that id...');
+            else {
+                Schedule.findOne({ _id: scheduleId }).exec(function (err, schedule) {
+                    console.log('Error: ' + err);
+                    console.log('Schedule: ' + schedule);
+                    if(schedule){
+                        res.render('schedule/editSchedule', { schedule:schedule, employees: employees, errors: errors.array()});
+                    }
+                    else{
+                        res.send('No Schedule found with that id...');
+                    }
+                });
             }
-        });
-
+        }); 
     }
     else {
         var employeeName = req.body.eName;

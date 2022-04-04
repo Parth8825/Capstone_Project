@@ -5,7 +5,7 @@ const Inventory = new mongoose.Schema({
     quantity: Number,
     rate: Number,
     addedby: String,
-    receiveddatetime: Date,
+    receiveddatetime: String,
     remaineditem: Number,
     description: String
 });
