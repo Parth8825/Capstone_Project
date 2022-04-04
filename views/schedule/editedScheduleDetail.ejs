@@ -8,54 +8,36 @@
             <h2>Employee Management System</h2>
         </header>
         <section class="page">
-            <% if(typeof(description) !='undefined' ){ %>
-                <h2>Inventory Data successfully updated!!</h2>
+            <% if(typeof(endTime) !='undefined' ){ %>
+                <h2>Schedule successfully updated!!</h2>
                 <table>
                     <tr>
-                        <th>Item Name: </th>
+                        <th>Employee Name: </th>
                         <td>
-                            <%= itemname %>
+                            <%= employeeName %>
                         </td>
                     </tr>
                     <tr>
-                        <th>Quantity: </th>
+                        <th>Day: </th>
                         <td>
-                            <%= quantity %>
+                            <%= day %>
                         </td>
                     </tr>
                     <tr>
-                        <th>Rate: </th>
+                        <th>Start Time: </th>
                         <td>
-                            <%= rate %>
+                            <%= startTime %>
                         </td>
                     </tr>
                     <tr>
-                        <th>Added By: </th>
+                        <th>End Time </th>
                         <td>
-                            <%= addedby %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Received Date & Time: </th>
-                        <td>
-                            <%= receiveddatetime %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Remaied Item: </th>
-                        <td>
-                            <%= remaineditem %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Description: </th>
-                        <td>
-                            <%= description %>
+                            <%= endTime %>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <a href="/inventory" class="button">Go back to Main</a>
+                            <a href="/schedule" class="button">Go back to Main</a>
                         </th>
                     </tr>
 

@@ -103,23 +103,19 @@ router.get('/edit/:scheduleId', function (req, res) {
                 res(err)
             }
             else {
-                
-                res.render('schedule/editSchedule', {employees: employees});
-
+                Schedule.findOne({ _id: scheduleId }).exec(function (err, schedule) {
+                    console.log('Error: ' + err);
+                    console.log('Schedule: ' + schedule);
+                    if (schedule) {
+                        res.render('schedule/editSchedule', { schedule: schedule, employees: employees });
+                    }
+                    else {
+                        res.send('No Schedule found with that id..');
+                    }
+                });
+              //  res.render('schedule/editSchedule', {employees: employees});
             }
-        });
-
-        Schedule.findOne({ _id: scheduleId }).exec(function (err, schedule) {
-            console.log('Error: ' + err);
-            console.log('Schedule: ' + schedule);
-            if (schedule) {
-                res.render('schedule/editSchedule', { schedule: schedule });
-            }
-            else {
-                res.send('No Schedule found with that id..');
-            }
-        });
-
+        });  
     }
     else {
         res.redirect('/login');
@@ -133,7 +129,6 @@ router.post('/edit/:id', [
     check('startTime').custom(customChecksStartTimeSelected),
     check('endTime').custom(customChecksEndTimeSelected),
     check('startTime').custom(checkStartTimeEndTimeNotSame)
-
 ], function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

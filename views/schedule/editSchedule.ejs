@@ -9,11 +9,14 @@
             <h2>Employee Management System</h2>
         </header>
         <h1 id="addItem">Change Schedule</h1>
-        <form name="Schedule" method="post" action="/schedule/edit/<%= employees.id %>">
+        <form name="Schedule" method="post" action="/schedule/edit/<%= schedule.id %>">
             <div class="textboxes">
                 <label>Employee Name: </label>
                 <select name="eName" id="eName" class="space">
-                    <option>-------------- Select Employee --------------</option>
+                    <option value="<%= schedule.employeeName %>">
+                        <%= schedule.employeeName %>
+                    </option>
+                    <option>----------------------------</option>
                     <% for(var employee of employees){ %>
                         <% var name=employee.name%>
                             <option value="<%= name %>">
@@ -24,7 +27,10 @@
 
                 <label>Day: </label>
                 <select name="sDay" id="sDay" class="space">
-                    <option>-------------- Select Day --------------</option>
+                    <option value="<%= schedule.day %>">
+                        <%= schedule.day %>
+                    </option>
+                    <option>----------------------------</option>
                     <option value="Sunday">Sunday</option>
                     <option value="Monday">Monday</option>
                     <option value="Tuesday">Tuesday</option>
@@ -36,7 +42,10 @@
 
                 <label>Start Time: </label>
                 <select name="startTime" id="startTime" class="space">
-                    <option>-------------- Start Time --------------</option>
+                    <option value="<%= schedule.startTime %>">
+                        <%= schedule.startTime %>
+                    </option>
+                    <option>----------------------------</option>
                     <% for(var i=0; i < 12; i++) {%>
                         <option value="<%= i %> AM">
                             <%= i %> AM
@@ -51,7 +60,10 @@
 
                 <label>End Time: </label>
                 <select name="endTime" id="endTime" class="space">
-                    <option>-------------- End Time --------------</option>
+                    <option value="<%= schedule.endTime %>">
+                        <%= schedule.endTime %>
+                    </option>
+                    <option>----------------------------</option>
                     <% for(var i=0; i < 12; i++) {%>
                         <option value="<%= i %> AM">
                             <%= i %> AM
