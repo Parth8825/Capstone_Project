@@ -9,7 +9,7 @@
       <h2>Employee Management System</h2>
     </header>
     <h1 id="addItem">Add Item To Inventory</h1>
-    <form name="Employee" method="post" action="/inventory/addInventory">
+    <form name="Inventory" method="post" action="/inventory/addInventory">
       <div class="textboxes">
         <label>Item Name: </label>
         <input id="itemname" placeholder="Item Name" type="text" name="itemname" class="space"
@@ -53,7 +53,7 @@
       <% if(typeof(errors) !='undefined' ){ %>
         <div style="border-radius: 0 25px 0 25px;">
           <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-            <p style="color:red;">
+            <p style="color:maroon;">
               <%= error.msg %>
             </p>
             <% } } %>

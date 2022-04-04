@@ -28,7 +28,7 @@ router.get('/', function (req, res) {
     }
 });
 
-// ADD ITEM IN INVENTORY
+// ADD ITEM IN INVENTORY [get]
 router.get('/addInventory', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
@@ -48,7 +48,7 @@ router.get('/addInventory', function (req, res) {
     }
 });
 
-// ADD ITEM IN INVENTORY
+// ADD ITEM IN INVENTORY [post]
 router.post('/addInventory', [
     check('itemname', 'Item name is required').not().isEmpty(),
     check('addedby', 'Added by whom is required').not().isEmpty(),
