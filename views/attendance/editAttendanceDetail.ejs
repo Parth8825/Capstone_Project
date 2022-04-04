@@ -8,36 +8,36 @@
             <h2>Employee Management System</h2>
         </header>
         <section class="page">
-            <% if(typeof(endTime) !='undefined' ){ %>
+            <% if(typeof(takeAttendance) !='undefined' ){ %>
                 <h2>Schedule successfully updated!!</h2>
                 <table>
                     <tr>
                         <th>Employee Name: </th>
                         <td>
-                            <%= employeeName %>
+                            <%= eName %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Date: </th>
+                        <td>
+                            <%= date %>
                         </td>
                     </tr>
                     <tr>
                         <th>Day: </th>
                         <td>
-                            <%= day %>
+                            <%= sDay %>
                         </td>
                     </tr>
                     <tr>
-                        <th>Start Time: </th>
+                        <th>Present/Absent: </th>
                         <td>
-                            <%= startTime %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>End Time </th>
-                        <td>
-                            <%= endTime %>
+                            <%= takeAttendance %>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <a href="/schedule" class="button">Go back to Main</a>
+                            <a href="/attendance" class="button">Go back to Main</a>
                         </th>
                     </tr>
 

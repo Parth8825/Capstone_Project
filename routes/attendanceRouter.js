@@ -7,7 +7,6 @@ const Employee = require('../models/employeeModel');
 
 //setting up express validator
 const { check, validationResult } = require('express-validator');
-const { validate } = require('../models/employeeModel');
 // Attendance page
 router.get('/', function (req, res) {
     // check if thr user is logged in 
@@ -90,8 +89,85 @@ router.post('/addAttendance', [
         res.redirect('/attendance');
     }
 });
+// EDIT ATTENDANCE [GET]
+router.get('/edit/:id', function(req, res){
+    if(req.session.userLoggedIn){
+        var attendanceId = req.params.id;
+        Employee.find({}).exec(function (err, employees) {
+            if (err) {
+                res(err)
+            }
+            else {
+                Attendance.findOne({ _id: attendanceId }).exec(function (err, attendance) {
+                    console.log('Error: ' + err);
+                    console.log('Schedule: ' + attendance);
+                    if (attendance) {
+                        res.render('attendance/editAttendance', { attendance: attendance, employees: employees });
+                    }
+                    else {
+                        res.send('No attendance data found with that id..');
+                    }
+                });
+            }
+        });  
 
-//DELETE ATTENDANCE
+    }
+    else{
+        res.redirect('/login');
+    }
+});
+// EDIT ATTENDANCE [POST]
+router.post('/edit/:id',[
+    check('eName').custom(customChecksNameSelected),
+    check('date').custom(customChecksDateSelected),
+    check('sDay').custom(customChecksDaySelected),
+    check('attendance').custom(customCheckAttendance)
+], function(req, res){
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        var attendanceId = req.params.id;
+        Employee.find({}).exec(function (err, employees) {
+            if (err) {
+                res(err)
+            }
+            else {
+                Attendance.findOne({_id: attendanceId}).exec(function (err, attendance){
+                    if(attendance){
+                        res.render('attendance/editAttendance', { attendance: attendance, employees: employees, errors: errors.array()});
+                    }
+                    else{
+                        res.send('No Attandance Found with that id...');
+                    }
+                });
+            }
+        });
+    }else{
+        var eName = req.body.eName;
+        var date = req.body.date;
+        var sDay = req.body.sDay;
+        var takeAttendance = req.body.attendance;
+
+        var attandanceData = {
+            eName: eName,
+            date: date,
+            sDay: sDay,
+            takeAttendance: takeAttendance
+        }
+        var id = req.params.id;
+        Attendance.findOne({_id: id}, function (err, attendance) {
+            attendance.eName = eName;
+            attendance.date = date;
+            attendance.sDay = sDay;
+            attendance.attendance = takeAttendance;
+
+            attendance.save().then(function (){
+                console.log('Attandance updated');
+            });
+        });
+        res.render('attendance/editAttendanceDetail', attandanceData);
+    }
+});
+// DELETE ATTENDANCE
 router.get('/delete/:id', function (req, res){
     if (req.session.userLoggedIn) {
         var attendanceId = req.params.id;
@@ -116,9 +192,14 @@ function customChecksNameSelected(value){
     }
     return true;
 }
-
 function customChecksDaySelected(value){
     if(value === '---Select Day---'){
+        throw new Error('Please select day');
+    }
+    return true;
+}
+function customChecksDateSelected(value){
+    if(value === ''){
         throw new Error('Please select day');
     }
     return true;
