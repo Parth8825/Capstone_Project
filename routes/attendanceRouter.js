@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 module.exports = router;
 
-const Employee = require('../models/employeeModel');
 const Attendance = require('../models/attendance');
+const Employee = require('../models/employeeModel');
 
 //setting up express validator
 const { check, validationResult } = require('express-validator');
@@ -92,9 +92,9 @@ router.post('/addAttendance', [
 });
 
 //DELETE ATTENDANCE
-router.get('/delete/:attendanceId', function (req, res){
+router.get('/delete/:id', function (req, res){
     if (req.session.userLoggedIn) {
-        var attendanceId = req.params.attendanceId;
+        var attendanceId = req.params.id;
         console.log(attendanceId);
         Attendance.findByIdAndDelete({_id: attendanceId}).exec(function (err, attendance){
             console.log('Error: ' + err);
