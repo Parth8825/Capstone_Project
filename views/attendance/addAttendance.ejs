@@ -6,8 +6,8 @@
         <header>
             <h2>Employee Management System</h2>
         </header>
-        <h1 id="createSchedule">Create a Schedule</h1>
-        <form name="Inventory" method="post" action="/schedule/addSchedule">
+        <h1 id="createSchedule">Take Attendance</h1>
+        <form name="Attendance" method="post" action="/attendance/addAttendance">
             <div class="textboxes">
                 <label>Employee Name: </label>
                 <select name="eName" id="eName" class="space">
@@ -19,6 +19,10 @@
                             </option>
                             <% }%>
                 </select>
+
+                <label>Date: </label>
+                <input id="date" placeholder="YYYY-MM-DD" type="datetime" name="date"
+                    class="space"><br />
 
                 <label>Day: </label>
                 <select name="sDay" id="sDay" class="space">
@@ -32,36 +36,12 @@
                     <option value="Saturday">Saturday</option>
                 </select>
 
-                <label>Start Time: </label>
-                <select name="startTime" id="startTime" class="space">
-                    <option value="---Start Time---">-------------- Start Time --------------</option>
-                    <% for(var i=0; i < 12; i++) {%>
-                        <option value="<%= i %> AM">
-                            <%= i %> AM
-                        </option>
-                        <% } %>
-                            <% for(var j=12; j < 24; j++) {%>
-                                <option value="<%= j %> PM">
-                                    <%= j %> PM
-                                </option>
-                                <% } %>
+                <label>Present / Absent : </label>
+                <select name="attendance" id="attendance" class="space">
+                    <option value="---Take Attendnace---">-------------- Take Attendance --------------</option>
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
                 </select>
-
-                <label>End Time: </label>
-                <select name="endTime" id="endTime" class="space">
-                    <option value="---End Time---">-------------- End Time --------------</option>
-                    <% for(var i=0; i < 12; i++) {%>
-                        <option value="<%= i %> AM">
-                            <%= i %> AM
-                        </option>
-                        <% } %>
-                            <% for(var j=12; j < 24; j++) {%>
-                                <option value="<%= j %> PM">
-                                    <%= j %> PM
-                                </option>
-                                <% } %>
-                </select>
-
 
                 <p id="errors"></p>
 
@@ -70,7 +50,7 @@
                 <button class="btnSubmit" id="submit"> Submit </button>
 
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/schedule" id="cancel" class="btnCancel">Cancel </a>
+                <a href="/attendance" id="cancel" class="btnCancel">Cancel </a>
             </div>
 
         </form>
