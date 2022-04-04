@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const Attendance = new mongoose.Schema({
-    employeeName: String,
+    eName: String,
     date: Date,
-    day: String,
+    sDay: String,
     attendance: String 
 });
 

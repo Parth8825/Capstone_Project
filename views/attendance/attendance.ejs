@@ -36,23 +36,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        <div class="buttons">
-                                            <a class="editButton" href="#">Change</a>
-                                            <a class="deleteButton"
-                                                href="#">Delete</a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <% for(var attendance of attendances){ %>
+                                    <tr>
+                                        <td>
+                                            <%= attendance.eName %>
+                                        </td>
+                                        <td>
+                                            <%= attendance.date %>
+                                        </td>
+                                        <td>
+                                            <%= attendance.sDay %>
+                                        </td>
+                                        <td>
+                                            <%= attendance.attendance %>
+                                        </td>
+                                        <td>
+                                            <div class="buttons">
+                                                <a class="editButton" href="">Edit</a>
+                                                <a class="deleteButton" href="../attendance/delete/ <%= attendance._id %>">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% } %>
                             </tbody>
                         </table>
                 </main>

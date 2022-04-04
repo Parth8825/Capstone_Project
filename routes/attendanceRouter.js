@@ -48,8 +48,8 @@ router.get('/addAttendance', function (req, res) {
 
 // ADD SCHEDULE PAGE [post]
 router.post('/addAttendance', [
-    check('eName').custom(customChecksNameSelected),
     check('date', 'Date is Required').not().isEmpty(),
+    check('eName').custom(customChecksNameSelected),
     check('sDay').custom(customChecksDaySelected),
     check('attendance').custom(customCheckAttendance)
 ], function (req, res) {
@@ -61,27 +61,29 @@ router.post('/addAttendance', [
                 res(err)
             }
             else {
-                
                 res.render('attendance/addAttendance', {employees: employees, errors: errors.array()});
                 return;
             }
         });
     }
     else {
-        var employeeName = req.body.eName;
-        var dayPick = req.body.sDay;
+        var eName = req.body.eName;
+        var sDay = req.body.sDay;
         var date = req.body.date
         var attendance = req.body.attendance;
 
+        console.log(sDay);
+
         var attendanceData = {
-            employeeName: employeeName,
-            day: dayPick,
+            eName: eName,
+            sDay: sDay,
             date: date,
             attendance: attendance
         }
 
-        var takeAttendance = new Attendance(attendanceData);
-        takeAttendance.save().then(function(){
+        console.log(sDay);
+        var ourAttendance = new Attendance(attendanceData);
+        ourAttendance.save().then(function(){
             console.log('Attedance saved successfully');
         });
         req.flash('msg', 'Attendance Added successfully !!!');
@@ -89,7 +91,25 @@ router.post('/addAttendance', [
     }
 });
 
-// custome schedule validations
+//DELETE ATTENDANCE
+router.get('/delete/:attendanceId', function (req, res){
+    if (req.session.userLoggedIn) {
+        var attendanceId = req.params.attendanceId;
+        console.log(attendanceId);
+        Attendance.findByIdAndDelete({_id: attendanceId}).exec(function (err, attendance){
+            console.log('Error: ' + err);
+            console.log('Attendance: ' + attendance);
+        });
+        req.flash('msg', 'Attendance deleted successfully !!!');
+        res.redirect('/attendance');
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+
+// CUSTOM ATTENDANCE VALIDATIONS
 function customChecksNameSelected(value){
     if(value === '---Select Employee---'){
         throw new Error('Please select employee name');

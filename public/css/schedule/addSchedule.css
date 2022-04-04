@@ -15,7 +15,7 @@ body {
 
   form {
     position: relative;
-    margin: 1% 0 5% 29.5%;
+    margin: 1% 0 auto 29.5%;
     font-size: 175%;
     width: 40%;
     height: 360px;

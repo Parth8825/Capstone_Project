@@ -138,17 +138,6 @@ router.post('/edit/:id', [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         var scheduleId = req.params.id;
-        Employee.find({}).exec(function (err, employees) {
-            if (err) {
-                res(err)
-            }
-            else {
-                
-                res.render('schedule/editSchedule', {employees: employees});
-
-            }
-        });
-
         Schedule.findOne({ _id: scheduleId }).exec(function (err, schedule) {
             console.log('Error: ' + err);
             console.log('Schedule: ' + schedule);
@@ -192,7 +181,7 @@ router.post('/edit/:id', [
 });
 
 
-
+//DELETE SCHEDULE METHOD
 router.get('/delete/:id', function (req, res){
     if (req.session.userLoggedIn) {
         var scheduleId = req.params.id;
