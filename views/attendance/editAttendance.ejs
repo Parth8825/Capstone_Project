@@ -66,12 +66,13 @@
             </form>
             <section class="errors">
                 <% if(typeof(errors) !='undefined' ){ %>
-                    <div style="border-radius: 0 25px 0 25px;">
-                        <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-                            <p style="color: maroon;">
-                                <%= error.msg %>
-                            </p>
-                            <% } } %>
+                <div style="border-radius: 0 25px 0 25px;">
+                    <h4 style="text-decoration: underline;">Errors</h4>
+                    <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                        <p style="color: maroon; text-align: left;">
+                            * <%= error.msg %>
+                        </p>
+                        <% } } %>
                     </div>
                     <% } %>
             </section>

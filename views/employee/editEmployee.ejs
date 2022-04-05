@@ -36,21 +36,23 @@
                 <input id="payrate" type="number" name="payrate" class="space" value="<%= employee.payrate %>"><br />
 
                 <p id="errors"></p>
-                <div class="buttons">
-                    <button class="btnSubmit" type="submit" id="submit"> Submit </button>
+            </div>
+            <div class="buttons">
+                <button class="btnSubmit" type="submit" id="submit"> Submit </button>
 
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="/" id="cancel" class="btnCancel">Cancel </a>
-                </div>
-            </form>
-            <section class="errors">
-                <% if(typeof(errors) !='undefined' ){ %>
-                    <div style="border-radius: 0 25px 0 25px;">
-                        <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-                            <p style="color:maroon;">
-                                <%= error.msg %>
-                            </p>
-                            <% } } %>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/" id="cancel" class="btnCancel">Cancel </a>
+            </div>
+        </form>
+        <section class="errors">
+            <% if(typeof(errors) !='undefined' ){ %>
+                <div style="border-radius: 0 25px 0 25px;">
+                    <h4 style="text-decoration: underline;">Errors</h4>
+                    <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                        <p style="color:maroon; text-align: left;">
+                            * <%= error.msg %>
+                        </p>
+                        <% } } %>         
                     </div>
                     <% } %>
             </section>

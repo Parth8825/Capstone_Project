@@ -62,7 +62,6 @@ router.post('/addSchedule', [
                 res(err)
             }
             else {
-                
                 res.render('schedule/addSchedule', {employees: employees, errors: errors.array()});
                 return;
             }

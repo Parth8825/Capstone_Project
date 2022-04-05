@@ -1,0 +1,54 @@
+<%- include('../layouts/header'); -%>
+    <link href="/css/employee/addEmployee.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h2>Employee Management System</h2>
+        </header>
+        <h1 id="addEmployee">Please enter Employee name and hours</h1>
+        <form name="Employee" method="post">
+            <% var name %>
+                <div class="textboxes">
+                    <label>Employee Name: </label>
+                    <input id="name" type="text" name="name" class="space"><br />
+
+                    <label>Weekly hours: </label>
+                    <input id="weeklyHours" type="number" name="weeklyHours" class="space"><br />
+
+                    <label>Email: </label>
+                    <input id="email" type="email" name="email" class="space" value="" readonly><br />
+
+                    <label>Payrate: </label>
+                    <input id="payrate" type="text" name="payrate" class="space" value="" readonly><br />
+
+                    <label>Gross Pay: </label>
+                    <input id="grossPay" type="text" name="grossPay" class="space" value="" readonly><br />
+                    <label>Taxes: </label>
+                    <input id="taxes" type="text" name="taxes" class="space" value="" readonly><br />
+
+                    <label>Take Home: </label>
+                    <input id="takeHome" type="text" name="takeHome" class="space" value="" readonly><br />
+
+                </div>
+                <div class="buttons">
+                    <button class="btnSubmit" id="submit"> Submit </button>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/" id="cancel" class="btnCancel">Cancel </a>
+                </div>
+        </form>
+        <section class="errors">
+            <% if(typeof(errors) !='undefined' ){ %>
+                <div style="border-radius: 0 25px 0 25px;">
+                    <h4 style="text-decoration: underline;">Errors</h4>
+                    <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                        <p style="color:maroon; text-align: left;">
+                            * <%= error.msg %>
+                        </p>
+                        <% } } %>
+                </div>
+                <% } %>
+        </section>
+
+        <!-- <%- include('../layouts/footer'); -%> -->
