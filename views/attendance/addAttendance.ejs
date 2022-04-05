@@ -6,62 +6,64 @@
         <header>
             <h2>Employee Management System</h2>
         </header>
-        <h1 id="createSchedule">Take Attendance</h1>
-        <form name="Attendance" method="post" action="/attendance/addAttendance">
-            <div class="textboxes">
-                <label>Employee Name: </label>
-                <select name="eName" id="eName" class="space">
-                    <option value="---Select Employee---">-------------- Select Employee --------------</option>
-                    <% for(var employee of employees){ %>
-                        <% var name=employee.name%>
-                            <option value="<%= name %>">
-                                <%= name %>
-                            </option>
-                            <% }%>
-                </select>
+        <main>
+            <h1 id="addAttendance">Take Attendance</h1>
+            <form name="Attendance" method="post" action="/attendance/addAttendance">
+                    <div class="textboxes">
+                        <label>Employee Name: </label>
+                        <select name="eName" id="eName" class="space">
+                            <option value="---Select Employee---">-------------- Select Employee --------------</option>
+                            <% for(var employee of employees){ %>
+                                <% var name=employee.name%>
+                                    <option value="<%= name %>">
+                                        <%= name %>
+                                    </option>
+                                    <% }%>
+                        </select>
 
-                <label>Date: </label>
-                <input id="date" placeholder="YYYY-MM-DD" type="date" name="date" class="space"><br />
+                        <label>Date: </label>
+                        <input id="date" placeholder="YYYY-MM-DD" type="date" name="date" class="space"><br />
 
-                <label>Day: </label>
-                <select name="sDay" id="sDay" class="space">
-                    <option value="---Select Day---">-------------- Select Day --------------</option>
-                    <option value="Sunday">Sunday</option>
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
-                    <option value="Saturday">Saturday</option>
-                </select>
+                        <label>Day: </label>
+                        <select name="sDay" id="sDay" class="space">
+                            <option value="---Select Day---">-------------- Select Day --------------</option>
+                            <option value="Sunday">Sunday</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                        </select>
 
-                <label>Present / Absent : </label>
-                <select name="attendance" id="attendance" class="space">
-                    <option value="---Take Attendnace---">-------------- Take Attendance --------------</option>
-                    <option value="Present">Present</option>
-                    <option value="Absent">Absent</option>
-                </select>
+                        <label>Present / Absent : </label>
+                        <select name="attendance" id="attendance" class="space">
+                            <option value="---Take Attendnace---">-------------- Take Attendance --------------</option>
+                            <option value="Present">Present</option>
+                            <option value="Absent">Absent</option>
+                        </select>
 
-                <p id="errors"></p>
+                        <p id="errors"></p>
 
-            </div>
-            <div class="buttons">
-                <button class="btnSubmit" id="submit"> Submit </button>
+                    </div>
+                    <div class="buttons">
+                        <button class="btnSubmit" id="submit"> Submit </button>
 
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/attendance" id="cancel" class="btnCancel">Cancel </a>
-            </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="/attendance" id="cancel" class="btnCancel">Cancel </a>
+                    </div>
 
-        </form>
-        <section class="errors">
-            <% if(typeof(errors) !='undefined' ){ %>
-                <div style="border-radius: 0 25px 0 25px;">
-                    <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-                        <p style="color: maroon;">
-                            <%= error.msg %>
-                        </p>
-                        <% } } %>
-                </div>
-                <% } %>
-        </section>
-        <!-- <%- include('../layouts/footer'); -%> -->
+                </form>
+                <section class="errors">
+                    <% if(typeof(errors) !='undefined' ){ %>
+                        <div style="border-radius: 0 25px 0 25px;">
+                            <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                                <p style="color: maroon;">
+                                    <%= error.msg %>
+                                </p>
+                                <% } } %>
+                        </div>
+                        <% } %>
+                </section>
+            </main>
+            <%- include('../layouts/footer'); -%>
