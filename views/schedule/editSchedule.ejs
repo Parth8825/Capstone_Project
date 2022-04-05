@@ -1,5 +1,5 @@
 <%- include('../layouts/header'); -%>
-    <link href="/css/inventory/addInventory.css" rel="stylesheet">
+    <link href="/css/schedule/addSchedule.css" rel="stylesheet">
     </head>
 
     </head>
@@ -8,7 +8,8 @@
         <header>
             <h2>Employee Management System</h2>
         </header>
-        <h1 id="addItem">Change Schedule</h1>
+        <main>
+        <h1 id="createSchedule">Change Schedule</h1>
         <form name="Schedule" method="post" action="/schedule/edit/<%= schedule.id %>">
             <div class="textboxes">
                 <label>Employee Name: </label>
@@ -56,7 +57,7 @@
                                     <%= j %> PM
                                 </option>
                                 <% } %>
-                </select>
+                    </select>
 
                 <label>End Time: </label>
                 <select name="endTime" id="endTime" class="space">
@@ -67,25 +68,24 @@
                     <% for(var i=0; i < 12; i++) {%>
                         <option value="<%= i %> AM">
                             <%= i %> AM
-                        </option>
-                        <% } %>
-                            <% for(var j=12; j < 24; j++) {%>
-                                <option value="<%= j %> PM">
-                                    <%= j %> PM
-                                </option>
-                                <% } %>
-                </select>
-                <p id="errors"></p>
+                         </option>
+                            <% } %>
+                                <% for(var j=12; j < 24; j++) {%>
+                                    <option value="<%= j %> PM">
+                                        <%= j %> PM
+                                    </option>
+                                    <% } %>
+                    </select>
+                    <p id="errors"></p>
+                </div>
+                <div class="buttons">
+                    <button class="btnSubmit" id="submit"> Submit </button>
 
-            </div>
-            <div class="buttons">
-                <button class="btnSubmit" id="submit"> Submit </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/schedule" id="cancel" class="btnCancel">Cancel </a>
+                </div>
 
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/schedule" id="cancel" class="btnCancel">Cancel </a>
-            </div>
-
-        </form>
+               </form>
         <section class="errors">
             <% if(typeof(errors) !='undefined' ){ %>
                 <div style="border-radius: 0 25px 0 25px;">
@@ -95,8 +95,8 @@
                             * <%= error.msg %>
                         </p>
                         <% } } %>
-                </div>
-                <% } %>
-        </section>
-    </body>
-    <!-- <%- include('../layouts/footer'); -%> -->
+                    </div>
+                    <% } %>
+            </section>
+        </main>
+         include('../layouts/footer'); 

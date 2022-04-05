@@ -1,16 +1,33 @@
-body {
-  text-transform: uppercase;
-  background-color: rgba(195, 195, 216, 0.3);
-  background-image: url("../../images/image9.png");
-  background-size: calc(100%);
-  background-position: top;
-  opacity: .95;
-  background-repeat: no-repeat;
+*{
+  padding: 0;
+  margin: 0;
 }
 
+/**************************
+CSS FOR ADD EMPLOYEE BODY
+***************************/
+body{
+  text-transform: uppercase;
+  background-image: url("../../images/image9.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: calc(100%);
+  opacity: .95;
+}
+
+/**************************
+CSS FOR ADD EMPLOYEE MAIN
+***************************/
+main {
+  background-color: rgba(195, 195, 216, 0.3);
+}
+
+/*************************
+CSS FOR ADD EMPLOYEE FORM
+**************************/
 form {
   position: relative;
-  margin: 1% 0 5% 29.5%;
+  margin: 1% 0 2.5% 29.5%;
   font-size: 175%;
   width: 40%;
   height: 540px;
@@ -21,6 +38,9 @@ form {
   float: left;
 }
 
+/***************************
+CSS FOR ADD EMPLOYEE HEADER
+****************************/
 #addEmployee {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
@@ -37,6 +57,9 @@ form {
   overflow: hidden;
 }
 
+/****************************
+CSS FOR ADD EMPLOYEE ERRORS
+*****************************/
 .errors {
   padding: 0 60px;
   background-color: white;
@@ -53,6 +76,9 @@ form {
   text-transform: uppercase;
 }
 
+/****************************************
+CSS FOR ADD EMPLOYEE ERROR'S ANIMATION
+*****************************************/
 @keyframes animation {
   from {
     top: 60px;
@@ -71,10 +97,16 @@ form {
   }
 }
 
+/**********************************************
+CSS FOR ADD EMPLOYEE ERROR'S P TAG FOR SPACING
+***********************************************/
 .errors p {
   padding: 1.5%;
 }
 
+/**********************************
+CSS FOR ADD EMPLOYEE'S PAGE LABEL
+***********************************/
 label {
   width: 125px;
   display: inline-block;
@@ -83,6 +115,9 @@ label {
   margin: 0 2% 0 0;
 }
 
+/**********************************
+CSS FOR ADD EMPLOYEE's PAGE INPUT 
+***********************************/
 .space {
   margin: 0 0 2.5% 0;
   width: 60%;
@@ -93,31 +128,40 @@ label {
   font-family: "Times New Roman", Times, serif;
 }
 
+/************************************
+CSS FOR ADD EMPLOYEE'S ADDRESS INPUT
+*************************************/
 #address {
   padding: 4%;
 }
 
-/* BUTTON CSS*/
-#submit {
-  float: left;
-}
 
+/*********************************************************
+CSS FOR ADD EMPLOYEE'S PAGE BITH BUTTONS TO KEEP IT INLINE
+**********************************************************/
 .buttons {
   display: flex;
   margin: 5% 1%;
 }
 
+/*******************************************************
+CSS FOR ADD EMPLOYEE CANCEL BUTTON TO KEEP IT RIGHT SIDE
+********************************************************/
 #cancel {
-  float: right;
-  margin-left: 15%;
+  float: left;
+  margin-left: 14%;
 }
 
-a {
-  text-decoration: none;
-  color: #333;
+/*******************************************************
+CSS FOR ADD EMPLOYEE SUBMIT BUTTON TO KEEP IT LEFT SIDE
+********************************************************/
+#submit {
+  float: left;
 }
 
-/* BUTTON CANCEL */
+/**********************************
+CSS FOR ADD EMPLOYEE CANCEL BUTTON 
+***********************************/
 .btnCancel {
   width: 180px;
   height: 40px;
@@ -178,7 +222,9 @@ a {
   color: #eee;
 }
 
-/* BUTTON SUBMIT */
+/**********************************
+CSS FOR ADD EMPLOYEE CANCEL BUTTON 
+***********************************/
 .btnSubmit {
   width: 180px;
   height: 40px;

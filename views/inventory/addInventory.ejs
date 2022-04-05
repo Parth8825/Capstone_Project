@@ -8,19 +8,21 @@
     <header>
       <h2>Employee Management System</h2>
     </header>
-    <h1 id="addItem">Add Item To Inventory</h1>
-    <form name="Inventory" method="post" action="/inventory/addInventory">
-      <div class="textboxes">
-        <label>Item Name: </label>
-        <input id="itemname" placeholder="Item Name" type="text" name="itemname" class="space"
-          value="<%= form.itemnameHolder %>"><br />
+    <main>
+      <h1 id="addItem">Add Item To Inventory</h1>
+      <form name="Inventory" method="post" action="/inventory/addInventory">
+        <div class="textboxes">
+          <label>Item Name: </label>
+          <input id="itemname" placeholder="Item Name" type="text" name="itemname" class="space"
+            value="<%= form.itemnameHolder %>"><br />
 
-        <label>Quantity: </label>
-        <input id="quantity" placeholder="Quantity" type="number" name="quantity" class="space"
-          value="<%= form.quantityHolder %>"><br />
+          <label>Quantity: </label>
+          <input id="quantity" placeholder="Quantity" type="number" name="quantity" class="space"
+            value="<%= form.quantityHolder %>"><br />
 
-        <label>Rate: </label>
-        <input id="rate" placeholder="$25" type="number" name="rate" class="space" value="<%= form.rateHolder %>"><br />
+          <label>Rate: </label>
+          <input id="rate" placeholder="$25" type="number" name="rate" class="space"
+            value="<%= form.rateHolder %>"><br />
 
         <label>Added By: </label>
         <select name="addedby" class="space" id="addedby">
@@ -38,28 +40,27 @@
                   <% }%>
         </select>
 
-        <label>Received Date & Time: </label>
-        <input id="receiveddatetime" placeholder="YYYY-MM-DD" type="date" name="receiveddatetime" class="space"
-          value="<%= form.receiveddateHolder %>"><br />
+          <label>Received Date & Time: </label>
+          <input id="receiveddatetime" placeholder="YYYY-MM-DD" type="date" name="receiveddatetime" class="space"
+            value="<%= form.receiveddateHolder %>"><br />
 
-        <label>Remained Item: </label>
-        <input id="remaineditem" type="number" name="remaineditem" class="space"
-          value="<%= form.remaineditemHolder %>"><br />
+          <label>Remained Item: </label>
+          <input id="remaineditem" type="number" name="remaineditem" class="space"
+            value="<%= form.remaineditemHolder %>"><br />
 
-        <label>Description: </label>
-        <input id="description" type="text" name="description" class="space"
-          value="<%= form.descriptionHolder %>"><br />
+          <label>Description: </label>
+          <input id="description" type="text" name="description" class="space"
+            value="<%= form.descriptionHolder %>"><br />
 
-        <p id="errors"></p>
+          <p id="errors"></p>
 
-      </div>
-      <div class="buttons">
-        <button class="btnSubmit" id="submit"> Submit </button>
+        </div>
+        <div class="buttons">
+          <button class="btnSubmit" id="submit"> Submit </button>
 
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="/inventory" id="cancel" class="btnCancel">Cancel </a>
-      </div>
-
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="/inventory" id="cancel" class="btnCancel">Cancel </a>
+        </div>
     </form>
     <section class="errors">
       <% if(typeof(errors) !='undefined' ){ %>
@@ -70,55 +71,8 @@
               * <%= error.msg %>
             </p>
             <% } } %>
-        </div>
-        <% } %>
-          <% if(typeof(description) !='undefined' ){ %>
-            <h2>Inventory</h2>
-            <table>
-              <tr>
-                <th>Item Name: </th>
-                <td>
-                  <%= itemname %>
-                </td>
-              </tr>
-              <tr>
-                <th>Quantity: </th>
-                <td>
-                  <%= quantity %>
-                </td>
-              </tr>
-              <tr>
-                <th>Rate: </th>
-                <td>
-                  <%= rate %>
-                </td>
-              </tr>
-              <tr>
-                <th>Added By: </th>
-                <td>
-                  <%= addedby %>
-                </td>
-              </tr>
-              <tr>
-                <th>Recieved Date & Time: </th>
-                <td>
-                  <%= receiveddatetime %>
-                </td>
-              </tr>
-              <tr>
-                <th>Remained Item: </th>
-                <td>
-                  <%= remaineditem %>
-                </td>
-              </tr>
-              <tr>
-                <th>Description: </th>
-                <td>
-                  <%= description %>
-                </td>
-              </tr>
-            </table>
-            <% } %>
-    </section>
-  </body>
-  <!-- <%- include('../layouts/footer'); -%> -->
+          </div>
+          <% } %>
+      </section>
+    </main>
+    <%- include('../layouts/footer'); -%>

@@ -1,226 +1,211 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-  
-  #employeeDetails {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
-    /* border: 2px solid gray;
-    border-bottom: 5px double gray; */
-    padding: .5% .5%;
-    color: #063057;
-    margin: 1% 40% 4% 40%;
-    font-size: 160%;
-    border-top: 4px double #052441;
-    border-bottom: 4px double #052441;
-    background-color: rgba(195, 195, 216, 0.3);
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
-    text-transform: uppercase;
-    overflow: hidden;
-  }
-  
-  /* MESSAGE CSS */
-  .messages{
-    text-align: center;
-    position: relative;
-    align-items: center;
-    background-color: lightgreen;
-    color: darkgreen;
-    border-radius: 5px;
-    font-size: 150%;
-    margin: 0 0 1% 0;
-  }
-  
-  
-  .content-table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 115%;
-    /* border: 4px double gray; */
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    margin: auto 2px;
-  }
-  
-  .content-table thead tr {
-    /* opacity: .98; */
-    /* background-color: #00987a83; */
-    background-color: #1c5b97cc;
-    /* /* background-color: #5ca1e1; */
-    /* background-color: #5292ce83;  */
-    color: rgb(184, 225, 250);
-    text-align: left;
-    font-weight: bold;
-    /* text-transform: uppercase; */
-  }
-  
-  .content-table td {
-    padding: 15px 15px 0 15px;
-  }
-  
-  .content-table th {
-    padding: 20px;
-    font-size: 125%;
-  }
-  
-  .content-table tbody tr {
-    border-bottom: 1px solid black;
-  }
-  
-  .content-table tbody tr:nth-of-type(even) {
-    /* background-color: rgb(206, 206, 206); */
-    background-color: rgba(195, 195, 216, 0.5);
-  }
-  
-  .content-table tbody tr:last-of-type {
-    border-bottom: 3px solid #1c5b97cc;
-  }
-  
-  .buttons {
-    display: inline-flex;
-    padding-right: 15px;
-  }
-  
-  /* .deleteBtn{
-      background-color: maroon;
-      color: #eee;
-      padding: 3% 10%;
-      margin-left: 3.5em;
-      opacity: 80%;
-      border: 1px solid black;
-      box-shadow:5px 5px 3px gray ;
-  } */
-  
-  /*EDIT BUTTON CSS*/
-  
-  /* .editBtn{
-      background-color: darkgreen;
-      border: 1px solid black;
-      color: #eee;
-      width:205px;
-      height: 15px;
-      padding: 3% 15%;
-      opacity: 80%;
-      box-shadow: 5px 5px 3px gray;
-      transition: transform .2s; 
-  } */
-  
-  .editButton {
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 1em;
-    border: 1px solid black;
-    /* box-shadow: -2px 2px 2px darkgreen; */
-    padding-top: 2px;
-  }
-  
-  .editButton {
-    display: block;
-    width: 85px;
-    height: 35px;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 4px;
-    border: 3px solid darkgreen;
-    color: black;
-    font-size: 20px;
-    position: relative;
-    overflow: hidden;
-    background: transparent;
-    text-transform: capitalize;
-    transition: all 0.35s;
-  }
-  
-  .editButton:before,
-  .editButton:after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    top: -100%;
-    left: 0;
-    background: darkgreen;
-    z-index: -1;
-    transition: all 0.35s;
-  }
-  
-  .editButton:before {
-    opacity: 0.5;
-  }
-  
-  .editButton:after {
-    transition-delay: 0.3s;
-  }
-  
-  .editButton:hover {
-    color: #fff;
-  }
-  
-  .editButton:hover:before,
-  .editButton:hover:after {
-    top: 0;
-  }
-  
-  /* DELETE BUTTON CSS */
-  .deleteButton {
-    /* left: 50%; */
-    transform: translate(-50%, -50%);
-    border: 1px solid black;
-    /* box-shadow: 2px 2px 2px maroon; */
-    padding-top: 2px;
-    margin-top: 24.5%;
-    left: 41.5%;
-  }
-  
-  .deleteButton {
-    display: block;
-    width: 85px;
-    height: 35px;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 4px;
-    border: 3px solid maroon;
-    color: black;
-    font-size: 20px;
-    position: relative;
-    overflow: hidden;
-    background: transparent;
-    text-transform: capitalize;
-    transition: all 0.35s;
-  }
-  
-  .deleteButton:before,
-  .deleteButton:after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    top: -100%;
-    left: 0;
-    background: maroon;
-    z-index: -1;
-    transition: all 0.35s;
-  }
-  
-  .deleteButton:before {
-    opacity: 0.5;
-  }
-  
-  .deleteButton:after {
-    transition-delay: 0.3s;
-  }
-  
-  .deleteButton:hover {
-    color: #fff;
-  }
-  
-  .deleteButton:hover:before,
-  .deleteButton:hover:after {
-    top: 0;
-  }
-  
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/***********************
+CSS FOR SCHEDULE HEADER
+************************/
+#itemDetails {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
+  padding: .5% .5%;
+  color: #063057;
+  margin: 1% 42% 4% 42%;
+  font-size: 160%;
+  border-top: 4px double #052441;
+  border-bottom: 4px double #052441;
+  background-color: rgba(195, 195, 216, 0.3);
+  border-radius: 15px;
+  box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
+  text-transform: uppercase;
+  overflow: hidden;
+  text-align: center;
+}
+
+/*******************************
+CSS FOR ADD,EDIT,DELETE MESSAGES
+*********************************/
+.messages {
+  text-align: center;
+  position: relative;
+  align-items: center;
+  background-color: lightgreen;
+  color: darkgreen;
+  border-radius: 5px;
+  font-size: 150%;
+  margin: 0 0 1% 0;
+}
+
+/********************************
+CSS FOR THE SCHEDULE PAGE'S TABLE
+*********************************/
+.content-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 115%;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  margin: auto 2px;
+}
+
+/************************************
+CSS FOR THE SCHEDULE PAGE'S TABLE ROW
+*************************************/
+.content-table thead tr {
+  background-color: #1c5b97cc;
+  color: rgb(184, 225, 250);
+  text-align: left;
+  font-weight: bold;
+}
+
+/*****************************************
+CSS FOR THE SCHEDULE PAGE'S TABLE DETAILS
+******************************************/
+.content-table td {
+  padding: 15px 15px 0 15px;
+}
+
+.content-table th {
+  padding: 20px;
+  font-size: 125%;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid black;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: rgba(195, 195, 216, 0.5);
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 3px solid #1c5b97cc;
+}
+
+/*************************************************
+CSS FOR THE SCHEDULE PAGE'S EDIT AND DELETE BUTTON
+**************************************************/
+.buttons {
+  display: inline-flex;
+  padding-right: 15px;
+}
+
+/********************************************
+CSS FOR THE SCHEDULE PAGE'S TABLE EDIT BUTTON
+*********************************************/
+.editButton {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 1em;
+  border: 1px solid black;
+  padding-top: 2px;
+}
+
+.editButton {
+  display: block;
+  width: 85px;
+  height: 35px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  border: 3px solid darkgreen;
+  color: black;
+  font-size: 20px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  text-transform: capitalize;
+  transition: all 0.35s;
+}
+
+.editButton:before,
+.editButton:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: darkgreen;
+  z-index: -1;
+  transition: all 0.35s;
+}
+
+.editButton:before {
+  opacity: 0.5;
+}
+
+.editButton:after {
+  transition-delay: 0.3s;
+}
+
+.editButton:hover {
+  color: #fff;
+}
+
+.editButton:hover:before,
+.editButton:hover:after {
+  top: 0;
+}
+
+/********************************************
+CSS FOR THE SCHEDULE PAGE'S TABLE EDIT BUTTON
+*********************************************/
+.deleteButton {
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  padding-top: 2px;
+  margin-top: 24.5%;
+  left: 41.5%;
+}
+
+.deleteButton {
+  display: block;
+  width: 85px;
+  height: 35px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  border: 3px solid maroon;
+  color: black;
+  font-size: 20px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  text-transform: capitalize;
+  transition: all 0.35s;
+}
+
+.deleteButton:before,
+.deleteButton:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: maroon;
+  z-index: -1;
+  transition: all 0.35s;
+}
+
+.deleteButton:before {
+  opacity: 0.5;
+}
+
+.deleteButton:after {
+  transition-delay: 0.3s;
+}
+
+.deleteButton:hover {
+  color: #fff;
+}
+
+.deleteButton:hover:before,
+.deleteButton:hover:after {
+  top: 0;
+}

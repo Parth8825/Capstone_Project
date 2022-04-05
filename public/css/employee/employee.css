@@ -4,27 +4,12 @@
   box-sizing: border-box;
 }
 
-
-@keyframes h2Animation{
-  from {
-    font-size: 0;
-    /* margin: -10% 28% 30% 28%; */
-    top: 100%;
-    opacity: .1;
-    border: none;
-  }
-  
-  to{
-    margin: 1% 40% 0 40%;
-    top: 200px;
-  }
-}
-
+/***********************
+CSS FOR EMPLOYEE HEADER
+************************/
 #employeeDetails {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
-  /* border: 2px solid gray;
-  border-bottom: 5px double gray; */
   padding: .5% .5%;
   color: #063057;
   margin: 1% 40% 4% 40%;
@@ -36,10 +21,12 @@
   box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
   text-transform: uppercase;
   overflow: hidden;
-  /* animation: h2Animation 2s; */
+  text-align: center;
 }
 
-/* MESSAGE CSS */
+/*******************************
+CSS FOR ADD,EDIT,DELETE MESSAGES
+*********************************/
 .messages{
   text-align: center;
   position: relative;
@@ -51,12 +38,13 @@
   margin: 0 0 1% 0;
 }
 
-
+/********************************
+CSS FOR THE EMPLOYEE PAGE'S TABLE
+*********************************/
 .content-table {
   border-collapse: collapse;
   width: 100%;
   font-size: 115%;
-  /* border: 4px double gray; */
   min-width: 400px;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
@@ -64,22 +52,26 @@
   margin: auto 2px;
 }
 
+/************************************
+CSS FOR THE EMPLOYEE PAGE'S TABLE ROW
+*************************************/
 .content-table thead tr {
-  /* opacity: .98; */
-  /* background-color: #00987a83; */
   background-color: #1c5b97cc;
-  /* /* background-color: #5ca1e1; */
-  /* background-color: #5292ce83;  */
   color: rgb(184, 225, 250);
   text-align: left;
   font-weight: bold;
-  /* text-transform: uppercase; */
 }
 
+/*****************************************
+CSS FOR THE EMPLOYEE PAGE'S TABLE DETAILS
+******************************************/
 .content-table td {
   padding: 15px 15px 0 15px;
 }
 
+/*****************************************
+CSS FOR THE EMPLOYEE PAGE'S TABLE HEADER
+******************************************/
 .content-table th {
   padding: 20px;
   font-size: 125%;
@@ -90,7 +82,6 @@
 }
 
 .content-table tbody tr:nth-of-type(even) {
-  /* background-color: rgb(206, 206, 206); */
   background-color: rgba(195, 195, 216, 0.5);
 }
 
@@ -98,6 +89,9 @@
   border-bottom: 3px solid #1c5b97cc;
 }
 
+/*****************************************
+CSS FOR THE EMPLOYEE PAGE'S NAME COLUMN
+******************************************/
 .link:hover{
   transition: .75s;
   font-size: 110%;
@@ -105,45 +99,25 @@
 }
 
 .link{
-  text-decoration: underline;
   color: #1c5b97;
 }
 
+/*************************************************
+CSS FOR THE EMPLOYEE PAGE'S EDIT AND DELETE BUTTON
+**************************************************/
 .buttons {
   display: inline-flex;
   padding-right: 15px;
 }
 
-/* .deleteBtn{
-    background-color: maroon;
-    color: #eee;
-    padding: 3% 10%;
-    margin-left: 3.5em;
-    opacity: 80%;
-    border: 1px solid black;
-    box-shadow:5px 5px 3px gray ;
-} */
-
-/*EDIT BUTTON CSS*/
-
-/* .editBtn{
-    background-color: darkgreen;
-    border: 1px solid black;
-    color: #eee;
-    width:205px;
-    height: 35px;
-    padding: 3% 15%;
-    opacity: 80%;
-    box-shadow: 5px 5px 3px gray;
-    transition: transform .2s; 
-} */
-
+/********************************************
+CSS FOR THE EMPLOYEE PAGE'S TABLE EDIT BUTTON
+*********************************************/
 .editButton {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 1em;
   border: 1px solid black;
-  /* box-shadow: -2px 2px 2px darkgreen; */
   padding-top: 2px;
 }
 
@@ -194,12 +168,12 @@
   top: 0;
 }
 
-/* DELETE BUTTON CSS */
+/********************************************
+CSS FOR THE EMPLOYEE PAGE'S TABLE EDIT BUTTON
+*********************************************/
 .deleteButton {
-  /* left: 50%; */
   transform: translate(-50%, -50%);
   border: 1px solid black;
-  /* box-shadow: 2px 2px 2px maroon; */
   padding-top: 2px;
   margin-top: 24.5%;
   left: 41.5%;

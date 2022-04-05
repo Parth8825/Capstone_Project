@@ -1,6 +1,10 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
 body {
     text-transform: uppercase;
-    background-color: rgba(195, 195, 216, 0.3);
     background-image: url("../../images/image9.png");
     background-size: calc(100%);
     background-position: top;
@@ -8,9 +12,13 @@ body {
     background-repeat: no-repeat;
   }
   
+  main{
+    background-color: rgba(195, 195, 216, 0.3);
+  }
+
   form {
     position: relative;
-    margin: 1% 0 5% 27.5%;
+    margin: 1% 0 2.5% 27.5%;
     font-size: 175%;
     width: 630px;
     height: 540px;
@@ -27,7 +35,7 @@ body {
     padding: .5% 0.5%;
     color: #00254a;
     background-color: rgba(195, 195, 216, 0.94);
-    margin: 2% 38%;
+    margin: 2% 37%;
     font-size: 160%;
     border-top: 4px double #052441;
     border-bottom: 4px double #052441;

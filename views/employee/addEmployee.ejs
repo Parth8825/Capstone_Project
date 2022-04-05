@@ -6,6 +6,7 @@
     <header>
       <h2>Employee Management System</h2>
     </header>
+    <main>
     <h1 id="addEmployee">Add Employee Details</h1>
     <form name="Employee" method="post" action="/addEmployee">
       <div class="textboxes">
@@ -56,8 +57,8 @@
               * <%= error.msg %>
             </p>
             <% } } %>
-        </div>
-        <% } %>
-    </section>
-
-    <!-- <%- include('../layouts/footer'); -%> -->
+          </div>
+          <% } %>
+      </section>
+    </main>
+    <%- include('../layouts/footer'); -%>

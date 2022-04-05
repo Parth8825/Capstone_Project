@@ -1,18 +1,40 @@
 * {
   box-sizing:border-box;
+  padding: 0;
+  margin: 0;
 }
 
+/*****************************
+CSS FOR EACH & EVERY PAGE BODY
+******************************/
 body {
   font-family: "Cinzel", serif;
   background-image: url("../../images/background.png");
   background-repeat:repeat-x;
 }
 
+/********************************
+CSS FOR EACH & EVERY PAGES' MAIN
+*********************************/
+main {
+  float: left;
+  padding: 20px;
+  width: 100%;
+  background-color: whitesmoke;
+  height: 100%;
+  text-transform: none;
+}
+
+/*****************************
+CSS FOR EACH & EVERY BUTTON
+******************************/
 button a {
   text-decoration: none;
 }
 
-/* HEADER */
+/**********************************
+CSS FOR EACH & EVERY PAGE'S HEADER
+***********************************/
 header {
   background-color: whitesmoke;
   padding: 15px;
@@ -24,6 +46,9 @@ header {
   background-image: none;
 }
 
+/*******************************
+CSS FOR EVERY PAGE'S ANIMATION
+********************************/
 @keyframes animation{
   from {
     font-size: 0;
@@ -37,11 +62,13 @@ header {
   }
 }
 
+/*******************
+CSS FOR EACH HEADER
+********************/
 header h2 {
   background-image: url("../../images/image3.png");
-  background-size: cover;
-  background-position: right;
-  
+  background-size: calc(160%);
+  background-position: left;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   border-top: 4px double #052441;
@@ -52,59 +79,39 @@ header h2 {
   border-radius: 13px;
   padding: 7.5px 0;
   background-color: rgba(195, 195, 216, 0.3);
-
-  animation: animation 1.15s;
+  animation: animation 1s;
 }
 
-main {
-  float: left;
-  padding: 20px;
-  width: 100%;
-  background-color: whitesmoke;
-  /* background-image: radial-gradient( circle 1000px at 31.7% 40.2%,  rgba(225,200,239,1) 21.4%, #fdf9f0 57.1% ); */
-  height: 100%;
-  text-transform: none;
-  /* only for demonstration, should be removed */
-}
-
-h1 {
-  text-align: center;
-  font-size: 20px;
-}
-
-/* Clear floats after the columns */
+/*****************************
+Clear floats after the columns
+******************************/
 section::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Style the footer */
+/********************************
+CSS FOR THE FOOTER FOR EACH PAGE
+*********************************/
 footer {
   background-color: #1c5b97cc;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
   align-items: center;
   color: rgb(184, 225, 250);
   margin-bottom: 1%;
   opacity: .7;
   border-radius: 5px;
+  clear: both;
 }
 
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+/************************************************
+Responsive layout - makes the two columns/boxes
+stack on top of each other instead of next to 
+each other, on small screens 
+*************************************************/
 @media (max-width: 600px) {
-  /*    
-    #nav_menu ul li { 
-        float: left;
-        width: 50%;
-        height: auto;
-    }
-    #nav_area,
-    article {
-        width: 100%;
-        height: auto;
-    } */
-
   nav ul li a {
     padding: 20px;
   }
@@ -129,7 +136,9 @@ a {
   color: #333;
 }
 
-/* BUTTON CSS*/
+/*************************************
+CSS FOR THE ADD BUTTON FOR EACH PAGE
+*************************************/
 .btn {
   box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.1);
   width: 220px;
