@@ -122,7 +122,7 @@ label {
 }
 
 /**********************************
-CSS FOR ADD EMPLOYEE's PAGE INPUT 
+CSS FOR EDIT EMPLOYEE's PAGE INPUT 
 ***********************************/
 .space {
   margin: 0 0 2.5% 0;
@@ -135,10 +135,18 @@ CSS FOR ADD EMPLOYEE's PAGE INPUT
 }
 
 /************************************
-CSS FOR ADD EMPLOYEE'S ADDRESS INPUT
+CSS FOR EDIT EMPLOYEE'S ADDRESS INPUT
 *************************************/
 #address {
   padding: 4%;
+}
+
+/*********************************************************
+CSS FOR EDIT EMPLOYEE'S PAGE BITH BUTTONS TO KEEP IT INLINE
+**********************************************************/
+.buttons {
+  display: flex;
+  margin: 5% 1%;
 }
 
 /*********************************************************
@@ -152,13 +160,13 @@ CSS FOR EDIT EMPLOYEE'S PAGE BOTH BUTTONS TO KEEP IT INLINE
 CSS FOR EDIT EMPLOYEE CANCEL BUTTON TO KEEP IT RIGHT SIDE
 ********************************************************/
 #cancel {
-  float: right;
-  margin-left: 15%;
+  float: left;
+  margin-left: 14%;
 }
 
 
 /**********************************
-CSS FOR ADD EMPLOYEE CANCEL BUTTON 
+CSS FOR EDIT EMPLOYEE CANCEL BUTTON 
 ***********************************/
 .btnCancel {
   width: 180px;
@@ -221,7 +229,7 @@ CSS FOR ADD EMPLOYEE CANCEL BUTTON
 }
 
 /**********************************
-CSS FOR ADD EMPLOYEE CANCEL BUTTON 
+CSS FOR EDIT EMPLOYEE CANCEL BUTTON 
 ***********************************/
 .btnSubmit {
   width: 180px;

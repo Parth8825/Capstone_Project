@@ -148,8 +148,8 @@ CSS FOR ADD EMPLOYEE'S PAGE BITH BUTTONS TO KEEP IT INLINE
 CSS FOR ADD EMPLOYEE CANCEL BUTTON TO KEEP IT RIGHT SIDE
 ********************************************************/
 #cancel {
-  float: right;
-  margin-left: 15%;
+  float: left;
+  margin-left: 14%;
 }
 
 /*******************************************************
