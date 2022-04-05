@@ -7,7 +7,7 @@
         <header>
             <h2>Employee Management System</h2>
         </header>
-        <section class="page">
+        <main>
             <% if(typeof(takeAttendance) !='undefined' ){ %>
                 <h2>Schedule successfully updated!!</h2>
                 <table>
@@ -37,10 +37,11 @@
                     </tr>
                     <tr>
                         <th>
-                            <a href="/attendance" class="button">Go back to Main</a>
+                            <a href="/attendance" class="buttonAttendance">Go back to Main</a>
                         </th>
                     </tr>
 
                 </table>
                 <% } %>
-                    <!-- <%- include('../layouts/footer'); -%> -->
+        </main>
+        <%- include('../layouts/footer'); -%>

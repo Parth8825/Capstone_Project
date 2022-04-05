@@ -7,40 +7,43 @@
         <header>
             <h2>Employee Management System</h2>
         </header>
-        <section class="page">
-            <% if(typeof(endTime) !='undefined' ){ %>
-                <h2>Schedule successfully updated!!</h2>
-                <table>
-                    <tr>
-                        <th>Employee Name: </th>
-                        <td>
-                            <%= employeeName %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Day: </th>
-                        <td>
-                            <%= day %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Start Time: </th>
-                        <td>
-                            <%= startTime %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>End Time </th>
-                        <td>
-                            <%= endTime %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <a href="/schedule" class="button">Go back to Main</a>
-                        </th>
-                    </tr>
+        <main>
+            <section class="page">
+                <% if(typeof(endTime) !='undefined' ){ %>
+                    <h2>Schedule successfully updated!!</h2>
+                    <table>
+                        <tr>
+                            <th>Employee Name: </th>
+                            <td>
+                                <%= employeeName %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Day: </th>
+                            <td>
+                                <%= day %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Start Time: </th>
+                            <td>
+                                <%= startTime %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>End Time </th>
+                            <td>
+                                <%= endTime %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <a href="/schedule" class="buttonAttendance">Go back to Main</a>
+                            </th>
+                        </tr>
 
-                </table>
-                <% } %>
-                    <!-- <%- include('../layouts/footer'); -%> -->
+                    </table>
+                    <% } %>
+            </section>
+        </main>
+        <%- include('../layouts/footer'); -%>
