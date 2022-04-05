@@ -3,7 +3,8 @@ var router = express.Router();
 module.exports = router;
 
 //IMPORTING inventoryModel FROM THE MODEL FOLDER
-const Inventory = require('../models/inventoryModel')
+const Inventory = require('../models/inventoryModel');
+const Employee = require('../models/employeeModel');
 
 //setting up express validator
 const { check, validationResult } = require('express-validator');
@@ -41,7 +42,14 @@ router.get('/addInventory', function (req, res) {
             remaineditemHolder: req.body.remaineditem,
             descriptionHolder: req.body.description
         };
-        res.render('inventory/addInventory', {form: form});
+        Employee.find({}).exec(function (err, employees) {
+            if (err) {
+                res(err)
+            }
+            else {
+                res.render('inventory/addInventory', {employees: employees, form: form});
+            }
+        });
     }
     else {
         res.redirect('/login');
@@ -68,8 +76,16 @@ router.post('/addInventory', [
     };
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        res.render('inventory/addInventory', {form: form,
-            errors: errors.array()
+        Employee.find({}).exec(function (err, employees) {
+            if (err) {
+                res(err)
+            }
+            else {
+                res.render('inventory/addInventory', {employees: employees, form: form,
+                    errors: errors.array()
+                });
+                return;
+            }
         });
     }
     else {
@@ -107,14 +123,22 @@ router.get('/edit/:inventoryId', function (req, res) {
     if (req.session.userLoggedIn) {
         var inventoryId = req.params.inventoryId;
         console.log(inventoryId);
-        Inventory.findOne({ _id: inventoryId }).exec(function (err, inventory) {
-            console.log('Error: ' + err);
-            console.log('Inventory: ' + inventory);
-            if (inventory) {
-                res.render('inventory/editInventory', { inventory: inventory });
+
+        Employee.find({}).exec(function (err, employees) {
+            if (err) {
+                res(err)
             }
             else {
-                res.send('No Inventory found with that id..');
+                Inventory.findOne({ _id: inventoryId }).exec(function (err, inventory) {
+                    console.log('Error: ' + err);
+                    console.log('Inventory: ' + inventory);
+                    if (inventory) {
+                        res.render('inventory/editInventory', { inventory: inventory, employees: employees });
+                    }
+                    else {
+                        res.send('No Inventory found with that id..');
+                    }
+                });
             }
         });
     }
