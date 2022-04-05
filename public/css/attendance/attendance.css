@@ -20,6 +20,7 @@
     box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
     text-transform: uppercase;
     overflow: hidden;
+    text-align: center;
   }
   
   /* MESSAGE CSS */

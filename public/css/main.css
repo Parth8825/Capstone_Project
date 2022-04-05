@@ -106,20 +106,12 @@ footer {
   clear: both;
 }
 
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+/************************************************
+Responsive layout - makes the two columns/boxes
+stack on top of each other instead of next to 
+each other, on small screens 
+*************************************************/
 @media (max-width: 600px) {
-  /*    
-    #nav_menu ul li { 
-        float: left;
-        width: 50%;
-        height: auto;
-    }
-    #nav_area,
-    article {
-        width: 100%;
-        height: auto;
-    } */
-
   nav ul li a {
     padding: 20px;
   }
@@ -144,7 +136,7 @@ a {
   color: #333;
 }
 
-/************************************
+/*************************************
 CSS FOR THE ADD BUTTON FOR EACH PAGE
 *************************************/
 .btn {
