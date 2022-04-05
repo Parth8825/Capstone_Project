@@ -1,5 +1,5 @@
 <%- include('../layouts/header'); -%>
-
+    <link href="/css/employee/employee.css" rel="stylesheet">
     </head>
 
     <body>
@@ -9,8 +9,68 @@
         <%- include('../layouts/navigation'); -%>
             <section>
                 <main>
-                    <button class="btn">Generate Pay Stub</button>
-                    <h1>PayStub</h1>
+                    <div class="btn">
+                        <a href="/paystub/generatePaystub">
+                            <button class="btn">Generate Pay Stub</button>
+                        </a>
+                    </div>
+                    <h1 id="employeeDetails">PayStub</h1>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Email</th>
+                                <th>Payrate</th>
+                                <th>Weekly hours</th>
+                                <th>Gross Pay</th>
+                                <th>Taxes</th>
+                                <th>Take Home</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <a href="#" class="link">
+
+                                        <p>Test Purpose</p>
+                                    </a>
+                                </td>
+                                <td>
+
+                                    <p>Test Purpose</p>
+                                </td>
+                                <td>
+
+                                    <p>Test Purpose</p>
+                                </td>
+                                <td>
+
+                                    <p>Test Purpose</p>
+                                </td>
+                                <td>
+
+                                    <p>Test Purpose</p>
+                                </td>
+                                <td>
+
+                                    <p>Test Purpose</p>
+                                </td>
+                                <td>
+
+                                    <p>Test Purpose</p>
+                                </td>
+                                <td>
+                                    <div class="buttons">
+                                        <a class="deleteButton" href="#">PDF</a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
                 </main>
             </section>
             <%- include('../layouts/footer'); -%>

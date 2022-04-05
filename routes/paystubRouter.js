@@ -12,3 +12,14 @@ router.get('/', function (req, res) {
         res.redirect('/login');
     }
 });
+
+// generate paystub page [GET]
+router.get('/generatePaystub', function(req, res){
+    // check if thr user is logged in 
+    if (req.session.userLoggedIn) {
+        res.render('paystub/generatePaystub');
+    }
+    else {
+        res.redirect('/login');
+    }
+})
