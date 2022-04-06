@@ -210,7 +210,7 @@ router.post('/addEmployee', [
         ourEmployees.save().then(function () {
             console.log('New Employee created');
         });
-        req.flash('msg', 'Employee added successfully !!!');
+        req.flash('msg', '\"' + employeeData.name + '\"' +' added successfully !!!');
         res.redirect('/');
     }
 });
