@@ -6,7 +6,7 @@ module.exports = router;
 router.get('/', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
-        res.render('paystub/paystub');
+        res.render('paystub/paystub', { admin: req.session.username });
     }
     else {
         res.redirect('/login');
