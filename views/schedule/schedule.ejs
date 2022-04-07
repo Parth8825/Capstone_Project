@@ -5,6 +5,9 @@
     <body>
         <header>
             <h2>Employee Management System</h2>
+            <h5>
+                User: <%= locals.admin ? admin: "Admin" %>
+            </h5>
         </header>
         <%- include('../layouts/navigation'); -%>
             <section>
@@ -29,7 +32,7 @@
                                     <th>Day</th>
                                     <th>Start Time</th>
                                     <th>End Time</th>
-                                    <th>Action</th> 
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,7 +52,8 @@
                                         </td>
                                         <td>
                                             <div class="buttons">
-                                                <a class="editButton" href="/schedule/edit/<%= schedule._id %>">Change</a>
+                                                <a class="editButton"
+                                                    href="/schedule/edit/<%= schedule._id %>">Change</a>
                                                 <a class="deleteButton"
                                                     href="/schedule/delete/<%= schedule._id %>">Delete</a>
                                             </div>

@@ -10,7 +10,12 @@ const Employee = require('../models/employeeModel');
 const { check, validationResult } = require('express-validator');// ES6 standard for destructuring an object
 //login page
 router.get('/login', function (req, res) {
-    res.render('login');
+    if (req.session.userLoggedIn) {
+        res.redirect('/');
+    }
+    else {
+        res.render('login');
+    }
 });
 // login user
 router.post('/login',[
@@ -100,18 +105,32 @@ router.post('/signup', [
     }
     
 });
-
+// logout process
+router.get('/signup', function (req, res) {
+    if (req.session.userLoggedIn) {
+        res.redirect('/');
+    }
+    else {
+        res.render('login');
+    }
+});
 // logout process
 router.get('/logout', function (req, res) {
-    req.session.destroy(function (err) {
-        if (err) {
-            console.log(err);
-            res.send("Error")
-        }
-        else {
-           res.render('login', { message: "logout successfully....!" });
-        }
-    })
+    if (req.session.userLoggedIn) {
+        req.session.destroy(function (err) {
+            if (err) {
+                console.log(err);
+                res.send("Error")
+            }
+            else {
+               res.render('login', { message: "logout successfully....!" });
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+    
 });
 // Home page (Employee page)
 router.get('/', function (req, res) {
@@ -124,9 +143,8 @@ router.get('/', function (req, res) {
             }
             else {
                 const message = req.flash('msg');
-                res.render('employee', { employees: employees, message});
+                res.render('employee', { employees: employees, message, admin: req.session.username});
             }
-
         });
     }
     else {
@@ -210,7 +228,7 @@ router.post('/addEmployee', [
         ourEmployees.save().then(function () {
             console.log('New Employee created');
         });
-        req.flash('msg', 'Employee added successfully !!!');
+        req.flash('msg', '\"' + employeeData.name + '\"' +' added successfully !!!');
         res.redirect('/');
     }
 });

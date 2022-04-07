@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
             }
             else {
                 const message = req.flash('msg');
-                res.render('inventory/inventory', { inventories: inventories, message});
+                res.render('inventory/inventory', { inventories: inventories, message, admin: req.session.username});
             }
         });
     }

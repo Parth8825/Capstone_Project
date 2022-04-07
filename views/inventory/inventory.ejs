@@ -6,71 +6,76 @@
     <body>
         <header>
             <h2>Employee Management System</h2>
+            <h5>
+                User: <%= locals.admin ? admin: "Admin" %>
+            </h5>
         </header>
         <%- include('../layouts/navigation'); -%>
-        <section>
-            <main>
-                <% if(typeof(message) !='undefined' ){ %>
-                    <div class="messages">
-                        <% if(locals.message){ %>
-                            <%= message%>
-                                <% }%>
-                                    <% } %>
-                    </div>
-                <div class="btn">
-                    <a href="/inventory/addInventory">
-                        <button class="btn">Add Item</button>
-                    </a>
-                </div>
+            <section>
+                <main>
+                    <% if(typeof(message) !='undefined' ){ %>
+                        <div class="messages">
+                            <% if(locals.message){ %>
+                                <%= message%>
+                                    <% }%>
+                                        <% } %>
+                        </div>
+                        <div class="btn">
+                            <a href="/inventory/addInventory">
+                                <button class="btn">Add Item</button>
+                            </a>
+                        </div>
 
-            <h1 id="itemDetails">Items In Inventory</h1>
-            <table class="content-table">
-                <thead>
-                    <tr>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Rate</th>
-                        <th>Added By</th>
-                        <th>Received Date & Time</th>
-                        <th>Total Item</th>
-                        <th>Description</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(var inventory of inventories){ %>
-                    <tr>
-                        <td>
-                            <%= inventory.itemname %>
-                        </td>
-                        <td>
-                            <%= inventory.quantity %>
-                        </td>
-                        <td>
-                            <%= inventory.rate%>
-                        </td>
-                        <td>
-                            <%= inventory.addedby %>
-                        </td>
-                        <td>
-                            <%= inventory.receiveddatetime %>
-                        </td>
-                        <td>
-                            <%= inventory.remaineditem + inventory.quantity %>
-                        </td>
-                        <td>
-                            <%= inventory.description %>
-                        </td>
-                        <td>
-                            <div class="buttons">
-                                <a class="editButton" href="../inventory/edit/<%= inventory._id %>">Edit</a>
-                                <a class="deleteButton" href="../inventory/delete/<%= inventory._id %>">Delete</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
-        </main>
-    </section>
+                        <h1 id="itemDetails">Items In Inventory</h1>
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Quantity</th>
+                                    <th>Rate</th>
+                                    <th>Added By</th>
+                                    <th>Received Date & Time</th>
+                                    <th>Total Item</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var inventory of inventories){ %>
+                                    <tr>
+                                        <td>
+                                            <%= inventory.itemname %>
+                                        </td>
+                                        <td>
+                                            <%= inventory.quantity %>
+                                        </td>
+                                        <td>
+                                            <%= inventory.rate%>
+                                        </td>
+                                        <td>
+                                            <%= inventory.addedby %>
+                                        </td>
+                                        <td>
+                                            <%= inventory.receiveddatetime %>
+                                        </td>
+                                        <td>
+                                            <%= inventory.remaineditem + inventory.quantity %>
+                                        </td>
+                                        <td>
+                                            <%= inventory.description %>
+                                        </td>
+                                        <td>
+                                            <div class="buttons">
+                                                <a class="editButton"
+                                                    href="../inventory/edit/<%= inventory._id %>">Edit</a>
+                                                <a class="deleteButton"
+                                                    href="../inventory/delete/<%= inventory._id %>">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                </main>
+            </section>
             <%- include('../layouts/footer'); -%>

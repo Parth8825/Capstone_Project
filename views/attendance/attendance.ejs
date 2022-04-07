@@ -6,10 +6,13 @@
     <body>
         <header>
             <h2>Employee Management System</h2>
+            <h5>
+                User: <%= locals.admin ? admin: "Admin" %>
+            </h5>
         </header>
         <%- include('../layouts/navigation'); -%>
-        <main>
-            <section>
+            <main>
+                <section>
                     <% if(typeof(message) !='undefined' ){ %>
                         <div class="messages">
                             <% if(locals.message){ %>
@@ -62,6 +65,6 @@
                                     <% } %>
                             </tbody>
                         </table>
-                    </section>
-                </main>
+                </section>
+            </main>
             <%- include('../layouts/footer'); -%>

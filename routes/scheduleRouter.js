@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
             }
             else {
                 const message = req.flash('msg');
-                res.render('schedule/schedule', {schedules: schedules, message});
+                res.render('schedule/schedule', {schedules: schedules, message, admin: req.session.username});
             }
         });
     }

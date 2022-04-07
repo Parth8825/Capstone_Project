@@ -5,6 +5,9 @@
     <body>
         <header>
             <h2>Employee Management System</h2>
+            <h5>
+                User: <%= locals.admin ? admin: "Admin" %>
+            </h5>
         </header>
         <%- include('../layouts/navigation'); -%>
             <main>
