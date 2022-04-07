@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose'); // MongoDB connection
 // get expression session
 const session = require('express-session');
 // get cookies 
@@ -18,8 +19,9 @@ const paystubRouter = require('./routes/paystubRouter');
 const flash = require('connect-flash');
 
 // set up DataBase connection
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/CapstoneProject', {
+require('dotenv').config();
+const mongoString = process.env.DATABASE_URL;
+mongoose.connect(mongoString, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
