@@ -22,4 +22,9 @@ router.get('/generatePaystub', function(req, res){
     else {
         res.redirect('/login');
     }
-})
+});
+
+// genrate paystub page [POST]
+router.post('/generatePaystub', function(req, res){
+    res.render('paystub/generatePaystub');
+});
