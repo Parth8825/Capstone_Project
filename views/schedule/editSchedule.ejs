@@ -1,5 +1,5 @@
 <%- include('../layouts/header'); -%>
-    <link href="/css/schedule/addSchedule.css" rel="stylesheet">
+    <link href="/css/add_editpage.css" rel="stylesheet">
     </head>
 
     </head>
@@ -10,10 +10,10 @@
         </header>
         <main>
         <h1 id="createSchedule">Change Schedule</h1>
-        <form name="Schedule" method="post" action="/schedule/edit/<%= schedule.id %>">
+        <form name="Schedule" method="post" action="/schedule/edit/<%= schedule.id %>" class="scheduleForm">
             <div class="textboxes">
-                <label>Employee Name: </label>
-                <select name="eName" id="eName" class="space">
+                <label class="scheduleLable">Employee Name: </label>
+                <select name="eName" id="eName" class="scheduleTextboxes select">
                     <option value="<%= schedule.employeeName %>">
                         <%= schedule.employeeName %>
                     </option>
@@ -26,8 +26,8 @@
                             <% }%>
                 </select>
 
-                <label>Day: </label>
-                <select name="sDay" id="sDay" class="space">
+                <label class="scheduleLable">Day: </label>
+                <select name="sDay" id="sDay" class="scheduleTextboxes select">
                     <option value="<%= schedule.day %>">
                         <%= schedule.day %>
                     </option>
@@ -41,8 +41,8 @@
                     <option value="Saturday">Saturday</option>
                 </select>
 
-                <label>Start Time: </label>
-                <select name="startTime" id="startTime" class="space">
+                <label class="scheduleLable">Start Time: </label>
+                <select name="startTime" id="startTime" class="scheduleTextboxes select">
                     <option value="<%= schedule.startTime %>">
                         <%= schedule.startTime %>
                     </option>
@@ -59,8 +59,8 @@
                                 <% } %>
                     </select>
 
-                <label>End Time: </label>
-                <select name="endTime" id="endTime" class="space">
+                <label class="scheduleLable">End Time: </label>
+                <select name="endTime" id="endTime" class="scheduleTextboxes select">
                     <option value="<%= schedule.endTime %>">
                         <%= schedule.endTime %>
                     </option>
@@ -76,7 +76,6 @@
                                     </option>
                                     <% } %>
                     </select>
-                    <p id="errors"></p>
                 </div>
                 <div class="buttons">
                     <button class="btnSubmit" id="submit"> Submit </button>
@@ -99,4 +98,4 @@
                     <% } %>
             </section>
         </main>
-         include('../layouts/footer'); 
+        <%- include('../layouts/footer'); -%>

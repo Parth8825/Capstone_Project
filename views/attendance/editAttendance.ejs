@@ -1,5 +1,5 @@
 <%- include('../layouts/header'); -%>
-    <link href="/css/schedule/addSchedule.css" rel="stylesheet">
+    <link href="/css/add_editpage.css" rel="stylesheet">
     </head>
 
     <body>
@@ -8,10 +8,10 @@
         </header>
         <main>
             <h1 id="createSchedule">Take Attendance</h1>
-            <form name="Attendance" method="post" action="/attendance/edit/<%= attendance.id %>">
+            <form name="Attendance" method="post" action="/attendance/edit/<%= attendance.id %>" class="attendanceForm">
                 <div class="textboxes">
-                    <label>Employee Name: </label>
-                    <select name="eName" id="eName" class="space">
+                    <label class="attendanceLable">Employee Name: </label>
+                    <select name="eName" id="eName" class="attendanceTextboxes">
                         <option value="<%= attendance.eName %>">
                             <%= attendance.eName %>
                         </option>
@@ -24,12 +24,12 @@
                                 <% }%>
                     </select>
 
-                    <label>Date: </label>
-                    <input id="date" placeholder="YYYY-MM-DD" type="date" name="date" class="space"
+                    <label class="attendanceLable">Date: </label>
+                    <input id="date" placeholder="YYYY-MM-DD" type="date" name="date" class="attendanceTextboxes"
                         value="<%= attendance.date %>"><br />
 
-                    <label>Day: </label>
-                    <select name="sDay" id="sDay" class="space">
+                    <label class="attendanceLable">Day: </label>
+                    <select name="sDay" id="sDay" class="attendanceTextboxes">
                         <option value="<%= attendance.sDay %>">
                             <%= attendance.sDay %>
                         </option>
@@ -43,8 +43,8 @@
                         <option value="Saturday">Saturday</option>
                     </select>
 
-                    <label>Present / Absent : </label>
-                    <select name="attendance" id="attendance" class="space">
+                    <label class="attendanceLable">Present / Absent : </label>
+                    <select name="attendance" id="attendance" class="attendanceTextboxes">
                         <option value="<%= attendance.attendance %>">
                             <%= attendance.attendance %>
                         </option>
@@ -52,8 +52,6 @@
                         <option value="Present">Present</option>
                         <option value="Absent">Absent</option>
                     </select>
-
-                    <p id="errors"></p>
 
                 </div>
                 <div class="buttons">

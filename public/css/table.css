@@ -5,14 +5,14 @@
 }
 
 /***********************
-CSS FOR SCHEDULE HEADER
+CSS FOR EMPLOYEE HEADER
 ************************/
-#itemDetails {
+#employeeDetails, #attendance, #itemDetails, #schedule  {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
   padding: .5% .5%;
   color: #063057;
-  margin: 1% 42% 4% 42%;
+  margin: 1% 40% 4% 40%;
   font-size: 160%;
   border-top: 4px double #052441;
   border-bottom: 4px double #052441;
@@ -27,7 +27,7 @@ CSS FOR SCHEDULE HEADER
 /*******************************
 CSS FOR ADD,EDIT,DELETE MESSAGES
 *********************************/
-.messages {
+.messages{
   text-align: center;
   position: relative;
   align-items: center;
@@ -39,7 +39,7 @@ CSS FOR ADD,EDIT,DELETE MESSAGES
 }
 
 /********************************
-CSS FOR THE SCHEDULE PAGE'S TABLE
+CSS FOR THE EMPLOYEE PAGE'S TABLE
 *********************************/
 .content-table {
   border-collapse: collapse;
@@ -53,7 +53,7 @@ CSS FOR THE SCHEDULE PAGE'S TABLE
 }
 
 /************************************
-CSS FOR THE SCHEDULE PAGE'S TABLE ROW
+CSS FOR THE EMPLOYEE PAGE'S TABLE ROW
 *************************************/
 .content-table thead tr {
   background-color: #1c5b97cc;
@@ -63,12 +63,15 @@ CSS FOR THE SCHEDULE PAGE'S TABLE ROW
 }
 
 /*****************************************
-CSS FOR THE SCHEDULE PAGE'S TABLE DETAILS
+CSS FOR THE EMPLOYEE PAGE'S TABLE DETAILS
 ******************************************/
 .content-table td {
   padding: 15px 15px 0 15px;
 }
 
+/*****************************************
+CSS FOR THE EMPLOYEE PAGE'S TABLE HEADER
+******************************************/
 .content-table th {
   padding: 20px;
   font-size: 125%;
@@ -86,8 +89,21 @@ CSS FOR THE SCHEDULE PAGE'S TABLE DETAILS
   border-bottom: 3px solid #1c5b97cc;
 }
 
+/*****************************************
+CSS FOR THE EMPLOYEE PAGE'S NAME COLUMN
+******************************************/
+.link:hover{
+  transition: .75s;
+  font-size: 110%;
+  font-weight: 500;
+}
+
+.link{
+  color: #1c5b97;
+}
+
 /*************************************************
-CSS FOR THE SCHEDULE PAGE'S EDIT AND DELETE BUTTON
+CSS FOR THE EMPLOYEE PAGE'S EDIT AND DELETE BUTTON
 **************************************************/
 .buttons {
   display: inline-flex;
@@ -95,7 +111,7 @@ CSS FOR THE SCHEDULE PAGE'S EDIT AND DELETE BUTTON
 }
 
 /********************************************
-CSS FOR THE SCHEDULE PAGE'S TABLE EDIT BUTTON
+CSS FOR THE EMPLOYEE PAGE'S TABLE EDIT BUTTON
 *********************************************/
 .editButton {
   left: 50%;
@@ -153,7 +169,7 @@ CSS FOR THE SCHEDULE PAGE'S TABLE EDIT BUTTON
 }
 
 /********************************************
-CSS FOR THE SCHEDULE PAGE'S TABLE EDIT BUTTON
+CSS FOR THE EMPLOYEE PAGE'S TABLE EDIT BUTTON
 *********************************************/
 .deleteButton {
   transform: translate(-50%, -50%);
