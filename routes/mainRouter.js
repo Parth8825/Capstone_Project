@@ -128,7 +128,7 @@ router.get('/logout', function (req, res) {
         });
     }
     else {
-        res.render('login');
+        res.redirect('/login');
     }
     
 });
@@ -145,7 +145,6 @@ router.get('/', function (req, res) {
                 const message = req.flash('msg');
                 res.render('employee', { employees: employees, message, admin: req.session.username});
             }
-
         });
     }
     else {

@@ -28,9 +28,10 @@
                                 <div class="form form--signup">
                                     <div class="form--heading">Welcome! Sign Up</div>
                                     <form autocomplete="off" class="loginForm" method="post" action="/signup">
-                                        <input type="text" placeholder="Name" name="newUsername">
-                                        <input type="email" placeholder="Email" name="newEmail">
-                                        <input type="password" placeholder="Password" name="newPassword">
+                                        <input autocomplete="false" type="text" placeholder="Name" name="newUsername">
+                                        <input autocomplete="false" type="email" placeholder="Email" name="newEmail">
+                                        <input autocomplete="new-password" type="password" placeholder="Password"
+                                            name="newPassword">
                                         <button type="submit" id="signup" class="button" name="signupBtn"
                                             formaction="signup">Sign
                                             Up</button>
@@ -54,8 +55,9 @@
                                 <div class="form form--login">
                                     <div class="form--heading">Welcome back! </div>
                                     <form autocomplete="off" class="loginForm" method="post" action="/login">
-                                        <input type="text" placeholder="Name" name="username">
-                                        <input type="password" placeholder="Password" name="password">
+                                        <input autocomplete="false" type="text" placeholder="Name" name="username">
+                                        <input autocomplete="new-password" type="password" placeholder="Password"
+                                            name="password">
                                         <button type="submit" class="button" name="loginBtn" id="login"
                                             formaction="login">Login</button>
                                     </form>
