@@ -1,5 +1,5 @@
 <%- include('../layouts/header'); -%>
-    <link href="/css/schedule/addSchedule.css" rel="stylesheet">
+    <link href="/css/add_editpage.css" rel="stylesheet">
     </head>
 
     <body>
@@ -8,10 +8,10 @@
         </header>
         <main>
             <h1 id="createSchedule">Create a Schedule</h1>
-            <form name="Inventory" method="post" action="/schedule/addSchedule">
+            <form name="Inventory" method="post" action="/schedule/addSchedule" class="scheduleForm">
                 <div class="textboxes">
-                    <label>Employee Name: </label>
-                    <select name="eName" id="eName" class="space">
+                    <label class="scheduleLable">Employee Name: </label>
+                    <select name="eName" id="eName" class="scheduleTextboxes select" >
                         <option value="---Select Employee---">-------------- Select Employee --------------</option>
                         <% for(var employee of employees){ %>
                             <% var name=employee.name%>
@@ -21,8 +21,8 @@
                                 <% }%>
                     </select>
 
-                    <label>Day: </label>
-                    <select name="sDay" id="sDay" class="space">
+                    <label class="scheduleLable">Day: </label>
+                    <select name="sDay" id="sDay" class="scheduleTextboxes select">
                         <option value="---Select Day---">-------------- Select Day --------------</option>
                         <option value="Sunday">Sunday</option>
                         <option value="Monday">Monday</option>
@@ -33,8 +33,8 @@
                         <option value="Saturday">Saturday</option>
                     </select>
 
-                    <label>Start Time: </label>
-                    <select name="startTime" id="startTime" class="space">
+                    <label class="scheduleLable">Start Time: </label>
+                    <select name="startTime" id="startTime" class="scheduleTextboxes select">
                         <option value="---Start Time---">-------------- Start Time --------------</option>
                         <% for(var i=0; i < 12; i++) {%>
                             <option value="<%= i %> AM">
@@ -48,8 +48,8 @@
                                     <% } %>
                     </select>
 
-                    <label>End Time: </label>
-                    <select name="endTime" id="endTime" class="space">
+                    <label class="scheduleLable">End Time: </label>
+                    <select name="endTime" id="endTime" class="scheduleTextboxes select">
                         <option value="---End Time---">-------------- End Time --------------</option>
                         <% for(var i=0; i < 12; i++) {%>
                             <option value="<%= i %> AM">
@@ -78,7 +78,7 @@
         <section class="errors">
             <% if(typeof(errors) !='undefined' ){ %>
                 <div style="border-radius: 0 25px 0 25px;">
-                    <h4 style="text-decoration: underline;">Errors</h4>
+                    <h4 style=" color: black; padding-top: 10px;" >Errors</h4>
                     <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
                         <p style="color: maroon; text-align: left;">
                             * <%= error.msg %>
