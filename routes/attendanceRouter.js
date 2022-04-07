@@ -164,7 +164,7 @@ router.post('/edit/:id',[
                 console.log('Attandance updated');
             });
         });
-        res.render('attendance/editAttendanceDetail', attandanceData);
+        res.render('attendance/editedAttendanceDetail', attandanceData);
     }
 });
 // DELETE ATTENDANCE

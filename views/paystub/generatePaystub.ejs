@@ -11,7 +11,7 @@
             <form name="Employee" method="post">
                 <div class="textboxes">
                     <label>Employee Name: </label>
-                    <select name="name" id="name" class="space">
+                    <select name="name" id="name" class="paystubTextboxes">
                         <option value="---Select Employee---">-------------- Select Employee --------------</option>
                         <% for(var employee of employees){ %>
                             <% var name=employee.name%>
@@ -20,24 +20,24 @@
                                 </option>
                                 <% }%>
                     </select>
-                    <!-- <input id="name" type="text" name="name" class="space"><br /> -->
+                    <!-- <input id="name" type="text" name="name" class="paystubTextboxes"><br /> -->
 
                     <label>Weekly hours: </label>
-                    <input id="weeklyHours" type="number" name="weeklyHours" class="space"><br />
+                    <input id="weeklyHours" type="number" name="weeklyHours" class="paystubTextboxes"><br />
                     <% if(typeof(takeHome) !='undefined' ){ %>
                         <label>Email: </label>
-                        <input id="email" type="email" name="email" class="space" value="" readonly><br />
+                        <input id="email" type="email" name="email" class="paystubTextboxes" value="" readonly><br />
 
                         <label>Payrate: </label>
-                        <input id="payrate" type="text" name="payrate" class="space" value="" readonly><br />
+                        <input id="payrate" type="text" name="payrate" class="paystubTextboxes" value="" readonly><br />
 
                         <label>Gross Pay: </label>
-                        <input id="grossPay" type="text" name="grossPay" class="space" value="" readonly><br />
+                        <input id="grossPay" type="text" name="grossPay" class="paystubTextboxes" value="" readonly><br />
                         <label>Taxes: </label>
-                        <input id="taxes" type="text" name="taxes" class="space" value="" readonly><br />
+                        <input id="taxes" type="text" name="taxes" class="paystubTextboxes" value="" readonly><br />
 
                         <label>Take Home: </label>
-                        <input id="takeHome" type="text" name="takeHome" class="space" value="" readonly><br />
+                        <input id="takeHome" type="text" name="takeHome" class="paystubTextboxes" value="" readonly><br />
                         <% } %>
                 </div>
                 <div class="buttons">

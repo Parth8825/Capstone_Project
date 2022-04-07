@@ -1,6 +1,6 @@
 <%- include('../layouts/header'); -%>
 
-    <link href="/css/employee/editEmployee.css" rel="stylesheet">
+    <link href="/css/add_editpage.css" rel="stylesheet">
     </head>
 
     <body>
@@ -8,34 +8,34 @@
             <h2>Employee Management System</h2>
         </header>
         <main>
-            <h1 id="editEmployee">Edit Employee Details</h1>
-            <form name="Employee" method="post" action="/edit/<%= employee.id %>">
+            <h1 id="addEmployee">Edit Employee Details</h1>
+            <form name="Employee" method="post" action="/edit/<%= employee.id %>" class="employeeForm">
 
-                <label>Name: </label>
-                <input id="fullname" placeholder="Full-name" type="text" name="fullname" class="space"
+                <label class="employeeLable">Name: </label>
+                <input id="fullname" placeholder="Full-name" type="text" name="fullname" class="employeeTextboxes"
                     value="<%= employee.name %>"><br />
 
-                <label>Email: </label>
-                <input id="email" placeholder="email@domain.com" type="email" name="email" class="space"
+                <label class="employeeLable">Email: </label>
+                <input id="email" placeholder="email@domain.com" type="email" name="email" class="employeeTextboxes"
                     value="<%= employee.email %>"><br />
 
-                <label>Phone: </label>
-                <input id="phone" placeholder="1231231234" type="phone" name="phone" class="space"
+                <label class="employeeLable">Phone: </label>
+                <input id="phone" placeholder="1231231234" type="phone" name="phone" class="employeeTextboxes"
                     value="<%= employee.phone %>"><br />
 
-                <label>Address: </label>
-                <input id="address" type="address" name="address" class="space" value="<%= employee.address %>"><br />
-                <label>Post Code: </label>
-                <input id="postcode" placeholder="X9X 9X9" type="postcode" name="postcode" class="space"
+                <label class="employeeLable">Address: </label>
+                <input id="address" type="address" name="address" class="employeeTextboxes" value="<%= employee.address %>"><br />
+                
+                <label  class="employeeLable">Post Code: </label>
+                <input id="postcode" placeholder="X9X 9X9" type="postcode" name="postcode" class="employeeTextboxes"
                     value="<%= employee.postcode %>"><br />
 
-                <label>Position: </label>
-                <input id="position" type="text" name="position" class="space" value="<%= employee.position %>"><br />
+                <label class="employeeLable">Position: </label>
+                <input id="position" type="text" name="position" class="employeeTextboxes" value="<%= employee.position %>"><br />
 
-                <label>Payrate: </label>
-                <input id="payrate" type="number" name="payrate" class="space" value="<%= employee.payrate %>"><br />
+                <label class="employeeLable">Payrate: </label>
+                <input id="payrate" type="number" name="payrate" class="employeeTextboxes" value="<%= employee.payrate %>"><br />
 
-                <p id="errors"></p>
             </div>
             <div class="buttons">
                 <button class="btnSubmit" type="submit" id="submit"> Submit </button>
