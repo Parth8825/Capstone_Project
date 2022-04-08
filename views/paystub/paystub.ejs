@@ -34,45 +34,59 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <% for(var paystub of paystubs){ %>
+                                <tr>
+                                    <td>
+                                        <a href="#" class="link">
 
-                            <tr>
-                                <td>
-                                    <a href="#" class="link">
+                                            <p>
+                                                <%= paystub.employeeName %>
+                                            </p>
+                                        </a>
+                                    </td>
+                                    <td>
 
-                                        <p>Test Purpose</p>
-                                    </a>
-                                </td>
-                                <td>
+                                        <p>
+                                            <%= paystub.weeklyHours %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
+                                        <p>
+                                            <%= paystub.email %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
+                                        <p>
+                                            <%= paystub.payrate %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
+                                        <p>
+                                            <%= paystub.grossPay %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
+                                        <p>
+                                            <%= paystub.taxes %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
-
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
-                                    <div class="buttons">
-                                        <a class="deleteButton" href="#">PDF</a>
-                                    </div>
-                                </td>
-                            </tr>
-
+                                        <p>
+                                            <%= paystub.takeHome %>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <div class="buttons">
+                                            <a class="deleteButton" href="#">PDF</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <% } %>
                         </tbody>
                     </table>
                 </section>
