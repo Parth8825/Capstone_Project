@@ -29,6 +29,7 @@
     "express-validator": "*",
     "mongoose": "*",
     "nodemon": "*",
+    "pdfkit": "^0.13.0",
     "uuid": "*"
   }
 }

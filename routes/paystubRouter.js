@@ -4,6 +4,7 @@ module.exports = router;
 
 const Paystub = require('../models/paystubModel');
 const Employee = require('../models/employeeModel');
+const pdfService = require('../services/pdf_service');
 const { check, validationResult } = require('express-validator');
 
 // Pay stub page
@@ -96,5 +97,25 @@ router.post('/generatePaystub', function(req, res){
             });
         });
        
+    }
+});
+
+router.get('/paystubPrint/:id', function(req, res){
+     // check if thr user is logged in 
+     if (req.session.userLoggedIn) {
+        var paystubId = req.params.id;
+        const stream = res.writeHead(200, {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': 'attachment;filename=paystub.pdf'
+          });
+        
+          pdfService.buildPDF(
+            (chunk) => stream.write(chunk),
+            () => stream.end(),
+            paystubId
+          );
+    }
+    else {
+        res.redirect('/login');
     }
 });
