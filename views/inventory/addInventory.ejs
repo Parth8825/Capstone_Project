@@ -25,7 +25,7 @@
             value="<%= form.rateHolder %>"><br />
 
           <label class="inventoryLable">Added By: </label>
-          <select name="addedby" class="inventoryTextboxes" id="addedby">
+          <select name="addedby" class="inventoryTextboxes select" id="addedby">
             <% if(typeof(form.addedbyHolder) !='undefined' ){ %>
               <option value="<%= form.addedbyHolder %>">
                 <%= form.addedbyHolder %>
@@ -42,7 +42,7 @@
 
           <label class="inventoryLable">Received Date: </label>
           <input id="receiveddatetime" placeholder="YYYY-MM-DD" type="date" name="receiveddatetime"
-            class="inventoryTextboxes" value="<%= form.receiveddateHolder %>"><br />
+            class="inventoryTextboxes select" value="<%= form.receiveddateHolder %>"><br />
 
           <label class="inventoryLable">Remained Item: </label>
           <input id="remaineditem" type="number" name="remaineditem" class="inventoryTextboxes"

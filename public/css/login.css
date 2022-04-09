@@ -109,6 +109,12 @@ body{
   }
 }
 
+img{
+  width: 110px;
+  height: 50px;
+  margin-bottom: -10%;
+}
+
 /* LOGIN & SIGUP BUTTONS */
 #signup,
 #login {

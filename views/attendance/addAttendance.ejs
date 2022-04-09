@@ -11,7 +11,7 @@
             <form name="Attendance" method="post" action="/attendance/addAttendance" class="attendanceForm">
                     <div class="textboxes">
                         <label class="attendanceLable">Employee Name: </label>
-                        <select name="eName" id="eName" class="attendanceTextboxes">
+                        <select name="eName" id="eName" class="attendanceTextboxes select">
                             <option value="---Select Employee---">-------------- Select Employee --------------</option>
                             <% for(var employee of employees){ %>
                                 <% var name=employee.name%>
@@ -25,7 +25,7 @@
                         <input id="date" placeholder="YYYY-MM-DD" type="date" name="date" class="attendanceTextboxes"><br />
 
                         <label class="attendanceLable">Day: </label>
-                        <select name="sDay" id="sDay" class="attendanceTextboxes">
+                        <select name="sDay" id="sDay" class="attendanceTextboxes select">
                             <option value="---Select Day---">-------------- Select Day --------------</option>
                             <option value="Sunday">Sunday</option>
                             <option value="Monday">Monday</option>
@@ -37,7 +37,7 @@
                         </select>
 
                         <label class="attendanceLable">Present / Absent : </label>
-                        <select name="attendance" id="attendance" class="attendanceTextboxes">
+                        <select name="attendance" id="attendance" class="attendanceTextboxes select">
                             <option value="---Take Attendnace---">-------------- Take Attendance --------------</option>
                             <option value="Present">Present</option>
                             <option value="Absent">Absent</option>
