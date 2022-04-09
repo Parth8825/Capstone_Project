@@ -1,5 +1,5 @@
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
@@ -10,7 +10,24 @@ CSS FOR EACH & EVERY PAGE BODY
 body {
   font-family: "Cinzel", serif;
   background-image: url("../../images/background.png");
-  background-repeat:repeat-x;
+  background-repeat: repeat-x;
+}
+
+.userIcon img {
+  width: 40px;
+  height: 40px;
+  padding: 2%;
+}
+
+.userIcon h4 {
+  position: relative;
+  top: 10px;
+}
+
+.userIcon {
+  display: inline-flex;
+  float: right;
+  text-transform: capitalize;
 }
 
 /********************************
@@ -49,15 +66,15 @@ header {
 /*******************************
 CSS FOR EVERY PAGE'S ANIMATION
 ********************************/
-@keyframes animation{
+@keyframes animation {
   from {
     font-size: 0;
     margin: -10% 28% 30% 28%;
     opacity: .1;
     border: none;
   }
-  
-  to{
+
+  to {
     margin: 2% 28%;
   }
 }
