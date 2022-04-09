@@ -141,23 +141,7 @@ router.get('/paystubInfo/:id', function(req,res){
     }
 });
 
-// delete paystub data 
-router.get('/delete/:id', function (req, res) {
-    // check if thr user is logged in 
-    if (req.session.userLoggedIn) {
-        var paystubId = req.params.id;
-        
-        Paystub.findByIdAndDelete({ _id: paystubId }).exec(function (err, paystub) {
-            console.log('Error: ' + err);
-            console.log('Paystub: ' + paystub);
-        });
-        req.flash('msg', 'Paystub deleted successfully !!!');
-        res.redirect('/paystub');
-    }
-    else {
-        res.redirect('/login');
-    }
-});
+
 // custome validations
 // Defining regular expressions
 var positiveNum = /^[1-9][0-9]*$/;
