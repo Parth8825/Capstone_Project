@@ -1,0 +1,64 @@
+<%- include('../layouts/header'); -%>
+
+  <link href="/css/editedDetailsPage.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <h2>Employee Management System</h2>
+    </header>
+    <main>
+      <% if(typeof(takeHome) !='undefined' ){ %>
+        <h2>Your Paystub is here!!</h2>
+        <table>
+          <tr>
+            <th>Name: </th>
+            <td>
+              <%= employeeName %>
+            </td>
+          </tr>
+          <tr>
+            <th>Week-Hours: </th>
+            <td>
+              <%= weeklyHours %>
+            </td>
+          </tr>
+          <tr>
+            <th>Email: </th>
+            <td>
+              <%= email %>
+            </td>
+          </tr>
+          <tr>
+            <th>Payrate: </th>
+            <td>
+              <%= payrate %>
+            </td>
+          </tr>
+          <tr>
+            <th>grossPay: </th>
+            <td>
+              <%= grossPay %>
+            </td>
+          </tr>
+          <tr>
+            <th>taxes: </th>
+            <td>
+              <%= taxes %>
+            </td>
+          </tr>
+          <tr>
+            <th>takeHome: </th>
+            <td>
+              <%= takeHome %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <a href="/paystub" class="button">Go back to Main</a>
+            </th>
+          </tr>
+        </table>
+        <% } %>
+    </main>
+    <%- include('../layouts/footer'); -%>

@@ -9,14 +9,14 @@ const session = require('express-session');
 const cookieParse = require('cookie-parser');
 // uuid module to create Hash string (v4 means Version 4)
 const {v4: uuidv4} = require('uuid');
+// flash message
+const flash = require('connect-flash');
 // get router
 const mainRouter = require('./routes/mainRouter');
 const invnetoryRouter = require('./routes/inventoryRouter');
 const scheduleRouter = require('./routes/scheduleRouter');
 const attendanceRouter = require('./routes/attendanceRouter');
 const paystubRouter = require('./routes/paystubRouter');
-// flash message
-const flash = require('connect-flash');
 
 // set up DataBase connection
 require('dotenv').config();

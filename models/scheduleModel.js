@@ -7,4 +7,4 @@ const Schedule = new mongoose.Schema({
     endTime: String  
 });
 
-module.exports = mongoose.model('Schedule', Schedule)
+module.exports = mongoose.model('Schedule', Schedule);
