@@ -13,6 +13,7 @@ function buildPDF(dataCallback, endCallback, paystubId){
       .text(`Your Paystub\n` +
             `\nName: ${paystub.employeeName}\n` +
             `Email: ${paystub.email}\n` +
+            `Weekly Hours: ${paystub.weeklyHours} hr\n` +
             `Payrate: $${paystub.payrate}\n` +
             `Gross Pay: $${paystub.grossPay}\n` +
             `Taxes: $${paystub.taxes}\n` +

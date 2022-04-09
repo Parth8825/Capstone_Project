@@ -11,8 +11,13 @@
         </header>
         <%- include('../layouts/navigation'); -%>
             <main>
-                <section>
-
+                <% if(typeof(message) !='undefined' ){ %>
+                    <div class="messages">
+                        <% if(locals.message){ %>
+                            <%= message%>
+                                <% }%>
+                                    <% } %>
+                    </div>
                     <div class="btn">
                         <a href="/paystub/generatePaystub">
                             <button class="btn">Generate Pay Stub</button>
@@ -37,8 +42,7 @@
                             <% for(var paystub of paystubs){ %>
                                 <tr>
                                     <td>
-                                        <a href="#" class="link">
-
+                                        <a href="/paystub/paystubInfo/<%= paystub._id %>" class="link">
                                             <p>
                                                 <%= paystub.employeeName %>
                                             </p>
@@ -90,6 +94,6 @@
                                 <% } %>
                         </tbody>
                     </table>
-                </section>
+
             </main>
             <%- include('../layouts/footer'); -%>

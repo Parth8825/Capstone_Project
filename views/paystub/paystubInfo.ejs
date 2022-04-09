@@ -1,0 +1,71 @@
+<%- include('../layouts/header'); -%>
+  <link href="/css/editedDetailsPage.css" rel="stylesheet">
+  <!-- Added following css for class="deleteButton"  -->
+  <link href="/css/table.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <h2>Employee Management System</h2>
+    </header>
+    <main>
+      <h2>Your Paystub is here!!</h2>
+      <table>
+        <tr>
+          <th>Name: </th>
+          <td>
+            <%= paystub.employeeName %>
+          </td>
+        </tr>
+        <tr>
+          <th>Week-Hours: </th>
+          <td>
+            <%= paystub.weeklyHours %>
+          </td>
+        </tr>
+        <tr>
+          <th>Email: </th>
+          <td>
+            <%= paystub.email %>
+          </td>
+        </tr>
+        <tr>
+          <th>Payrate: </th>
+          <td>
+            <%= paystub.payrate %>
+          </td>
+        </tr>
+        <tr>
+          <th>grossPay: </th>
+          <td>
+            <%= paystub.grossPay %>
+          </td>
+        </tr>
+        <tr>
+          <th>taxes: </th>
+          <td>
+            <%= paystub.taxes %>
+          </td>
+        </tr>
+        <tr>
+          <th>takeHome: </th>
+          <td>
+            <%= paystub.takeHome %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <a href="/paystub/paystubPrint/<%= paystub._id %>" class="deleteButton"> Download PDF</a>
+          </th>
+          <th>
+            <a href="/paystub/delete/<%= paystub._id %>" class="button">Delete</a>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <a href="/paystub" class="button">Go back to Main</a>
+          </th>
+        </tr>
+      </table>
+    </main>
+    <%- include('../layouts/footer'); -%>

@@ -16,7 +16,8 @@ router.get('/', function (req, res) {
                 res(err)
             }
             else {
-                res.render('paystub/paystub', { paystubs: paystubs, admin: req.session.username });
+                const message = req.flash('msg');
+                res.render('paystub/paystub', { paystubs: paystubs, message, admin: req.session.username });
             }
         });
     }
@@ -44,7 +45,10 @@ router.get('/generatePaystub', function(req, res){
 });
 
 // genrate paystub page [POST]
-router.post('/generatePaystub', function(req, res){
+router.post('/generatePaystub', [
+    check('name').custom(customChecksNameSelected),
+    check('weeklyHours').custom(customWeekHoursValication)
+],function(req, res){
     const errors = validationResult(req);
    
     if (!errors.isEmpty()) {
@@ -119,3 +123,68 @@ router.get('/paystubPrint/:id', function(req, res){
         res.redirect('/login');
     }
 });
+
+router.get('/paystubInfo/:id', function(req,res){
+    if(req.session.userLoggedIn){
+        var paystubId = req.params.id;
+        Paystub.findOne({_id: paystubId}, function(err, paystub){
+            if(paystub){
+                res.render('paystub/paystubInfo', {paystub: paystub});
+            }
+            else{
+                res.send("Sorry.... No data found");
+            }
+        })
+    }
+    else{
+        res.redirect('/login');
+    }
+});
+
+// delete paystub data 
+router.get('/delete/:id', function (req, res) {
+    // check if thr user is logged in 
+    if (req.session.userLoggedIn) {
+        var paystubId = req.params.id;
+        
+        Paystub.findByIdAndDelete({ _id: paystubId }).exec(function (err, paystub) {
+            console.log('Error: ' + err);
+            console.log('Paystub: ' + paystub);
+        });
+        req.flash('msg', 'Paystub deleted successfully !!!');
+        res.redirect('/paystub');
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+// custome validations
+// Defining regular expressions
+var positiveNum = /^[1-9][0-9]*$/;
+
+// function to check a value using regular expression
+function checkRegex(userInput, regex) {
+    if (regex.test(userInput)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function customChecksNameSelected(value){
+    if(value === '---Select Employee---'){
+        throw new Error('Please select employee name');
+    }
+    return true;
+}
+
+// custom week hours validation function
+function customWeekHoursValication(value) {
+    if(value == ''){
+        throw new Error('week hours is required');
+    }
+    else if (!checkRegex(value, positiveNum)) {
+        throw new Error('hours should be postive number');
+    }
+    return true;
+}
