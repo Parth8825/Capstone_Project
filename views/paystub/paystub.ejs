@@ -11,8 +11,13 @@
         </header>
         <%- include('../layouts/navigation'); -%>
             <main>
-                <section>
-
+                <% if(typeof(message) !='undefined' ){ %>
+                    <div class="messages">
+                        <% if(locals.message){ %>
+                            <%= message%>
+                                <% }%>
+                                    <% } %>
+                    </div>
                     <div class="btn">
                         <a href="/paystub/generatePaystub">
                             <button class="btn">Generate Pay Stub</button>
@@ -34,47 +39,61 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <% for(var paystub of paystubs){ %>
+                                <tr>
+                                    <td>
+                                        <a href="/paystub/paystubInfo/<%= paystub._id %>" class="link">
+                                            <p>
+                                                <%= paystub.employeeName %>
+                                            </p>
+                                        </a>
+                                    </td>
+                                    <td>
 
-                            <tr>
-                                <td>
-                                    <a href="#" class="link">
+                                        <p>
+                                            <%= paystub.weeklyHours %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                        <p>Test Purpose</p>
-                                    </a>
-                                </td>
-                                <td>
+                                        <p>
+                                            <%= paystub.email %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
+                                        <p>
+                                            <%= paystub.payrate %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
+                                        <p>
+                                            <%= paystub.grossPay %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
+                                        <p>
+                                            <%= paystub.taxes %>
+                                        </p>
+                                    </td>
+                                    <td>
 
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
-
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
-
-                                    <p>Test Purpose</p>
-                                </td>
-                                <td>
-                                    <div class="buttons">
-                                        <a class="deleteButton" href="#">PDF</a>
-                                    </div>
-                                </td>
-                            </tr>
-
+                                        <p>
+                                            <%= paystub.takeHome %>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <div class="buttons">
+                                            <a class="deleteButton"
+                                                href="/paystub/paystubPrint/<%= paystub._id %>">PDF</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <% } %>
                         </tbody>
                     </table>
-                </section>
+
             </main>
             <%- include('../layouts/footer'); -%>
