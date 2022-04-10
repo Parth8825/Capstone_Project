@@ -63,7 +63,7 @@ router.post('/login',[
 });
 // sign-up form
 router.post('/signup', [
-    check('newUsername', 'username is required').not().isEmpty(),
+    check('newUsername').custom(customUserNameValidation),
     check('newEmail', 'E-mail is required').isEmail(),
     check('newPassword', 'password is required').not().isEmpty()
 ],async function (req, res) {
@@ -177,13 +177,13 @@ router.get('/addEmployee', function (req, res) {
 
 // Add employee details
 router.post('/addEmployee', [
-    check('firstname', 'First name is required').not().isEmpty(),
-    check('lastname', 'Last name is required').not().isEmpty(),
+    check('firstname').custom(customFirstNameValidation),
+    check('lastname').custom(customLastNameValidation),
     check('email', 'Email is required').isEmail(),
     check('phone').custom(customPhoneValidation),
     check('address', 'address is required').not().isEmpty(),
     check('postcode').custom(customPostcodeValidation),
-    check('position', 'position is required').not().isEmpty(),
+    check('position').custom(customPositionValidation),
     check('payrate').custom(customPayrateValication)
 ], function (req, res) {
     const form = {
@@ -257,12 +257,12 @@ router.get('/edit/:employeeId', function (req, res) {
 
 // edit employee details [post]
 router.post('/edit/:id', [
-    check('fullname', 'First name is required').not().isEmpty(),
+    check('fullname').custom(customFullNameValidation),
     check('email', 'Email is required').isEmail(),
     check('phone').custom(customPhoneValidation),
     check('address', 'address is required').not().isEmpty(),
     check('postcode').custom(customPostcodeValidation),
-    check('position', 'position is required').not().isEmpty(),
+    check('position').custom(customPositionValidation),
     check('payrate').custom(customPayrateValication)
 ], function (req, res) {
     const errors = validationResult(req);
@@ -357,8 +357,11 @@ router.get('/delete/:employeeId', function (req, res) {
 // Validations
 // Defining regular expressions
 var phoneRegex = /^[0-9]{10}$/;
-var positiveNum = /^[1-9][0-9]*$/;
-var postcoderegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
+var positiveNumRegex = /^[1-9][0-9]*$/;
+var postcodeRegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
+var onlyNameRegex = /^[a-zA-Z]+$/;
+var latterAndThenNumberRegex = /^[a-zA-Z]*\d*$/;
+var noMorethanTenLettersRegex = /^[a-zA-Z]{0,10}$/;
 //var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // function to check a value using regular expression
@@ -369,6 +372,59 @@ function checkRegex(userInput, regex) {
     else {
         return false;
     }
+}
+// custome sign-up user name validation
+function customUserNameValidation(value){
+    if(value === ''){
+        throw new Error('User name is required');
+    }else if(!checkRegex(value, latterAndThenNumberRegex)){
+        throw new Error('First should be character then numeric value Ex. John123');
+    }
+    return true;
+}
+// custome first name validation
+function customFirstNameValidation(value){
+    if(value === ''){
+        throw new Error('First name is required');
+    }else if(!checkRegex(value, onlyNameRegex)){
+        throw new Error('No special character or numeric values');
+    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
+        throw new Error('No more than 10 latters');
+    }
+    return true;
+}
+// custome first name validation
+function customFirstNameValidation(value){
+    if(value === ''){
+        throw new Error('First name is required');
+    }else if(!checkRegex(value, onlyNameRegex)){
+        throw new Error('No special character or numeric values for First Name');
+    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
+        throw new Error('No more than 10 latters for First Name');
+    }
+    return true;
+}
+// custome last name validation
+function customLastNameValidation(value){
+    if(value === ''){
+        throw new Error('Last name is required');
+    }else if(!checkRegex(value, onlyNameRegex)){
+        throw new Error('No special character or numeric values for Last Name');
+    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
+        throw new Error('No more than 10 latters for Last Name');
+    }
+    return true;
+}
+// custome full name validation
+function customFullNameValidation(value){
+    if(value === ''){
+        throw new Error('Name is required');
+    }else if(!checkRegex(value, onlyNameRegex)){
+        throw new Error('No special character or numeric values for Name');
+    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
+        throw new Error('No more than 10 latters for Name');
+    }
+    return true;
 }
 // custom phone number validation function
 function customPhoneValidation(value) {
@@ -385,8 +441,19 @@ function customPostcodeValidation(value) {
     if(value === ''){
         throw new Error('Post code is required');
     }
-    else if (!checkRegex(value, postcoderegex)) {
+    else if (!checkRegex(value, postcodeRegex)) {
         throw new Error('Postcode should be X0X 0X0');
+    }
+    return true;
+}
+// custome Position validation
+function customPositionValidation(value){
+    if(value === ''){
+        throw new Error('Postion is required');
+    }else if(!checkRegex(value, onlyNameRegex)){
+        throw new Error('No special character or numeric values in Position');
+    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
+        throw new Error('No more than 10 latters in Position');
     }
     return true;
 }
@@ -395,7 +462,7 @@ function customPayrateValication(value) {
     if(value == ''){
         throw new Error('Payrate is required');
     }
-    else if (!checkRegex(value, positiveNum)) {
+    else if (!checkRegex(value, positiveNumRegex)) {
         throw new Error('Payrate has to be postive number');
     }
     return true;
