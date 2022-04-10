@@ -32,10 +32,12 @@
                             <tr>
                                 <th>Employee Name</th>
                                 <th>Weekly hours</th>
-                                <th>Email</th>
                                 <th>Payrate</th>
                                 <th>Gross Pay</th>
-                                <th>Taxes</th>
+                                <th>CPP</th>
+                                <th>EI</th>
+                                <th>Provincial Tax</th>
+                                <th>Federal Tax</th>
                                 <th>Net Pay</th>
                                 <th>Action</th>
                             </tr>
@@ -51,39 +53,43 @@
                                         </a>
                                     </td>
                                     <td>
-
                                         <p>
                                             <%= paystub.weeklyHours %>
                                         </p>
                                     </td>
                                     <td>
-
                                         <p>
-                                            <%= paystub.email %>
+                                           $<%= paystub.payrate %>
                                         </p>
                                     </td>
                                     <td>
-
                                         <p>
-                                            <%= paystub.payrate %>
+                                            $<%= paystub.grossPay %>
                                         </p>
                                     </td>
                                     <td>
-
                                         <p>
-                                            <%= paystub.grossPay %>
+                                            $<%= paystub.cpp %>
                                         </p>
                                     </td>
                                     <td>
-
                                         <p>
-                                            <%= paystub.taxes %>
+                                            $<%= paystub.ei %>
                                         </p>
                                     </td>
                                     <td>
-
                                         <p>
-                                            <%= paystub.takeHome %>
+                                            $<%= paystub.provincialTaxes %>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            $<%= paystub.federalTaxes %>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            $<%= paystub.takeHome %>
                                         </p>
                                     </td>
                                     <td>

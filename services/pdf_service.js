@@ -16,7 +16,10 @@ function buildPDF(dataCallback, endCallback, paystubId){
             `Weekly Hours: ${paystub.weeklyHours} hr\n` +
             `Payrate: $${paystub.payrate}\n` +
             `Gross Pay: $${paystub.grossPay}\n` +
-            `Taxes: $${paystub.taxes}\n` +
+            `CPP: $${paystub.cpp}\n` +
+            `EI: $${paystub.ei}\n` +
+            `Provincial Tax: $${paystub.provincialTaxes}\n` +
+            `Federal Tax: $${paystub.federalTaxes}\n` +
             `Take Home: $${paystub.takeHome}`, 100, 100);
     doc.end();
     });
