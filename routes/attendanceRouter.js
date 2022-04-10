@@ -200,7 +200,7 @@ function customChecksDaySelected(value){
 }
 function customChecksDateSelected(value){
     if(value === ''){
-        throw new Error('Please select day');
+        throw new Error('Please select Date');
     }
     return true;
 }

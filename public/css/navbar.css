@@ -56,7 +56,7 @@ nav.nav_menu ul li a:after {
   content: ".";
   color: transparent;
   background: #bed9f3;
-  height: 2px;
+  height: 1px;
 }
 nav.nav_menu ul li a:hover:after {
   width: 90%;
