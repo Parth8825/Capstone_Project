@@ -55,6 +55,10 @@ CSS FOR CHAGES IN ADD & EDIT ATTENDANCE, SCHEDULE PAGES' FORM
   height: 360px;
 }
 
+.paystubForm{
+  height: 250px;
+}
+
 /*******************************************
 CSS FOR CHAGES IN ADD INVENTORY PAGES' FORM
 ********************************************/
@@ -148,8 +152,8 @@ CSS FOR ALL ADD PAGES' LABEL
   margin: 0 -10% 0 0;
 }
 
-.inventoryLabel{
-  width: 125px;
+.paystubLable{
+  width: 150px;
 }
 
 /**************************

@@ -46,7 +46,7 @@ CSS FOR EDIT EMPLOYEE DETAILS TABLE
 table {
   margin: 5% auto;
   box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
-  border-radius: 0 25px 0 25px;
+  border-radius: 12px;
   background-color: white;
   padding: 1%;
 }
@@ -56,6 +56,8 @@ CSS FOR EDIT EMPLOYEE DETAILS TABLE HEADING
 ********************************************/
 table tr th {
   font-size: 125%;
+  text-align: left;
+  padding-left: 5%; 
 }
 
 /*******************************************
@@ -64,6 +66,7 @@ CSS FOR EDIT EMPLOYEE DETAILS TABLE DETAILS
 table tr td {
   font-size: 125%;
   padding: 2.5% 0;
+  text-align: left;
 }
 
 
@@ -82,11 +85,10 @@ table tr td {
   transition: all 0.5s;
   cursor: pointer;
   box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
-  cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
-  margin: 10% 50% 5% 50%;
+  margin: 10% 50% 5% 60%;
 }
 
 /***************************************
@@ -120,3 +122,61 @@ CSS FOR EDIT INVENTORY DETAILS' BUTTON
   opacity: 1;
   right: 10px;
 }
+
+
+.editButton {
+  display: block;
+  width: 160px;
+  height: 40px;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  border-radius: 4px;
+  border: 2px solid #052441;
+  color: black;
+  font-size: 20px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  text-transform: capitalize;
+  transition: all 0.35s;
+  left: 115%;
+  transform: translate(-50%, -50%);
+  margin-top: 1em;
+  padding-top: 5px;
+  margin-top: 20%;
+  margin-bottom: -5%;
+  font-weight: 100;
+}
+
+.editButton:before,
+.editButton:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: #1c5b9792;
+  z-index: -1;
+  transition: all 0.35s;
+}
+
+.editButton:before {
+  opacity: 0.5;
+}
+
+.editButton:after {
+  transition-delay: 0.3s;
+}
+
+.editButton:hover {
+  color: #fff;
+}
+
+.editButton:hover:before,
+.editButton:hover:after {
+  top: 0;
+}
+
+

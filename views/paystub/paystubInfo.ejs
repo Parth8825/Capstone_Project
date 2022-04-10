@@ -1,7 +1,5 @@
 <%- include('../layouts/header'); -%>
   <link href="/css/editedDetailsPage.css" rel="stylesheet">
-  <!-- Added following css for class="deleteButton"  -->
-  <link href="/css/table.css" rel="stylesheet">
   </head>
 
   <body>
@@ -30,32 +28,32 @@
           </td>
         </tr>
         <tr>
-          <th>Payrate: </th>
+          <th>Pay Rate: </th>
           <td>
             <%= paystub.payrate %>
           </td>
         </tr>
         <tr>
-          <th>grossPay: </th>
+          <th>Gross Pay: </th>
           <td>
             <%= paystub.grossPay %>
           </td>
         </tr>
         <tr>
-          <th>taxes: </th>
+          <th>Taxes: </th>
           <td>
             <%= paystub.taxes %>
           </td>
         </tr>
         <tr>
-          <th>takeHome: </th>
+          <th>Net Pay: </th>
           <td>
             <%= paystub.takeHome %>
           </td>
         </tr>
         <tr>
           <th>
-            <a href="/paystub/paystubPrint/<%= paystub._id %>" class="deleteButton"> Download PDF</a>
+            <a href="/paystub/paystubPrint/<%= paystub._id %>" class="editButton"> Download PDF</a>
           </th>
         </tr>
         <tr>

@@ -11,7 +11,7 @@
             <form name="Attendance" method="post" action="/attendance/edit/<%= attendance.id %>" class="attendanceForm">
                 <div class="textboxes">
                     <label class="attendanceLable">Employee Name: </label>
-                    <select name="eName" id="eName" class="attendanceTextboxes">
+                    <select name="eName" id="eName" class="attendanceTextboxes select">
                         <option value="<%= attendance.eName %>">
                             <%= attendance.eName %>
                         </option>
@@ -25,11 +25,11 @@
                     </select>
 
                     <label class="attendanceLable">Date: </label>
-                    <input id="date" placeholder="YYYY-MM-DD" type="date" name="date" class="attendanceTextboxes"
+                    <input id="date" placeholder="YYYY-MM-DD" type="date" name="date" class="attendanceTextboxes select"
                         value="<%= attendance.date %>"><br />
 
                     <label class="attendanceLable">Day: </label>
-                    <select name="sDay" id="sDay" class="attendanceTextboxes">
+                    <select name="sDay" id="sDay" class="attendanceTextboxes select">
                         <option value="<%= attendance.sDay %>">
                             <%= attendance.sDay %>
                         </option>
@@ -44,7 +44,7 @@
                     </select>
 
                     <label class="attendanceLable">Present / Absent : </label>
-                    <select name="attendance" id="attendance" class="attendanceTextboxes">
+                    <select name="attendance" id="attendance" class="attendanceTextboxes select">
                         <option value="<%= attendance.attendance %>">
                             <%= attendance.attendance %>
                         </option>

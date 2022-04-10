@@ -4,10 +4,13 @@
 
     <body>
         <header>
+            <div class="userIcon">
+                <img src="../../images/user.png" alt="User name Icon">
+                <h4>
+                    <%= locals.admin ? admin: "Admin" %>
+                </h4>
+            </div>
             <h2>Employee Management System</h2>
-            <h5>
-                User: <%= locals.admin ? admin: "Admin" %>
-            </h5>
         </header>
         <%- include('../layouts/navigation'); -%>
             <main>
@@ -28,14 +31,13 @@
                         <thead>
                             <tr>
                                 <th>Employee Name</th>
+                                <th>Weekly hours</th>
                                 <th>Email</th>
                                 <th>Payrate</th>
-                                <th>Weekly hours</th>
                                 <th>Gross Pay</th>
                                 <th>Taxes</th>
-                                <th>Take Home</th>
+                                <th>Net Pay</th>
                                 <th>Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -86,7 +88,7 @@
                                     </td>
                                     <td>
                                         <div class="buttons">
-                                            <a class="deleteButton"
+                                            <a class="editButton"
                                                 href="/paystub/paystubPrint/<%= paystub._id %>">PDF</a>
                                         </div>
                                     </td>
