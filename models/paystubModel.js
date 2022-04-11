@@ -6,7 +6,10 @@ const Paystub = new mongoose.Schema({
     email: String,
     payrate: Number,
     grossPay: Number,
-    taxes: Number,
+    provincialTaxes: Number,
+    cpp: Number,
+    ei: Number,
+    federalTaxes: Number,
     takeHome: Number  
 });
 

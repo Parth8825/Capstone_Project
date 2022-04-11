@@ -70,15 +70,22 @@ router.post('/generatePaystub', [
             var email = "";
             var payrate = "";
             var grossPay = "";
-            var taxes = "";
+            var provincialTaxes = "";
+            var cpp = "";
+            var ei = "";
+            var federalTaxes = "";
+
             var takeHome = "";
             Employee.findOne({_id: employeeNameId}).exec(function(err, employee){
                 employeeName = employee.name;
                 email = employee.email;
                 payrate = employee.payrate;
                 grossPay = weeklyHours * payrate;
-                taxes = (grossPay * 13)/ 100;
-                takeHome = grossPay - taxes;
+                provincialTaxes = (grossPay * 5.05)/ 100;
+                cpp = (grossPay * 5.70)/ 100;
+                ei = (grossPay * 1.58)/ 100;
+                federalTaxes = (grossPay * 15)/ 100;
+                takeHome = grossPay - provincialTaxes - cpp - ei - federalTaxes;
         
                 var payStubData = {
                     employeeName: employeeName,
@@ -86,7 +93,10 @@ router.post('/generatePaystub', [
                     email: email,
                     payrate: payrate,
                     grossPay: grossPay,
-                    taxes: taxes,
+                    provincialTaxes: provincialTaxes,
+                    cpp: cpp,
+                    ei: ei,
+                    federalTaxes: federalTaxes,
                     takeHome: takeHome
                 }
         

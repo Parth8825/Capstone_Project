@@ -65,7 +65,7 @@ CSS FOR EDIT EMPLOYEE DETAILS TABLE DETAILS
 ********************************************/
 table tr td {
   font-size: 125%;
-  padding: 2.5% 0;
+  padding: 2% 0;
   text-align: left;
 }
 
@@ -73,7 +73,7 @@ table tr td {
 /*******************************************************************************************
  CSS FOR EDIT EMPLOYEE, ATTENDANCE, INVENTORY DETAILS BUTTON TO "GO BACK TO THE MAIN PAGE" & 
  *******************************************************************************************/
-.button, .buttonAttendance, .buttonInventory {
+.button, .buttonAttendance, .buttonInventory, .buttonPaystub {
   border-radius: 4px;
   background-color: #5ca1e1;
   border: none;
@@ -98,13 +98,17 @@ CSS FOR EDIT ATTENDANCE DETAILS' BUTTON
   margin: 10% 50% 5% 25%;
 }
 
+.buttonPaystub{
+  margin: 10% 50% 5% 22%;
+}
+
 /***************************************
 CSS FOR EDIT INVENTORY DETAILS' BUTTON
 ****************************************/
 .buttonInventory{
   margin: 10% 50% 5% 38.5%;
 }
-.button:after, .buttonAttendance:after, .buttonInventory:after {
+.button:after, .buttonAttendance:after, .buttonInventory:after, .buttonPaystub:after {
   content: "»";
   position: absolute;
   opacity: 0;
@@ -113,12 +117,12 @@ CSS FOR EDIT INVENTORY DETAILS' BUTTON
   transition: 0.5s;
 }
 
-.button:hover, .buttonAttendance:hover, .buttonInventory:hover {
+.button:hover, .buttonAttendance:hover, .buttonInventory:hover, .buttonPaystub:hover {
   padding-right: 24px;
   padding-left: 8px;
 }
 
-.button:hover:after, .buttonAttendance:hover:after, .buttonInventory:after {
+.button:hover:after, .buttonAttendance:hover:after, .buttonInventory:after, .buttonPaystub:after {
   opacity: 1;
   right: 10px;
 }
