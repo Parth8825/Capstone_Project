@@ -20,7 +20,7 @@ function buildPDF(dataCallback, endCallback, paystubId){
             `EI: $${paystub.ei}\n` +
             `Provincial Tax: $${paystub.provincialTaxes}\n` +
             `Federal Tax: $${paystub.federalTaxes}\n` +
-            `Take Home: $${paystub.takeHome}`, 100, 100);
+            `Take Home: $${paystub.takeHome}`, 50, 100);
     doc.end();
     });
 }

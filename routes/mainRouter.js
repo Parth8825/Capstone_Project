@@ -360,6 +360,7 @@ var phoneRegex = /^[0-9]{10}$/;
 var positiveNumRegex = /^[1-9][0-9]*$/;
 var postcodeRegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
 var onlyNameRegex = /^[a-zA-Z]+$/;
+var onlyFullNameRegex = /^[a-zA-Z]+\s[a-zA-Z]+$/;
 var latterAndThenNumberRegex = /^[a-zA-Z]*\d*$/;
 var noMorethanTenLettersRegex = /^[a-zA-Z]{0,10}$/;
 //var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -382,25 +383,15 @@ function customUserNameValidation(value){
     }
     return true;
 }
+
 // custome first name validation
 function customFirstNameValidation(value){
     if(value === ''){
         throw new Error('First name is required');
     }else if(!checkRegex(value, onlyNameRegex)){
-        throw new Error('No special character or numeric values');
+        throw new Error('No special character or numeric values in First Name');
     }else if(!checkRegex(value, noMorethanTenLettersRegex)){
-        throw new Error('No more than 10 latters');
-    }
-    return true;
-}
-// custome first name validation
-function customFirstNameValidation(value){
-    if(value === ''){
-        throw new Error('First name is required');
-    }else if(!checkRegex(value, onlyNameRegex)){
-        throw new Error('No special character or numeric values for First Name');
-    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
-        throw new Error('No more than 10 latters for First Name');
+        throw new Error('No more than 10 latters in First Name');
     }
     return true;
 }
@@ -409,9 +400,9 @@ function customLastNameValidation(value){
     if(value === ''){
         throw new Error('Last name is required');
     }else if(!checkRegex(value, onlyNameRegex)){
-        throw new Error('No special character or numeric values for Last Name');
+        throw new Error('No special character or numeric values in Last Name');
     }else if(!checkRegex(value, noMorethanTenLettersRegex)){
-        throw new Error('No more than 10 latters for Last Name');
+        throw new Error('No more than 10 latters in Last Name');
     }
     return true;
 }
@@ -419,10 +410,8 @@ function customLastNameValidation(value){
 function customFullNameValidation(value){
     if(value === ''){
         throw new Error('Name is required');
-    }else if(!checkRegex(value, onlyNameRegex)){
+    }else if(!checkRegex(value, onlyFullNameRegex)){
         throw new Error('No special character or numeric values for Name');
-    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
-        throw new Error('No more than 10 latters for Name');
     }
     return true;
 }
