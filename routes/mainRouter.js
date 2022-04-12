@@ -4,6 +4,7 @@ var router = express.Router();
 module.exports = router;
 
 const Employee = require('../models/employeeModel');
+const Admin = require('../models/adminModel');
 
 
 //setting up express validator
@@ -40,6 +41,23 @@ router.get('/aboutus', function (req, res) {
     }
 });
 
+// User Profile page 
+router.get('/userProfile', async function (req, res) {
+    // check if thr user is logged in 
+    if (req.session.userLoggedIn) {
+        let user = await Admin.findOne({username: req.session.username});
+        var username = user.username;
+        var userMailID = user.mail;
+        var userProfile = {
+            name: username,
+            mailID: userMailID
+        }
+        res.render('userProfile' , userProfile);
+    }
+    else {
+        res.redirect('/login');
+    }
+});
 
 // Add Employee page
 router.get('/addEmployee', function (req, res) {

@@ -4,12 +4,15 @@
 
     <body>
         <header>
-            <div class="userIcon">
-                <img src="../../images/user.png" alt="User name Icon">
-                <h4>
-                    <%= locals.admin ? admin: "Admin" %>
-                </h4>
-            </div>
+            <a href="/userProfile">
+                <div class="userIcon">
+                    <img src="../../images/user.png" alt="User name Icon">
+                    <h4>
+                        <%= locals.admin ? admin: "Admin" %>
+                    </h4>
+
+                </div>
+            </a>
             <h2>Employee Management System</h2>
         </header>
         <%- include('../layouts/navigation'); -%>
@@ -65,7 +68,7 @@
                                     </td>
                                     <td>
                                         <p>
-                                           $<%= paystub.payrate %>
+                                            $<%= paystub.payrate %>
                                         </p>
                                     </td>
                                     <td>
