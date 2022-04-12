@@ -5,6 +5,7 @@ module.exports = router;
 
 const Employee = require('../models/employeeModel');
 
+
 //setting up express validator
 const { check, validationResult } = require('express-validator');// ES6 standard for destructuring an object
 
@@ -22,6 +23,17 @@ router.get('/', function (req, res) {
                 res.render('employee', { employees: employees, message, admin: req.session.username});
             }
         });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+// About us page 
+router.get('/aboutus', function (req, res) {
+    // check if thr user is logged in 
+    if (req.session.userLoggedIn) {
+        res.render('aboutus' , {admin: req.session.username});
     }
     else {
         res.redirect('/login');

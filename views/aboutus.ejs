@@ -1,0 +1,77 @@
+<%- include('layouts/header'); -%>
+    <link href="/css/aboutus.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <div class="userIcon">
+                <img src="../../images/user.png" alt="User name Icon">
+                <h4>
+                    <%= locals.admin ? admin: "Admin" %>
+                </h4>
+            </div>
+            <h2>Employee Management System</h2>
+        </header>
+            <main>
+                <a href="/" class="button">Go Back To Main Screen</a>
+                <section>
+                    <h3 class="ourteam">
+                        OUR TEAM
+                    </h3>
+
+                    <div class="inline">
+                        <div class="section" id="p1">
+                            <img src="../../images/avatar_i.png">
+                            <h3 class="name">Renil Navadiya</h3><br>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has
+                                been
+                                the
+                                industry's standard dummy textLorem Ipsum is simply dummy text of the printing and
+                                typesetting
+                                industry.
+                                Lorem Ipsum has been the industry's standard dummy textLorem Ipsum is simply dummy text
+                                of
+                                the
+                                printing
+                                and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+                        </div>
+
+                        <div class="section" id="p2">
+                            <img src="../../images/avatar_iii.png">
+                            <h3 class="name">Tara Ramnaraine-singh</h3><br>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has
+                                been
+                                the
+                                industry's standard dummy textLorem Ipsum is simply dummy text of the printing and
+                                typesetting
+                                industry.
+                                Lorem Ipsum has been the industry's standard dummy textLorem Ipsum is simply dummy text
+                                of
+                                the
+                                printing
+                                and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+                        </div>
+
+                        <div class="section" id="p3">
+                            <img src="../../images/avatar_i.png">
+                            <h3 class="name">Parth Darji</h3><br>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has
+                                been
+                                the
+                                industry's standard dummy textLorem Ipsum is simply dummy text of the printing and
+                                typesetting
+                                industry.
+                                Lorem Ipsum has been the industry's standard dummy textLorem Ipsum is simply dummy text
+                                of
+                                the
+                                printing
+                                and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <%- include('layouts/footer'); -%>

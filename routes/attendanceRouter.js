@@ -85,7 +85,7 @@ router.post('/addAttendance', [
         ourAttendance.save().then(function(){
             console.log('Attedance saved successfully');
         });
-        req.flash('msg', 'Attendance Added successfully !!!');
+        req.flash('msg', 'Attendance added successfully !!!');
         res.redirect('/attendance');
     }
 });

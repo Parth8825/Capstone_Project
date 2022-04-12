@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Paystub = new mongoose.Schema({
     employeeName: String,
     weeklyHours: String,
+    date: String,
     email: String,
     payrate: Number,
     grossPay: Number,

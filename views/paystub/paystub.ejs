@@ -30,8 +30,9 @@
                     <table class="content-table">
                         <thead>
                             <tr>
-                                <th>Employee Name</th>
-                                <th>Weekly hours</th>
+                                <th>Name</th>
+                                <th>Hours</th>
+                                <th>Date</th>
                                 <th>Payrate</th>
                                 <th>Gross Pay</th>
                                 <th>CPP</th>
@@ -59,7 +60,12 @@
                                     </td>
                                     <td>
                                         <p>
-                                            $<%= paystub.payrate %>
+                                            <%= paystub.date%>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                           $<%= paystub.payrate %>
                                         </p>
                                     </td>
                                     <td>
