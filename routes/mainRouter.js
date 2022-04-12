@@ -3,135 +3,11 @@ const bcrypt = require('bcrypt'); // for password encryption
 var router = express.Router();
 module.exports = router;
 
-const Admin = require('../models/adminModel');
 const Employee = require('../models/employeeModel');
 
 //setting up express validator
 const { check, validationResult } = require('express-validator');// ES6 standard for destructuring an object
-//login page
-router.get('/login', function (req, res) {
-    if (req.session.userLoggedIn) {
-        res.redirect('/');
-    }
-    else {
-        res.render('login');
-    }
-});
-// login user
-router.post('/login',[
-    check('username', 'username is required in Login').not().isEmpty(),
-    check('password', 'password is required in Login').not().isEmpty()
-], async function (req, res) {
-    const errors = validationResult(req);
-    try{
-        if (!errors.isEmpty()) {
-            res.render('login', {
-                errors: errors.array()
-            });
-        }
-        else{
-            var user = req.body.username;
-            var pass = req.body.password;
-            Admin.findOne({ username: user}).exec(async function (err, admin) {
-                console.log('Error: ' + err);
-                console.log('Admin: ' + admin);
-                if(!admin){
-                    return res.render('login', { loginError: 'Soory, cannot find user !!' });
-                }
-                try{
-                    if(await bcrypt.compare(pass, admin.password)){
-                        // store username in session and set logged in true
-                        req.session.username = admin.username;
-                        req.session.userLoggedIn = true;
-                        // redirect to the dashboard
-                        res.redirect('/');
-                    }
-                    else {
-                    res.render('login', { loginError: 'Soory, password is incorrect' });
-                    }
-                }
-                catch{
-                    res.status(500).send();
-                }
-            });
-        } 
-    }
-    catch{
-        res.status(500).send();
-    }
-    
-});
-// sign-up form
-router.post('/signup', [
-    check('newUsername').custom(customUserNameValidation),
-    check('newEmail', 'E-mail is required').isEmail(),
-    check('newPassword', 'password is required').not().isEmpty()
-],async function (req, res) {
-    const errors = validationResult(req);
-    try{
-        if (!errors.isEmpty()) {
-            res.render('login', {
-                errors: errors.array()
-            });
-        }
-        else{
-            var newUser = req.body.newUsername;
-            Admin.findOne({ username: newUser}).exec(async function (err, admin) {
-                if(admin){
-                    return res.render('login', { loginError: 'User under this name already exist, try different name' });
-                }
-            });
-            var newEmail = req.body.newEmail;
-            //creates a salt to generate new hash value every time.
-            const salt = await bcrypt.genSalt();
-            const hashedPassword = await bcrypt.hash(req.body.newPassword, salt); //converts password into hashcode and store into hashedPassword
-            var newPassword = hashedPassword;
-    
-            var loginData = {
-                username: newUser,
-                mail: newEmail,
-                password: newPassword
-            }
-            
-            var userLoginData = new Admin(loginData);
-            userLoginData.save().then(function (){
-                console.log('Login data saved');
-            });
-            res.render('login', { message: "Singed up  successfully....!" });
-        }
-    }
-    catch{
-        res.status(500).send();
-    }
-    
-});
-// logout process
-router.get('/signup', function (req, res) {
-    if (req.session.userLoggedIn) {
-        res.redirect('/');
-    }
-    else {
-        res.render('login');
-    }
-});
-// logout process
-router.get('/logout', function (req, res) {
-    if (req.session.userLoggedIn) {
-        req.session.destroy(function (err) {
-            if (err) {
-                console.log(err);
-                res.send("Error")
-            }
-            else {
-               res.render('login', { message: "logout successfully....!" });
-            }
-        });
-    }
-    else {
-        res.redirect('/login');
-    }
-    
-});
+
 // Home page (Employee page)
 router.get('/', function (req, res) {
     //res.send('this one was showing in the browser');
@@ -352,8 +228,6 @@ router.get('/delete/:employeeId', function (req, res) {
     }
  });
 
-
-
 // Validations
 // Defining regular expressions
 var phoneRegex = /^[0-9]{10}$/;
@@ -361,7 +235,6 @@ var positiveNumRegex = /^[1-9][0-9]*$/;
 var postcodeRegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
 var onlyNameRegex = /^[a-zA-Z]+$/;
 var onlyFullNameRegex = /^[a-zA-Z]+\s[a-zA-Z]+$/;
-var latterAndThenNumberRegex = /^[a-zA-Z]*\d*$/;
 var noMorethanTenLettersRegex = /^[a-zA-Z]{0,10}$/;
 //var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -373,15 +246,6 @@ function checkRegex(userInput, regex) {
     else {
         return false;
     }
-}
-// custome sign-up user name validation
-function customUserNameValidation(value){
-    if(value === ''){
-        throw new Error('User name is required');
-    }else if(!checkRegex(value, latterAndThenNumberRegex)){
-        throw new Error('First should be character then numeric value Ex. John123');
-    }
-    return true;
 }
 
 // custome first name validation
