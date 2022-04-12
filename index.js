@@ -13,6 +13,7 @@ const {v4: uuidv4} = require('uuid');
 const flash = require('connect-flash');
 // get router
 const mainRouter = require('./routes/mainRouter');
+const loginRouter = require('./routes/loginRouter');
 const invnetoryRouter = require('./routes/inventoryRouter');
 const scheduleRouter = require('./routes/scheduleRouter');
 const attendanceRouter = require('./routes/attendanceRouter');
@@ -39,7 +40,7 @@ var ourApp = express();
 ourApp.use(bodyParser.urlencoded({ extended: false }));
 ourApp.use(bodyParser.json());
 // set up cookies
-ourApp.use(cookieParse('SecretStringForCookies'));
+ourApp.use(cookieParse(uuidv4()));
 
 // set up session
 ourApp.use(session({
@@ -54,6 +55,7 @@ ourApp.use(session({
 ourApp.use(flash());
 // set up router
 ourApp.use('/', mainRouter);
+ourApp.use('/', loginRouter);
 ourApp.use('/inventory', invnetoryRouter);
 ourApp.use('/schedule', scheduleRouter);
 ourApp.use('/attendance', attendanceRouter);
