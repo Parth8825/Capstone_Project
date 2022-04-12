@@ -13,6 +13,18 @@ body {
   background-repeat: repeat-x;
 }
 
+/********************************
+CSS FOR EACH & EVERY PAGES' MAIN
+*********************************/
+main {
+  float: left;
+  padding: 20px;
+  width: 100%;
+  background-color: whitesmoke;
+  height: 100%;
+  text-transform: none;
+}
+
 .userIcon img {
   width: 40px;
   height: 40px;
@@ -29,18 +41,6 @@ body {
   display: inline-flex;
   float: right;
   text-transform: capitalize;
-}
-
-/********************************
-CSS FOR EACH & EVERY PAGES' MAIN
-*********************************/
-main {
-  float: left;
-  padding: 20px;
-  width: 100%;
-  background-color: whitesmoke;
-  height: 100%;
-  text-transform: none;
 }
 
 /*****************************

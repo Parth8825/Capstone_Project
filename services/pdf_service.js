@@ -14,6 +14,7 @@ function buildPDF(dataCallback, endCallback, paystubId){
             `\nName: ${paystub.employeeName}\n` +
             `Email: ${paystub.email}\n` +
             `Weekly Hours: ${paystub.weeklyHours} hr\n` +
+            `Date: ${paystub.date} \n` +
             `Payrate: $${paystub.payrate}\n` +
             `Gross Pay: $${paystub.grossPay}\n` +
             `CPP: $${paystub.cpp}\n` +

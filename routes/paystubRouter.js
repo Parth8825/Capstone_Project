@@ -66,6 +66,7 @@ router.post('/generatePaystub', [
         Employee.find({}).exec(function(err, employees){
             var employeeNameId = req.body.name.trim();
             var weeklyHours = req.body.weeklyHours;
+            var date = req.body.date;
             var employeeName = "";
             var email = "";
             var payrate = "";
@@ -91,6 +92,7 @@ router.post('/generatePaystub', [
                     employeeName: employeeName,
                     weeklyHours: weeklyHours,
                     email: email,
+                    date: date,
                     payrate: payrate,
                     grossPay: grossPay,
                     provincialTaxes: provincialTaxes,
