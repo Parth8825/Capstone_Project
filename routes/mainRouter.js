@@ -6,6 +6,16 @@ module.exports = router;
 const Admin = require('../models/adminModel');
 const Employee = require('../models/employeeModel');
 
+router.get('/aboutus', function (req, res) {
+    // check if thr user is logged in 
+    if (req.session.userLoggedIn) {
+        res.render('aboutus' , {admin: req.session.username});
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
 //setting up express validator
 const { check, validationResult } = require('express-validator');// ES6 standard for destructuring an object
 //login page
@@ -17,6 +27,7 @@ router.get('/login', function (req, res) {
         res.render('login');
     }
 });
+
 // login user
 router.post('/login',[
     check('username', 'username is required in Login').not().isEmpty(),
@@ -105,6 +116,7 @@ router.post('/signup', [
     }
     
 });
+
 // logout process
 router.get('/signup', function (req, res) {
     if (req.session.userLoggedIn) {
@@ -114,6 +126,7 @@ router.get('/signup', function (req, res) {
         res.render('login');
     }
 });
+
 // logout process
 router.get('/logout', function (req, res) {
     if (req.session.userLoggedIn) {
@@ -351,8 +364,6 @@ router.get('/delete/:employeeId', function (req, res) {
         res.redirect('/login');
     }
  });
-
-
 
 // Validations
 // Defining regular expressions
