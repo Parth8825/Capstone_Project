@@ -157,24 +157,39 @@ router.get('/verifyEmail', function (req, res) {
   res.render('changePassword/verifyEmail');
 });
 // verify email process [POST]
-router.post('/verifyEmail', async function (req, res) {
-      let emailid = req.body.yourEmail;
-      let email = await Admin.findOne({mail: emailid});
-      if(email){
-          let otpcode = Math.floor((Math.random()*10000)+1);
-          let otpData = new Otp({
-              mail: emailid,
-              code: otpcode,
-              expireIn: new Date().getTime() + 300*1000
-          });
-          let otpResponse = await otpData.save();
-          mailer(emailid,otpcode);
-          res.render('changePassword/resetPassword', otpResponse);
-          console.log('Success !!! Please check your email id')
-      }
-      else {
-          res.render('changePassword/verifyEmail', {error: 'email id not exist, please enter valid mail id'});
-      }
+router.post('/verifyEmail', [
+    check('yourEmail', 'Email is required').not().isEmpty(),
+],async function (req, res) {
+    const errors = validationResult(req);
+    try{
+        if (!errors.isEmpty()) {
+            res.render('changePassword/verifyEmail', {
+                errors: errors.array()
+            });
+        }
+        else{
+          let emailid = req.body.yourEmail;
+          let email = await Admin.findOne({mail: emailid});
+          if(email){
+              let otpcode = Math.floor((Math.random()*10000)+1);
+              let otpData = new Otp({
+                  mail: emailid,
+                  code: otpcode,
+                  expireIn: new Date().getTime() + 300*1000
+              });
+              let otpResponse = await otpData.save();
+              mailer(emailid,otpcode);
+              res.render('changePassword/resetPassword', otpResponse);
+              console.log('Success !!! Please check your email id')
+          }
+          else {
+              res.render('changePassword/verifyEmail', {error: 'email id not exist, please enter valid mail id'});
+          }
+        }
+    }catch{
+        res.status(500).send();
+    }
+    
 });
 const mailer = (email, otp)=>{
   const nodemailer = require('nodemailer');
@@ -205,33 +220,49 @@ const mailer = (email, otp)=>{
 }
 
 // change password process
-router.post('/resetPssword', async function (req, res) {
-  Otp.findOne({code: req.body.otp}).exec(async function (err, otp) {
-
-      if(otp){
-          let currentTime = new Date().getTime();
-          let diff = otp.expireIn - currentTime;
-          if(diff < 0){
-              res.render('changePassword/resetPassword',  {error: 'Token Exprired'})
-          }else{
-              var mail = otp.mail;
-              var id = otp._id;
-              const newSalt = await bcrypt.genSalt();
-              const hashedResetPassword = await bcrypt.hash(req.body.resetPassword, newSalt);
-              Admin.findOne({mail: mail}).exec(async function (err, admin) {
-                  admin.password = hashedResetPassword;
-                  admin.save();
-                  console.log('New password saved');
-                  res.redirect('/login');
-              });
-               
-          }
-      }
-      else{
-          res.render('changePassword/resetPassword',  {error: 'Invalid OTP'})
-      }
-  });
-  
+router.post('/resetPssword', [
+    check('otp', 'OTP is required').not().isEmpty(),
+    check('resetPassword', 'Password is required').not().isEmpty()
+],async function (req, res) {
+    const errors = validationResult(req);
+    try{
+        if (!errors.isEmpty()) {
+            res.render('changePassword/resetPassword', {
+                errors: errors.array()
+            });
+        }
+        else{
+            Otp.findOne({code: req.body.otp}).exec(async function (err, otp) {
+    
+                if(otp){
+                    let currentTime = new Date().getTime();
+                    let diff = otp.expireIn - currentTime;
+                    if(diff < 0){
+                        res.render('changePassword/resetPassword',  {error: 'Token Exprired'})
+                    }else{
+                        var mail = otp.mail;
+                        var id = otp._id;
+                        const newSalt = await bcrypt.genSalt();
+                        const hashedResetPassword = await bcrypt.hash(req.body.resetPassword, newSalt);
+                        Admin.findOne({mail: mail}).exec(async function (err, admin) {
+                            admin.password = hashedResetPassword;
+                            admin.save();
+                            console.log('New password saved');
+                            res.redirect('/login');
+                        });
+                        
+                    }
+                }
+                else{
+                    res.render('changePassword/resetPassword',  {error: 'Invalid OTP'})
+                }
+            });
+        }
+    }
+    catch{
+        res.status(500).send();
+    }
+    
 });
 
 // Validations
