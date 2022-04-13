@@ -47,7 +47,7 @@ ourApp.use(cookieParse(uuidv4()));
 ourApp.use(session({
     // uuid will provide unique Hash code for secret session
     secret: uuidv4(), // '1b9d6bcd-bbfd-4b3s-9d6f-sd6sdffe6dx'
-    // cookie: { maxAge: 600000},
+    cookie: { maxAge: 1800000},
     resave: false,
     saveUninitialized: true
 }));
