@@ -41,37 +41,37 @@
         <tr>
           <th>Gross Pay: </th>
           <td>
-            <%= paystub.grossPay %>
+            <%= paystub.grossPay.toFixed(2) %>
           </td>
         </tr>
         <tr>
           <th>CPP: </th>
           <td>
-            <%= paystub.cpp %>
+            <%= paystub.cpp.toFixed(2) %>
           </td>
         </tr>
         <tr>
           <th>EI: </th>
           <td>
-            <%= paystub.ei %>
+            <%= paystub.ei.toFixed(2) %>
           </td>
         </tr>
         <tr>
           <th>Provincial Tax: </th>
           <td>
-            <%= paystub.provincialTaxes %>
+            <%= paystub.provincialTaxes.toFixed(2) %>
           </td>
         </tr>
         <tr>
           <th>Federal Tax: </th>
           <td>
-            <%= paystub.federalTaxes %>
+            <%= paystub.federalTaxes.toFixed(2) %>
           </td>
         </tr>
         <tr>
           <th>Net Pay: </th>
           <td>
-            <%= paystub.takeHome %>
+            <%= paystub.takeHome.toFixed(2) %>
           </td>
         </tr>
         <tr>

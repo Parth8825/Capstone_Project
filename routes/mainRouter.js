@@ -265,7 +265,6 @@ var positiveNumRegex = /^[1-9][0-9]*$/;
 var postcodeRegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
 var onlyNameRegex = /^[a-zA-Z ]*$/;
 var onlyFullNameRegex = /^[a-zA-Z]+\s[a-zA-Z]+$/;
-var noMorethanTenLettersRegex = /^[a-zA-Z]{0,10}$/;
 // /^[a-zA-Z]+$/;
 //var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -285,8 +284,6 @@ function customFirstNameValidation(value){
         throw new Error('First name is required');
     }else if(!checkRegex(value, onlyNameRegex)){
         throw new Error('No special character or numeric values in First Name');
-    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
-        throw new Error('No more than 10 latters in First Name');
     }
     return true;
 }
@@ -296,8 +293,6 @@ function customLastNameValidation(value){
         throw new Error('Last name is required');
     }else if(!checkRegex(value, onlyNameRegex)){
         throw new Error('No special character or numeric values in Last Name');
-    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
-        throw new Error('No more than 10 latters in Last Name');
     }
     return true;
 }
