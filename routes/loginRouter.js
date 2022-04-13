@@ -75,8 +75,8 @@ router.get('/signup', function(req, res){
 // sign-up form
 router.post('/signup', [
   check('newUsername').custom(customUserNameValidation),
-  check('newEmail', 'E-mail is required').isEmail(),
-  check('newPassword', 'password is required').not().isEmpty()
+  check('newEmail', 'Please enter valid Email-Id').isEmail(),
+  check('newPassword', 'Password is required').not().isEmpty()
 ],async function (req, res) {
   const errors = validationResult(req);
   try{

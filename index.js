@@ -22,7 +22,7 @@ const paystubRouter = require('./routes/paystubRouter');
 require('dotenv').config();
 
 // set up DataBase connection
-const mongoString = process.env.DATABASE_URL;
+const mongoString = process.env.MONGO_DATABASE_URL;
 mongoose.connect(mongoString, {
     useNewUrlParser: true,
     useUnifiedTopology: true
