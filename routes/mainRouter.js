@@ -85,7 +85,7 @@ router.get('/addEmployee', function (req, res) {
 router.post('/addEmployee', [
     check('firstname').custom(customFirstNameValidation),
     check('lastname').custom(customLastNameValidation),
-    check('email', 'Email is required').isEmail(),
+    check('email', 'Please enter valid Email-Id').isEmail(),
     check('phone').custom(customPhoneValidation),
     check('address', 'address is required').not().isEmpty(),
     check('postcode').custom(customPostcodeValidation),
