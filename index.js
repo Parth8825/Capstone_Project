@@ -19,8 +19,9 @@ const scheduleRouter = require('./routes/scheduleRouter');
 const attendanceRouter = require('./routes/attendanceRouter');
 const paystubRouter = require('./routes/paystubRouter');
 
-// set up DataBase connection
 require('dotenv').config();
+
+// set up DataBase connection
 const mongoString = process.env.DATABASE_URL;
 mongoose.connect(mongoString, {
     useNewUrlParser: true,
