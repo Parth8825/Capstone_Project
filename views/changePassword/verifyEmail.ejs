@@ -7,33 +7,32 @@
       <h2>Employee Management System</h2>
     </header>
     <main>
-      <h1 id="generatePaystub">Please enter registered e-mail id</h1>
-      <form method="post" action="/verifyEmail" class="paystubForm">
+      <h1 id="generatePaystub">Enter Regitered Email ID</h1>
+      <form method="post" action="/verifyEmail" class="passwordResetForm">
+
         <label class="paystubLable">Enter Your Email: </label>
         <input id="yourEmail" type="email" name="yourEmail" class="paystubTextboxes"><br />
-        <% if(locals.error){ %>
-          <div class="loginError">
-            <%= error%>
-          </div>
-          <% } %>
-            <div class="buttons">
-              <button class="btnSubmit" id="submit"> Submit </button>
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <a href="/login" id="cancel" class="btnCancel">Cancel </a>
-            </div>
+
+        <div class="buttons" style="padding: 5% 0 0 0;">
+          <button class="btnSubmit" id="submit"> Submit </button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="/login" id="cancel" class="btnCancel">Cancel </a>
+        </div>
       </form>
+
       <section class="errors">
-        <% if(typeof(errors) !='undefined' ){ %>
+        <% if(locals.error){ %>
           <div style="border-radius: 0 25px 0 25px;">
             <h4 style=" color: black; padding-top: 10px;">Errors</h4>
-            <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-              <p style="color:maroon; text-align: left;">
-                * <%= error.msg %>
+            <% if(locals.error){ %>
+              <p style="color:maroon; text-align: left; padding: 2%;">
+                * <%= error %>
               </p>
-              <% } } %>
+              <% } %>
           </div>
           <% } %>
       </section>
+      
     </main>
 
     <%- include('../layouts/footer'); -%>

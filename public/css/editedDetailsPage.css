@@ -41,10 +41,6 @@ CSS FOR EDIT EMPLOYEE DETAILS HEADER
   opacity: .95;
 }
 
-.employeeDetails{
-  margin: 2% 38%;
-}
-
 .paystubDisplay{
   margin: 2% 37%;
 }
@@ -199,5 +195,8 @@ CSS FOR EDIT INVENTORY DETAILS' BUTTON
 .editButton:hover:after {
   top: 0;
 }
+
+
+
 
 
