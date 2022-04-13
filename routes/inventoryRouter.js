@@ -59,10 +59,11 @@ router.get('/addInventory', function (req, res) {
 // ADD ITEM IN INVENTORY [post]
 router.post('/addInventory', [
     check('itemname', 'Item name is required').not().isEmpty(),
-    check('addedby', 'Added by whom is required').not().isEmpty(),
     check('quantity').custom(customQuantityValication),
     check('rate').custom(customRateValication),
-    check('remaineditem').custom(customremainedItemValication)
+    check('addedby', 'Added by whom is required').not().isEmpty(),
+    check('remaineditem').custom(customremainedItemValication),
+    check('description', 'Description is required').not().isEmpty()
 
 ], function (req, res) {
     const form = {
@@ -150,7 +151,7 @@ router.get('/edit/:inventoryId', function (req, res) {
 // EDIT INVENTORY DETAILS [POST]
 router.post('/edit/:id', [
     check('itemname', 'Item name is required').not().isEmpty(),
-    check('addedby', 'Added by whom is required').not().isEmpty(),
+    check('addedby').custom(customChecksNameSelected),
     check('quantity').custom(customQuantityValication),
     check('rate').custom(customRateValication),
     check('remaineditem').custom(customremainedItemValication)
@@ -259,6 +260,13 @@ function customRateValication(value) {
 function customremainedItemValication(value) {
     if (!checkRegex(value, positiveNum)) {
         throw new Error('Remaied Item has to be postive number');
+    }
+    return true;
+}
+
+function customChecksNameSelected(value){
+    if(value === '---Select Employee---'){
+        throw new Error('Please select employee name');
     }
     return true;
 }

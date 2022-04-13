@@ -7,14 +7,20 @@
       <h2>Employee Management System</h2>
     </header>
     <main>
-      <h1 id="generatePaystub">Profile</h1>
-      <label class="paystubLable">User Name: </label>
-      <input id="yourName" type="text" name="yourName" class="paystubTextboxes" value="<%= name %>" readonly><br />
-      <label class="paystubLable">Email-ID: </label>
-      <input id="yourEmail" type="email" name="yourEmail" class="paystubTextboxes" value="<%= mailID %>" readonly><br />
-      <div class="buttons">
-        <a href="/" class="button">Go Back To Main Screen</a>
-      </div>
+      <h1 id="userProfile">User Profile</h1>
+      <form action="" class="userProfileForm">
+
+        <label class="userProfileLable">User Name: </label>
+        <input id="yourName" type="text" name="yourName" class="userProfileTextboxes" value="<%= name %>" readonly><br />
+
+        <label class="userProfileLable">Email-ID: </label>
+        <input id="yourEmail" type="email" name="yourEmail" class="userProfileTextboxes" value="<%= mailID %>"
+          readonly><br />
+
+        <div class="buttons">
+          <a href="/" class="button">Go Back To Main Screen</a>
+        </div>
+      </form>
     </main>
 
     <%- include('layouts/footer'); -%>

@@ -37,7 +37,7 @@ router.post('/login',[
               console.log('Error: ' + err);
               console.log('Admin: ' + admin);
               if(!admin){
-                  return res.render('login', { loginError: 'Soory, cannot find user !!' });
+                  return res.render('login', { loginError: 'Sorry, cannot find user !!' });
               }
               try{
                   if(await bcrypt.compare(pass, admin.password)){
@@ -48,7 +48,7 @@ router.post('/login',[
                       res.redirect('/');
                   }
                   else {
-                  res.render('login', { loginError: 'Soory, password is incorrect' });
+                  res.render('login', { loginError: 'Sorry, password is incorrect' });
                   }
               }
               catch{
@@ -92,7 +92,7 @@ router.post('/signup', [
           let adminName = await Admin.findOne({ username: newUser});
           if(adminName){
                 if(adminName.mail == newEmail){
-                    return res.render('login', { loginError: 'User name & Email ID already exist, try different' });
+                    return res.render('login', { loginError: 'User name & Email ID already exist, try different one' });
                 }
                 return res.render('login', { loginError: 'User under this name already exist, try different name' });
           }
@@ -165,7 +165,7 @@ router.post('/verifyEmail', async function (req, res) {
           let otpData = new Otp({
               mail: emailid,
               code: otpcode,
-              expireIn: new Date().getTime() + 300*1000
+              expireIn: new Date().getTime() + 120*1000
           });
           let otpResponse = await otpData.save();
           mailer(emailid,otpcode);
