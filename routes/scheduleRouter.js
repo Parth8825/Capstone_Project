@@ -49,8 +49,8 @@ router.get('/addSchedule', function (req, res) {
 router.post('/addSchedule', [
     check('eName').custom(customChecksNameSelected),
     check('sDay').custom(customChecksDaySelected),
-    check('startTime').custom(customChecksStartTimeSelected),
-    check('endTime').custom(customChecksEndTimeSelected),
+    check('startTime', 'Start time is requried').not().isEmpty(),
+    check('endTime', 'End time is required').not().isEmpty(),
     check('startTime').custom(checkStartTimeEndTimeNotSame)
 ], function (req, res) {
     const errors = validationResult(req);
@@ -119,8 +119,8 @@ router.get('/edit/:scheduleId', function (req, res) {
 router.post('/edit/:id', [
     check('eName').custom(customChecksNameSelected),
     check('sDay').custom(customChecksDaySelected),
-    check('startTime').custom(customChecksStartTimeSelected),
-    check('endTime').custom(customChecksEndTimeSelected),
+    check('startTime', 'Start time is required').not().isEmpty(),
+    check('endTime','End time is required').not().isEmpty(),
     check('startTime').custom(checkStartTimeEndTimeNotSame)
 ], function (req, res) {
     const errors = validationResult(req);
@@ -204,20 +204,20 @@ function customChecksDaySelected(value){
     }
     return true;
 }
-// custom start tiem selected validation
-function customChecksStartTimeSelected(value){
-    if(value === '---Start Time---'){
-        throw new Error('Please select start time');
-    }
-    return true;
-}
-// custom end time selected validation
-function customChecksEndTimeSelected(value){
-    if(value === '---End Time---'){
-        throw new Error('Please select end time');
-    }
-    return true;
-}
+// // custom start tiem selected validation
+// function customChecksStartTimeSelected(value){
+//     if(value === '---Start Time---'){
+//         throw new Error('Please select start time');
+//     }
+//     return true;
+// }
+// // custom end time selected validation
+// function customChecksEndTimeSelected(value){
+//     if(value === '---End Time---'){
+//         throw new Error('Please select end time');
+//     }
+//     return true;
+// }
 // custom to check start & end time are not same
 function checkStartTimeEndTimeNotSame(value, {req, loc, path} ){
     if(value == req.body.endTime){
