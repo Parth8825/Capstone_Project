@@ -16,3 +16,6 @@ Tara Ramnaraina
 => Other optional Extensions: 1. Prettier - Code formatter, 2. ESLint
 
 => To run, type "npm start" on the visual studio code terminal.
+
+You can Click on following link on Your browser to check out the web application
+=> http://capstone-project-team-prt.herokuapp.com/
