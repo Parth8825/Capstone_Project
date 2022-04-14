@@ -207,7 +207,7 @@ const mailer = (email, otp)=>{
       from: 'teamprtproject@gmail.com',
       to: email,
       subject: 'Here is your OTP, Please don\'t reply ',
-      text: `Thank you sir ! \n Your OTP is: ${otp}`
+      text: `Thank you! \n Your OTP is: ${otp}`
   };
 
   transporter.sendMail(mailOptions, function(err, info){
