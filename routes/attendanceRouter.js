@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 module.exports = router;
-
+// getting models
 const Attendance = require('../models/attendance');
 const Employee = require('../models/employeeModel');
-
 //setting up express validator
 const { check, validationResult } = require('express-validator');
 // Attendance page
@@ -70,17 +69,12 @@ router.post('/addAttendance', [
         var sDay = req.body.sDay;
         var date = req.body.date
         var attendance = req.body.attendance;
-
-        console.log(sDay);
-
         var attendanceData = {
             eName: eName,
             sDay: sDay,
             date: date,
             attendance: attendance
         }
-
-        console.log(sDay);
         var ourAttendance = new Attendance(attendanceData);
         ourAttendance.save().then(function(){
             console.log('Attedance saved successfully');
@@ -146,7 +140,6 @@ router.post('/edit/:id',[
         var date = req.body.date;
         var sDay = req.body.sDay;
         var takeAttendance = req.body.attendance;
-
         var attandanceData = {
             eName: eName,
             date: date,
@@ -159,7 +152,6 @@ router.post('/edit/:id',[
             attendance.date = date;
             attendance.sDay = sDay;
             attendance.attendance = takeAttendance;
-
             attendance.save().then(function (){
                 console.log('Attandance updated');
             });
@@ -184,7 +176,7 @@ router.get('/delete/:id', function (req, res){
     }
 });
 
-
+// validations
 // CUSTOM ATTENDANCE VALIDATIONS
 function customChecksNameSelected(value){
     if(value === '---Select Employee---'){
@@ -192,12 +184,14 @@ function customChecksNameSelected(value){
     }
     return true;
 }
+// CUSTOM DAY VALIDATION
 function customChecksDaySelected(value){
     if(value === '---Select Day---'){
         throw new Error('Please select day');
     }
     return true;
 }
+// CUSTOM DATE VALIDATION
 function customChecksDateSelected(value){
     if(value === ''){
         throw new Error('Please select Date');

@@ -2,10 +2,9 @@ const express = require('express');
 const bcrypt = require('bcrypt'); // for password encryption
 var router = express.Router();
 module.exports = router;
-
+// getting models
 const Admin = require('../models/adminModel');
 const Otp = require('../models/otpModel'); 
-
 //setting up express validator
 const { check, validationResult } = require('express-validator');
 
@@ -178,7 +177,7 @@ router.post('/verifyEmail', [
                   expireIn: new Date().getTime() + 300*1000
               });
               let otpResponse = await otpData.save();
-              mailer(emailid,otpcode);
+              mailer(emailid,otpcode); // calling an object
               res.render('changePassword/resetPassword', otpResponse);
               console.log('Success !!! Please check your email id')
           }
@@ -190,6 +189,8 @@ router.post('/verifyEmail', [
         res.status(500).send();
     }
 });
+
+// object which is going to send the mail to the client to get the OTP 
 const mailer = (email, otp)=>{
   const nodemailer = require('nodemailer');
   let transporter = nodemailer.createTransport({
@@ -240,7 +241,6 @@ router.post('/resetPssword', [
                         res.render('changePassword/resetPassword',  {error: 'Token Exprired'})
                     }else{
                         var mail = otp.mail;
-                        var id = otp._id;
                         const newSalt = await bcrypt.genSalt();
                         const hashedResetPassword = await bcrypt.hash(req.body.resetPassword, newSalt);
                         Admin.findOne({mail: mail}).exec(async function (err, admin) {

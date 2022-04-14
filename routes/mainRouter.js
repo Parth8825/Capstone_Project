@@ -12,7 +12,6 @@ const { check, validationResult } = require('express-validator');// ES6 standard
 
 // Home page (Employee page)
 router.get('/', function (req, res) {
-    //res.send('this one was showing in the browser');
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
         Employee.find({}).exec(function (err, employees) {
@@ -265,7 +264,6 @@ var positiveNumRegex = /^[1-9][0-9]*$/;
 var postcodeRegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
 var onlyNameRegex = /^[a-zA-Z ]*$/;
 var onlyFullNameRegex = /^[a-zA-Z]+\s[a-zA-Z]+$/;
-// /^[a-zA-Z]+$/;
 //var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // function to check a value using regular expression

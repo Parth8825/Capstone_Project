@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose'); // MongoDB connection
+const mongoose = require('mongoose');
 // get expression session
 const session = require('express-session');
 // get cookies 

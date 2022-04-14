@@ -59,11 +59,11 @@ router.get('/addInventory', function (req, res) {
 // ADD ITEM IN INVENTORY [post]
 router.post('/addInventory', [
     check('itemname').custom(customItemNameValidation),
-    check('quantity').custom(customQuantityValication),
-    check('rate').custom(customRateValication),
+    check('quantity').custom(customQuantityValidation),
+    check('rate').custom(customRateValidation),
     check('addedby', 'Added by whom is required').not().isEmpty(),
     check('addedby').custom(customChecksNameSelected),
-    check('remaineditem').custom(customremainedItemValication),
+    check('remaineditem').custom(customremainedItemValidation),
     check('description', 'Description is required').not().isEmpty()
 ], function (req, res) {
     const form = {
@@ -97,7 +97,6 @@ router.post('/addInventory', [
         var receiveddatetime = req.body.receiveddatetime;
         var remaineditem = req.body.remaineditem;
         var description = req.body.description;
-
         // storing values in object called "employeeData"
         var inventoryData = {
             itemname: itemname,
@@ -151,9 +150,9 @@ router.post('/edit/:id', [
     check('itemname').custom(customItemNameValidation),
     check('addedby', 'Added by whom is required').not().isEmpty(),
     check('addedby').custom(customChecksNameSelected),
-    check('quantity').custom(customQuantityValication),
-    check('rate').custom(customRateValication),
-    check('remaineditem').custom(customremainedItemValication)
+    check('quantity').custom(customQuantityValidation),
+    check('rate').custom(customRateValidation),
+    check('remaineditem').custom(customremainedItemValidation)
 ], function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -185,8 +184,7 @@ router.post('/edit/:id', [
         var receiveddatetime = req.body.receiveddatetime;
         var remaineditem = req.body.remaineditem;
         var description = req.body.description;
-
-        // storing values in object called "employeeData"
+        // storing values in object
         var inventoryData = {
             itemname: itemname,
             quantity: quantity,
@@ -257,27 +255,27 @@ function customItemNameValidation(value){
 }
 
 // custom quantity validation function
-function customQuantityValication(value) {
+function customQuantityValidation(value) {
     if (!checkRegex(value, positiveNum)) {
         throw new Error('Quantity has to be postive number');
     }
     return true;
 }
-
-function customRateValication(value) {
+// custom payrate validation
+function customRateValidation(value) {
     if (!checkRegex(value, positiveNum)) {
         throw new Error('Rate has to be postive number');
     }
     return true;
 }
-
-function customremainedItemValication(value) {
+// custom remained itam validation
+function customremainedItemValidation(value) {
     if (!checkRegex(value, positiveNum)) {
         throw new Error('Remaied Item has to be postive number');
     }
     return true;
 }
-
+// custem name check validation
 function customChecksNameSelected(value){
     if(value === '---Select Employee---'){
         throw new Error('Please select employee name');

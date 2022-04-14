@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 module.exports = router;
-
+// getting models
 const Paystub = require('../models/paystubModel');
 const Employee = require('../models/employeeModel');
 const pdfService = require('../services/pdf_service');
@@ -75,7 +75,6 @@ router.post('/generatePaystub', [
             var cpp = "";
             var ei = "";
             var federalTaxes = "";
-
             var takeHome = "";
             Employee.findOne({_id: employeeNameId}).exec(function(err, employee){
                 employeeName = employee.name;
@@ -87,7 +86,6 @@ router.post('/generatePaystub', [
                 ei = (grossPay * 1.58)/ 100;
                 federalTaxes = (grossPay * 15)/ 100;
                 takeHome = grossPay - provincialTaxes - cpp - ei - federalTaxes;
-        
                 var payStubData = {
                     employeeName: employeeName,
                     weeklyHours: weeklyHours,
@@ -101,12 +99,10 @@ router.post('/generatePaystub', [
                     federalTaxes: federalTaxes,
                     takeHome: takeHome
                 }
-        
                 var ourPaystub = new Paystub(payStubData);
                 ourPaystub.save().then(function(){
                     console.log('Paystub saved successfully');
                 });
-
                 //req.flash('msg', 'Schedule Added successfully !!!');
                 res.render('paystub/displayPaystub', payStubData);
                 
@@ -115,7 +111,7 @@ router.post('/generatePaystub', [
        
     }
 });
-
+// Creates PDF format [GET]
 router.get('/paystubPrint/:id', function(req, res){
      // check if thr user is logged in 
      if (req.session.userLoggedIn) {
@@ -124,7 +120,6 @@ router.get('/paystubPrint/:id', function(req, res){
             'Content-Type': 'application/pdf',
             'Content-Disposition': 'attachment;filename=paystub.pdf'
           });
-        
           pdfService.buildPDF(
             (chunk) => stream.write(chunk),
             () => stream.end(),
@@ -135,7 +130,7 @@ router.get('/paystubPrint/:id', function(req, res){
         res.redirect('/login');
     }
 });
-
+// Paystub information page [GET]
 router.get('/paystubInfo/:id', function(req,res){
     if(req.session.userLoggedIn){
         var paystubId = req.params.id;
@@ -167,6 +162,7 @@ function checkRegex(userInput, regex) {
         return false;
     }
 }
+// custom name selected validation
 function customChecksNameSelected(value){
     if(value === '---Select Employee---'){
         throw new Error('Please select employee name');
