@@ -70,6 +70,8 @@ router.post('/addSchedule', [
         var dayPick = req.body.sDay;
         var startTime = req.body.startTime;
         var endTime= req.body.endTime;
+        startTime = changeTime(startTime);
+        endTime = changeTime(endTime);
         var scheduleData = {
             employeeName: employeeName,
             day: dayPick,
@@ -222,4 +224,23 @@ function checkStartTimeEndTimeNotSame(value, {req, loc, path} ){
         throw new Error('Start time and End time can not be same');
     }
     return true;
+}
+// converts the time into AM/PM
+function changeTime(time){
+    var timeSplit = time.split(':'), hours, minutes, meridian;
+    hours= timeSplit[0];
+    minutes = timeSplit[1];
+    if(hours> 12){
+        meridian = 'PM';
+        hours -= 12;
+    } else if(hours<12){
+        meridian = 'AM';
+        if(hours == 0){
+            hours = 12;
+        }
+    } else {
+        meridian = 'PM';
+    }
+    time = hours + ':' + minutes + ' ' + meridian;
+    return time;
 }

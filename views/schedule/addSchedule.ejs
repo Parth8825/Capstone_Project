@@ -11,7 +11,7 @@
             <form name="Inventory" method="post" action="/schedule/addSchedule" class="scheduleForm">
                 <div class="textboxes">
                     <label class="scheduleLable">Employee Name: </label>
-                    <select name="eName" id="eName" class="scheduleTextboxes select" >
+                    <select name="eName" id="eName" class="scheduleTextboxes select">
                         <option value="---Select Employee---">-------------- Select Employee --------------</option>
                         <% for(var employee of employees){ %>
                             <% var name=employee.name%>
@@ -34,7 +34,8 @@
                     </select>
 
                     <label class="scheduleLable">Start Time: </label>
-                    <select name="startTime" id="startTime" class="scheduleTextboxes select">
+                    <input id="startTime" type="time" name="startTime" class="scheduleTextboxes"><br />
+                    <!-- <select name="startTime" id="startTime" class="scheduleTextboxes select">
                         <option value="---Start Time---">-------------- Start Time --------------</option>
                         <% for(var i=0; i < 12; i++) {%>
                             <option value="<%= i %> AM">
@@ -46,10 +47,11 @@
                                         <%= j %> PM
                                     </option>
                                     <% } %>
-                    </select>
+                    </select> -->
 
                     <label class="scheduleLable">End Time: </label>
-                    <select name="endTime" id="endTime" class="scheduleTextboxes select">
+                    <input id="endTime" type="time" name="endTime" class="scheduleTextboxes"><br />
+                    <!-- <select name="endTime" id="endTime" class="scheduleTextboxes select">
                         <option value="---End Time---">-------------- End Time --------------</option>
                         <% for(var i=0; i < 12; i++) {%>
                             <option value="<%= i %> AM">
@@ -61,7 +63,7 @@
                                         <%= j %> PM
                                     </option>
                                     <% } %>
-                    </select>
+                    </select> -->
 
                 </div>
                 <div class="buttons">
@@ -71,16 +73,16 @@
                     <a href="/schedule" id="cancel" class="btnCancel">Cancel </a>
                 </div>
 
-             </form>
-        <section class="errors">
-            <% if(typeof(errors) !='undefined' ){ %>
-                <div style="border-radius: 0 25px 0 25px;">
-                    <h4 style=" color: black; padding-top: 10px;" >Errors</h4>
-                    <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
-                        <p style="color: maroon; text-align: left;">
-                            * <%= error.msg %>
-                        </p>
-                        <% } } %>
+            </form>
+            <section class="errors">
+                <% if(typeof(errors) !='undefined' ){ %>
+                    <div style="border-radius: 0 25px 0 25px;">
+                        <h4 style=" color: black; padding-top: 10px;">Errors</h4>
+                        <% if(typeof(errors) !='undefined' ){ for(var error of errors){ %>
+                            <p style="color: maroon; text-align: left;">
+                                * <%= error.msg %>
+                            </p>
+                            <% } } %>
                     </div>
                     <% } %>
             </section>
