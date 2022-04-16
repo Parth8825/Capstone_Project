@@ -92,12 +92,12 @@ router.post('/generatePaystub', [
                     email: email,
                     date: date,
                     payrate: payrate,
-                    grossPay: grossPay,
-                    provincialTaxes: provincialTaxes,
-                    cpp: cpp,
-                    ei: ei,
-                    federalTaxes: federalTaxes,
-                    takeHome: takeHome
+                    grossPay: grossPay.toFixed(2),
+                    provincialTaxes: provincialTaxes.toFixed(2),
+                    cpp: cpp.toFixed(2),
+                    ei: ei.toFixed(2),
+                    federalTaxes: federalTaxes.toFixed(2),
+                    takeHome: takeHome.toFixed(2)
                 }
                 var ourPaystub = new Paystub(payStubData);
                 ourPaystub.save().then(function(){
