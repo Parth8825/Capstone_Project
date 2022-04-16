@@ -260,7 +260,7 @@ router.get('/delete/:employeeId', function (req, res) {
 // Validations
 // Defining regular expressions
 var phoneRegex = /^[0-9]{10}$/;
-var positiveNumRegex = /^[1-9][0-9]*$/;
+var positiveNumRegex = /^[1-9]\d*$/;
 var postcodeRegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
 var onlyNameRegex = /^[a-zA-Z ]*$/;
 var onlyFullNameRegex = /^[a-zA-Z]+\s[a-zA-Z]+$/;
