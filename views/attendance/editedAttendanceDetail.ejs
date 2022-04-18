@@ -10,38 +10,39 @@
         <main>
             <% if(typeof(takeAttendance) !='undefined' ){ %>
                 <h2 class="editedAttendance">Attendance successfully updated!!</h2>
-                <table>
-                    <tr>
-                        <th>Employee Name: </th>
-                        <td>
-                            <%= eName %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Date: </th>
-                        <td>
-                            <%= date %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Day: </th>
-                        <td>
-                            <%= sDay %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Present/Absent: </th>
-                        <td>
-                            <%= takeAttendance %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <a href="/attendance" class="buttonAttendance">Go back to Main</a>
-                        </th>
-                    </tr>
-
-                </table>
-                <% } %>
+                <div class="cardAttendance">
+                    <table class="table">
+                        <tr>
+                            <th>Employee Name: </th>
+                            <td>
+                                <%= eName %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Date: </th>
+                            <td>
+                                <%= date %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Day: </th>
+                            <td>
+                                <%= sDay %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Present/Absent: </th>
+                            <td>
+                                <%= takeAttendance %>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    <div >
+                        <a href="/attendance">
+                            <button class="button"> Go back to Main</button></a>
+                    </div>
+                    <% } %>
+                </div>
         </main>
         <%- include('../layouts/footer'); -%>

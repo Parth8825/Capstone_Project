@@ -3,16 +3,16 @@
     </head>
 
     <body>
+        <a href="/userProfile">
+            <div class="userIcon">
+                <img src="../../images/user.png" alt="User name Icon">
+                <h4>
+                    <%= locals.admin ? admin: "Admin" %>
+                </h4>
+                
+            </div>
+        </a>
         <header>
-            <a href="/userProfile">
-                <div class="userIcon">
-                    <img src="../../images/user.png" alt="User name Icon">
-                    <h4>
-                        <%= locals.admin ? admin: "Admin" %>
-                    </h4>
-
-                </div>
-            </a>
             <h2>Employee Management System</h2>
         </header>
         <%- include('../layouts/navigation'); -%>
@@ -24,93 +24,94 @@
                                 <% }%>
                                     <% } %>
                     </div>
+                    <h1 id="employeeDetails">PayStub</h1>
                     <div class="btn">
                         <a href="/paystub/generatePaystub">
                             <button class="btn">Generate Pay Stub</button>
                         </a>
                     </div>
-                    <h1 id="employeeDetails">PayStub</h1>
-                    <table class="content-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Hours</th>
-                                <th>Date</th>
-                                <th>Payrate</th>
-                                <th>Gross Pay</th>
-                                <th>CPP</th>
-                                <th>EI</th>
-                                <th>Provincial Tax</th>
-                                <th>Federal Tax</th>
-                                <th>Net Pay</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for(var paystub of paystubs){ %>
+                    <div class="table">
+                        <table class="content-table">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <a href="/paystub/paystubInfo/<%= paystub._id %>" class="link">
-                                            <p>
-                                                <%= paystub.employeeName %>
-                                            </p>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            <%= paystub.weeklyHours %>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            <%= paystub.date%>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            $<%= paystub.payrate %>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            $<%= paystub.grossPay %>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            $<%= paystub.cpp %>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            $<%= paystub.ei %>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            $<%= paystub.provincialTaxes %>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            $<%= paystub.federalTaxes %>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            $<%= paystub.takeHome %>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <div class="buttons">
-                                            <a class="editButton"
-                                                href="/paystub/paystubPrint/<%= paystub._id %>">PDF</a>
-                                        </div>
-                                    </td>
+                                    <th>Name</th>
+                                    <th>Hours</th>
+                                    <th>Date</th>
+                                    <th>Payrate</th>
+                                    <th>Gross Pay</th>
+                                    <th>CPP</th>
+                                    <th>EI</th>
+                                    <th>Provincial Tax</th>
+                                    <th>Federal Tax</th>
+                                    <th>Net Pay</th>
+                                    <th>Action</th>
                                 </tr>
-                                <% } %>
-                        </tbody>
-                    </table>
-
+                            </thead>
+                            <tbody>
+                                <% for(var paystub of paystubs){ %>
+                                    <tr>
+                                        <td>
+                                            <a href="/paystub/paystubInfo/<%= paystub._id %>" class="link">
+                                                <p>
+                                                    <%= paystub.employeeName %>
+                                                </p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <%= paystub.weeklyHours %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <%= paystub.date%>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                $<%= paystub.payrate %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                $<%= paystub.grossPay %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                $<%= paystub.cpp %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                $<%= paystub.ei %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                $<%= paystub.provincialTaxes %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                $<%= paystub.federalTaxes %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                $<%= paystub.takeHome %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <div class="buttons">
+                                                <a class="editButton"
+                                                    href="/paystub/paystubPrint/<%= paystub._id %>">PDF</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
             </main>
             <%- include('../layouts/footer'); -%>

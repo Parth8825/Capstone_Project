@@ -18,7 +18,7 @@ CSS FOR EACH & EVERY PAGES' MAIN
 *********************************/
 main {
   float: left;
-  padding: 20px;
+  padding: 1.25rem;
   width: 100%;
   background-color: whitesmoke;
   height: 100%;
@@ -26,21 +26,23 @@ main {
 }
 
 .userIcon img {
-  width: 40px;
-  height: 40px;
-  padding: 2%;
+  width: 35px;
+  height: 35px;
 }
 
 .userIcon h4 {
   position: relative;
   color:#063057;
   top: 10px;
+  right: -5%;
+  font-size: 125%;
 }
 
 .userIcon {
   display: inline-flex;
   float: right;
   text-transform: capitalize;
+  padding: .5%;
 }
 
 /*****************************
@@ -70,13 +72,13 @@ CSS FOR EVERY PAGE'S ANIMATION
 @keyframes animation {
   from {
     font-size: 0;
-    margin: -10% 28% 30% 28%;
+    margin: -10% auto 30% auto;
     opacity: .1;
     border: none;
   }
 
   to {
-    margin: 2% 28%;
+    margin: 1% auto;
   }
 }
 
@@ -92,9 +94,11 @@ header h2 {
   border-top: 4px double #052441;
   border-bottom: 4px double #052441;
   box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
-  margin: 2% 28%;
-  font-size: 168%;
-  border-radius: 13px;
+  width: 40%;
+  display: block;
+  margin: 1% auto;
+  font-size: 1.85rem;
+  border-radius: 15px;
   padding: 7.5px 0;
   background-color: rgba(195, 195, 216, 0.3);
   animation: animation 1s;
@@ -124,36 +128,6 @@ footer {
   clear: both;
 }
 
-/************************************************
-Responsive layout - makes the two columns/boxes
-stack on top of each other instead of next to 
-each other, on small screens 
-*************************************************/
-@media (max-width: 600px) {
-  nav ul li a {
-    padding: 20px;
-  }
-
-  header h2 {
-    margin: 0 15%;
-  }
-}
-
-@media (max-width: 1000px) {
-  nav ul li a {
-    padding: 20px;
-  }
-
-  header h2 {
-    margin: 0 15%;
-  }
-}
-
-a {
-  text-decoration: none;
-  color: #333;
-}
-
 /*************************************
 CSS FOR THE ADD BUTTON FOR EACH PAGE
 *************************************/
@@ -175,6 +149,7 @@ CSS FOR THE ADD BUTTON FOR EACH PAGE
   border-radius: 3px;
   text-transform: uppercase;
   background-color: whitesmoke;
+  margin: 2.5% 0; 
 }
 
 .btn::before,
@@ -216,4 +191,80 @@ CSS FOR THE ADD BUTTON FOR EACH PAGE
 
 .btn:hover {
   background: whitesmoke;
+}
+
+
+
+/************************************************
+Responsive layout - makes the two columns/boxes
+stack on top of each other instead of next to 
+each other, on small screens 
+*************************************************/
+@media only screen and (max-width: 768px) {
+  
+  nav ul li a {
+    padding: 20px;
+  }
+
+  header h2 {
+    font-size: .95rem;
+    width: 70%;
+    animation: none;
+  }
+
+  .userIcon img{
+    width: 30px;
+    height: 30px;
+  }
+
+  .userIcon h4{
+    display: none;
+  }
+
+  .btn{
+    width: 150px;
+    height: 40px;
+    font-size: 14px;
+    margin: 5% 0;
+  }
+
+  .btn::before{
+    height: 40px;
+    width: 130px;
+  }
+
+  .btn::after{
+    width: 150px;
+    height: 20px;
+  }
+
+}
+
+@media (max-width: 1300px) and (min-width: 600px) {
+  nav ul li a {
+    padding: 20px;
+  }
+
+  header h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media  (max-width: 1300px) and (min-width: 1165px) {
+
+  header h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+
+  header h2 {
+    font-size: 1.75rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #333;
 }

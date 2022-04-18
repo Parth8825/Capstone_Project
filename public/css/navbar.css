@@ -1,31 +1,38 @@
 /* NAVIGATION BAR CSS*/
-nav {
+.nav_menu {
   width: 100%;
   margin: 0 auto;
   background-color: #1b4468cc;
   padding: 15px 0;
 }
 
+.icon{
+  display: none;
+}
+.active{
+  display: none;
+}
+
 body {
   height: 100%;
 }
 
-nav ul {
+.nav_menu ul {
   list-style: none;
   text-align: center;
 }
-nav ul li {
+.nav_menu ul li{
   display: inline-flex;
   position: relative;
   bottom: 5px;
 }
-nav ul li img{
+.nav_menu ul li img {
   position: relative;
   height: 30px;
   top: 5px;
   right: 5px;
 }
-nav ul li a {
+.nav_menu ul li a{
   display: block;
   padding: 0 20px;
   text-decoration: none;
@@ -34,19 +41,19 @@ nav ul li a {
   text-transform: uppercase;
   font-size: 135%;
 }
-nav ul li a,
-nav ul li a:after,
-nav ul li a:before {
+.nav_menu ul li a,
+.nav_menu ul li a:after,
+.nav_menu ul li a:before {
   transition: all 0.5s;
 }
-nav ul li a:hover {
+.nav_menu ul li a:hover {
   color: #a0cef8;
 }
 
-nav.nav_menu ul li a {
+.nav_menu ul li a {
   position: relative;
 }
-nav.nav_menu ul li a:after {
+.nav_menu ul li a:after {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -58,38 +65,41 @@ nav.nav_menu ul li a:after {
   background: #bed9f3;
   height: 1px;
 }
-nav.nav_menu ul li a:hover:after {
+.nav_menu ul li a:hover:after {
   width: 90%;
 }
 
-@media (max-width: 600px) {
-  /*    
-      #nav_menu ul li { 
-          float: left;
-          width: 50%;
-          height: auto;
-      }
-      #nav_area,
-      article {
-          width: 100%;
-          height: auto;
-      } */
+@media only screen and (max-width: 768px){
 
-  nav ul li a {
-    padding: 20px;
+  .nav_menu {
+    position: relative;
+  }
+  
+  .nav_menu #myLinks {
+    display: none;
   }
 
-  header h2 {
-    margin: 0 15%;
+  img{
+    height: 30px;
+  }
+
+  .nav_menu a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+  
+  .nav_menu a.icon {
+    /* display: block; */
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .active {
+    color: white;
   }
 }
 
-@media (max-width: 1000px) {
-  nav ul li a {
-    padding: 20px;
-  }
-
-  header h2 {
-    margin: 0 15%;
-  }
-}

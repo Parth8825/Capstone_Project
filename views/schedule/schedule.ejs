@@ -3,16 +3,16 @@
     </head>
 
     <body>
-        <header>
-            <a href="/userProfile">
-                <div class="userIcon">
-                    <img src="../../images/user.png" alt="User name Icon">
-                    <h4>
-                        <%= locals.admin ? admin: "Admin" %>
-                    </h4>
+        <a href="/userProfile">
+            <div class="userIcon">
+                <img src="../../images/user.png" alt="User name Icon">
+                <h4>
+                    <%= locals.admin ? admin: "Admin" %>
+                </h4>
 
-                </div>
-            </a>
+            </div>
+        </a>
+        <header>
             <h2>Employee Management System</h2>
         </header>
         <%- include('../layouts/navigation'); -%>
@@ -25,50 +25,51 @@
                                     <% }%>
                                         <% } %>
                         </div>
+                        <h1 id="schedule">Schedule</h1>
                         <div class="btn">
                             <a href="/schedule/addSchedule">
                                 <button class="btn">Create Schedule</button>
                             </a>
                         </div>
-                        <h1 id="schedule">Schedule</h1>
-                        <table class="content-table">
-                            <thead>
-                                <tr>
-                                    <th>Employee Name</th>
-                                    <th>Day</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for(var schedule of schedules){ %>
+                        <div class="table">
+                            <table class="content-table">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <%= schedule.employeeName %>
-                                        </td>
-                                        <td>
-                                            <%= schedule.day %>
-                                        </td>
-                                        <td>
-                                            <%= schedule.startTime %>
-                                        </td>
-                                        <td>
-                                            <%= schedule.endTime %>
-                                        </td>
-                                        <td>
-                                            <div class="buttons">
-                                                <a class="editButton"
-                                                    href="/schedule/edit/<%= schedule._id %>">Change</a>
-                                                <a class="deleteButton"
-                                                    href="/schedule/delete/<%= schedule._id %>">Delete</a>
-                                            </div>
-                                        </td>
+                                        <th>Employee Name</th>
+                                        <th>Day</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Action</th>
                                     </tr>
-                                    <% } %>
-                            </tbody>
-                        </table>
-
+                                </thead>
+                                <tbody>
+                                    <% for(var schedule of schedules){ %>
+                                        <tr>
+                                            <td>
+                                                <%= schedule.employeeName %>
+                                            </td>
+                                            <td>
+                                                <%= schedule.day %>
+                                            </td>
+                                            <td>
+                                                <%= schedule.startTime %>
+                                            </td>
+                                            <td>
+                                                <%= schedule.endTime %>
+                                            </td>
+                                            <td>
+                                                <div class="buttons">
+                                                    <a class="editButton"
+                                                        href="/schedule/edit/<%= schedule._id %>">Change</a>
+                                                    <a class="deleteButton"
+                                                        href="/schedule/delete/<%= schedule._id %>">Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
                 </main>
             </section>
             <%- include('../layouts/footer'); -%>

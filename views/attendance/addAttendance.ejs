@@ -12,7 +12,7 @@
             <form name="Attendance" method="post" action="/attendance/addAttendance" class="attendanceForm">
                 <div class="textboxes">
                     <label class="attendanceLable">Employee Name: </label>
-                    <select name="eName" id="eName" class="attendanceTextboxes select">
+                    <select name="eName" id="eName" class="attendanceTextboxes select" autofocus>
                         <option value="---Select Employee---">-------------- Select Employee --------------</option>
                         <% for(var employee of employees){ %>
                             <% var name=employee.name%>

@@ -4,16 +4,16 @@
     </head>
 
     <body>
+        <a href="/userProfile">
+            <div class="userIcon">
+                <img src="../../images/user.png" alt="User name Icon">
+                <h4>
+                    <%= locals.admin ? admin: "Admin" %>
+                </h4>
+                
+            </div>
+        </a>
         <header>
-            <a href="/userProfile">
-                <div class="userIcon">
-                    <img src="../../images/user.png" alt="User name Icon">
-                    <h4>
-                        <%= locals.admin ? admin: "Admin" %>
-                    </h4>
-
-                </div>
-            </a>
             <h2>Employee Management System</h2>
         </header>
         <%- include('../layouts/navigation'); -%>
@@ -27,50 +27,51 @@
                                         <% } %>
                         </div>
 
+                        <h1 id="attendance"> Attendance</h1>
                         <div class="btn">
                             <a href="/attendance/addAttendance">
                                 <button class="btn">Take Attendance</button>
                             </a>
                         </div>
-                        <h1 id="attendance"> Attendance</h1>
-
-                        <table class="content-table">
-                            <thead>
-                                <tr>
-                                    <th>Employee Name</th>
-                                    <th>Date</th>
-                                    <th>Day</th>
-                                    <th>Absent/Present</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for(var attendance of attendances){ %>
+                        <div class="table">
+                            <table class="content-table">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <%= attendance.eName %>
-                                        </td>
-                                        <td>
-                                            <%= attendance.date %>
-                                        </td>
-                                        <td>
-                                            <%= attendance.sDay %>
-                                        </td>
-                                        <td>
-                                            <%= attendance.attendance %>
-                                        </td>
-                                        <td>
-                                            <div class="buttons">
-                                                <a class="editButton"
-                                                    href="/attendance/edit/<%= attendance.id %>">Edit</a>
-                                                <a class="deleteButton"
-                                                    href="/attendance/delete/<%= attendance._id %>">Delete</a>
-                                            </div>
-                                        </td>
+                                        <th>Employee Name</th>
+                                        <th>Date</th>
+                                        <th>Day</th>
+                                        <th>Absent/Present</th>
+                                        <th>Action</th>
                                     </tr>
-                                    <% } %>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <% for(var attendance of attendances){ %>
+                                        <tr>
+                                            <td>
+                                                <%= attendance.eName %>
+                                            </td>
+                                            <td>
+                                                <%= attendance.date %>
+                                            </td>
+                                            <td>
+                                                <%= attendance.sDay %>
+                                            </td>
+                                            <td>
+                                                <%= attendance.attendance %>
+                                            </td>
+                                            <td>
+                                                <div class="buttons">
+                                                    <a class="editButton"
+                                                        href="/attendance/edit/<%= attendance.id %>">Edit</a>
+                                                    <a class="deleteButton"
+                                                        href="/attendance/delete/<%= attendance._id %>">Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
                 </section>
             </main>
             <%- include('../layouts/footer'); -%>

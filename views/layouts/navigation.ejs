@@ -1,11 +1,29 @@
-<nav class="nav_menu">
+<div class="nav_menu">
     <ul>
-        <li><a href="/"><img src="../../images/employee.png" alt="" >Employee</a></li>
-        <li><a href="/paystub"><img src="../../images/payslip.png" alt="" >Pay Stub</a></li>
-        <li><a href="/inventory"><img src="../../images/inventory.png" alt="">Inventory</a></li>
-        <li><a href="/schedule"><img src="../../images/schedule.png" alt="" >Schedule</a></li>
-        <li><a href="/attendance"><img src="../../images/attendance.png" alt="">Attendance</a></li>
-        <li><a href="/aboutus"><img src="../../images/aboutus.png" alt="" >About Us</a></li>
-        <li><a href="/logout"><img src="../../images/logout.png" alt="">log out</a></li>
+        <a href="#home" class="active"></a>
+        <div id="myLinks">
+            <li><a href="/"><img src="../../images/employee.png" alt="">Employee</a></li>
+            <li><a href="/paystub"><img src="../../images/payslip.png" alt="">Pay Stub</a></li>
+            <li><a href="/inventory"><img src="../../images/inventory.png" alt="">Inventory</a></li>
+            <li><a href="/schedule"><img src="../../images/schedule.png" alt="">Schedule</a></li>
+            <li><a href="/attendance"><img src="../../images/attendance.png" alt="">Attendance</a></li>
+            <li><a href="/aboutus"><img src="../../images/aboutus.png" alt="">About Us</a></li>
+            <li><a href="/logout"><img src="../../images/logout.png" alt="">log out</a></li>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <img src="../../images/list.png" alt="" class="listImage">
+        </a>
     </ul>
-</nav>
+</div>
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
