@@ -1,5 +1,6 @@
 <%- include('../layouts/header'); -%>
     <link href="/css/add_editpage.css" rel="stylesheet">
+    <script src="/js/dateValidation.js" type="text/javascript" defer></script>
     </head>
 
     </head>
@@ -29,7 +30,7 @@
                         <option value="<%= inventory.addedby %>">
                             <%= inventory.addedby %>
                         </option>
-                        <option value='---Employee Name---'>--------------</option>
+                        <option value='---Select Employee---'>--------------</option>
                         <% for(var employee of employees){ %>
                             <% var name=employee.name%>
                                 <option value="<%= name %>">
@@ -39,7 +40,7 @@
                     </select>
 
                     <label class="inventoryLable">Received Date: </label>
-                    <input id="receiveddatetime" placeholder="YYYY-MM-DD" type="datetime" name="receiveddatetime"
+                    <input id="date" placeholder="YYYY-MM-DD" type="date" name="receiveddatetime"
                         class="inventoryTextboxes" value="<%= inventory.receiveddatetime %>"><br />
 
                     <label class="inventoryLable">Remained Item: </label>

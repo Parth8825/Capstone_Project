@@ -12,7 +12,6 @@ const { check, validationResult } = require('express-validator');// ES6 standard
 
 // Home page (Employee page)
 router.get('/', function (req, res) {
-    //res.send('this one was showing in the browser');
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
         Employee.find({}).exec(function (err, employees) {
@@ -85,7 +84,7 @@ router.get('/addEmployee', function (req, res) {
 router.post('/addEmployee', [
     check('firstname').custom(customFirstNameValidation),
     check('lastname').custom(customLastNameValidation),
-    check('email', 'Email is required').isEmail(),
+    check('email', 'Please enter valid Email-Id').isEmail(),
     check('phone').custom(customPhoneValidation),
     check('address', 'address is required').not().isEmpty(),
     check('postcode').custom(customPostcodeValidation),
@@ -261,12 +260,10 @@ router.get('/delete/:employeeId', function (req, res) {
 // Validations
 // Defining regular expressions
 var phoneRegex = /^[0-9]{10}$/;
-var positiveNumRegex = /^[1-9][0-9]*$/;
+var positiveNumRegex = /^[1-9]\d*$/;
 var postcodeRegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
 var onlyNameRegex = /^[a-zA-Z ]*$/;
 var onlyFullNameRegex = /^[a-zA-Z]+\s[a-zA-Z]+$/;
-var noMorethanTenLettersRegex = /^[a-zA-Z]{0,10}$/;
-// /^[a-zA-Z]+$/;
 //var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // function to check a value using regular expression
@@ -285,8 +282,6 @@ function customFirstNameValidation(value){
         throw new Error('First name is required');
     }else if(!checkRegex(value, onlyNameRegex)){
         throw new Error('No special character or numeric values in First Name');
-    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
-        throw new Error('No more than 10 latters in First Name');
     }
     return true;
 }
@@ -296,8 +291,6 @@ function customLastNameValidation(value){
         throw new Error('Last name is required');
     }else if(!checkRegex(value, onlyNameRegex)){
         throw new Error('No special character or numeric values in Last Name');
-    }else if(!checkRegex(value, noMorethanTenLettersRegex)){
-        throw new Error('No more than 10 latters in Last Name');
     }
     return true;
 }

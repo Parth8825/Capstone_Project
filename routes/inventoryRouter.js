@@ -58,13 +58,13 @@ router.get('/addInventory', function (req, res) {
 
 // ADD ITEM IN INVENTORY [post]
 router.post('/addInventory', [
-    check('itemname', 'Item name is required').not().isEmpty(),
-    check('quantity').custom(customQuantityValication),
-    check('rate').custom(customRateValication),
+    check('itemname').custom(customItemNameValidation),
+    check('quantity').custom(customQuantityValidation),
+    check('rate').custom(customRateValidation),
     check('addedby', 'Added by whom is required').not().isEmpty(),
-    check('remaineditem').custom(customremainedItemValication),
+    check('addedby').custom(customChecksNameSelected),
+    check('remaineditem').custom(customremainedItemValidation),
     check('description', 'Description is required').not().isEmpty()
-
 ], function (req, res) {
     const form = {
         itemnameHolder: req.body.itemname,
@@ -97,7 +97,6 @@ router.post('/addInventory', [
         var receiveddatetime = req.body.receiveddatetime;
         var remaineditem = req.body.remaineditem;
         var description = req.body.description;
-
         // storing values in object called "employeeData"
         var inventoryData = {
             itemname: itemname,
@@ -123,8 +122,6 @@ router.get('/edit/:inventoryId', function (req, res) {
     // check if the user is logged in 
     if (req.session.userLoggedIn) {
         var inventoryId = req.params.inventoryId;
-        console.log(inventoryId);
-
         Employee.find({}).exec(function (err, employees) {
             if (err) {
                 res(err)
@@ -150,27 +147,34 @@ router.get('/edit/:inventoryId', function (req, res) {
 
 // EDIT INVENTORY DETAILS [POST]
 router.post('/edit/:id', [
-    check('itemname', 'Item name is required').not().isEmpty(),
+    check('itemname').custom(customItemNameValidation),
+    check('addedby', 'Added by whom is required').not().isEmpty(),
     check('addedby').custom(customChecksNameSelected),
-    check('quantity').custom(customQuantityValication),
-    check('rate').custom(customRateValication),
-    check('remaineditem').custom(customremainedItemValication)
-
+    check('quantity').custom(customQuantityValidation),
+    check('rate').custom(customRateValidation),
+    check('remaineditem').custom(customremainedItemValidation)
 ], function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         var inventoryId = req.params.id;
-        Inventory.findOne({ _id: inventoryId }).exec(function (err, inventory) {
-            console.log('Error: ' + err);
-            console.log('Inventory: ' + inventory);
-            if(inventory){
-                res.render('inventory/editInventory', { inventory:inventory, errors: errors.array()});
+        Employee.find({}).exec(function (err, employees) {
+            if (err) {
+                res(err)
             }
-            else{
-                res.send('no order found with that id...');
-            }
-        
-        });
+            else {
+                Inventory.findOne({ _id: inventoryId }).exec(function (err, inventory) {
+                    console.log('Error: ' + err);
+                    console.log('Inventory: ' + inventory);
+                    if(inventory){
+                        res.render('inventory/editInventory', { inventory:inventory, employees: employees, errors: errors.array()});
+                    }
+                    else{
+                        res.send('no order found with that id...');
+                    }
+                
+                });
+                }
+            });
     }
     else {
         var itemname = req.body.itemname;
@@ -180,8 +184,7 @@ router.post('/edit/:id', [
         var receiveddatetime = req.body.receiveddatetime;
         var remaineditem = req.body.remaineditem;
         var description = req.body.description;
-
-        // storing values in object called "employeeData"
+        // storing values in object
         var inventoryData = {
             itemname: itemname,
             quantity: quantity,
@@ -191,7 +194,6 @@ router.post('/edit/:id', [
             remaineditem: remaineditem,
             description: description
         }
-
         var id = req.params.id;
         Inventory.findOne({ _id: id }, function (err, inventory) {
             inventory.itemname = itemname;
@@ -231,7 +233,7 @@ router.get('/delete/:inventoryId', function (req, res) {
 // Validations
 // Defining regular expressions
 var positiveNum = /^[1-9][0-9]*$/;
-
+var onlyNameRegex = /^[a-zA-Z ]*$/;
 // function to check a value using regular expression
 function checkRegex(userInput, regex) {
     if (regex.test(userInput)) {
@@ -242,28 +244,38 @@ function checkRegex(userInput, regex) {
     }
 }
 
+// custome item name validation
+function customItemNameValidation(value){
+    if(value === ''){
+        throw new Error('Item name is required');
+    }else if(!checkRegex(value, onlyNameRegex)){
+        throw new Error('No special character or numeric values in Item name');
+    }
+    return true;
+}
+
 // custom quantity validation function
-function customQuantityValication(value) {
+function customQuantityValidation(value) {
     if (!checkRegex(value, positiveNum)) {
         throw new Error('Quantity has to be postive number');
     }
     return true;
 }
-
-function customRateValication(value) {
+// custom payrate validation
+function customRateValidation(value) {
     if (!checkRegex(value, positiveNum)) {
         throw new Error('Rate has to be postive number');
     }
     return true;
 }
-
-function customremainedItemValication(value) {
+// custom remained itam validation
+function customremainedItemValidation(value) {
     if (!checkRegex(value, positiveNum)) {
         throw new Error('Remaied Item has to be postive number');
     }
     return true;
 }
-
+// custem name check validation
 function customChecksNameSelected(value){
     if(value === '---Select Employee---'){
         throw new Error('Please select employee name');

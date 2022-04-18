@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose'); // MongoDB connection
+const mongoose = require('mongoose');
 // get expression session
 const session = require('express-session');
 // get cookies 
@@ -22,7 +22,7 @@ const paystubRouter = require('./routes/paystubRouter');
 require('dotenv').config();
 
 // set up DataBase connection
-const mongoString = process.env.DATABASE_URL;
+const mongoString = process.env.MONGO_DATABASE_URL;
 mongoose.connect(mongoString, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -47,7 +47,7 @@ ourApp.use(cookieParse(uuidv4()));
 ourApp.use(session({
     // uuid will provide unique Hash code for secret session
     secret: uuidv4(), // '1b9d6bcd-bbfd-4b3s-9d6f-sd6sdffe6dx'
-    // cookie: { maxAge: 600000},
+    cookie: { maxAge: 1800000},
     resave: false,
     saveUninitialized: true
 }));

@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 module.exports = router;
-
+// getting models
 const Employee = require('../models/employeeModel');
 const Schedule = require('../models/scheduleModel');
-
 //setting up express validator
 const { check, validationResult } = require('express-validator');
 
@@ -50,12 +49,11 @@ router.get('/addSchedule', function (req, res) {
 router.post('/addSchedule', [
     check('eName').custom(customChecksNameSelected),
     check('sDay').custom(customChecksDaySelected),
-    check('startTime').custom(customChecksStartTimeSelected),
-    check('endTime').custom(customChecksEndTimeSelected),
+    check('startTime', 'Start time is requried').not().isEmpty(),
+    check('endTime', 'End time is required').not().isEmpty(),
     check('startTime').custom(checkStartTimeEndTimeNotSame)
 ], function (req, res) {
     const errors = validationResult(req);
-   
     if (!errors.isEmpty()) {
         Employee.find({}).exec(function (err, employees) {
             if (err) {
@@ -72,14 +70,14 @@ router.post('/addSchedule', [
         var dayPick = req.body.sDay;
         var startTime = req.body.startTime;
         var endTime= req.body.endTime;
-
+        startTime = changeTime(startTime);
+        endTime = changeTime(endTime);
         var scheduleData = {
             employeeName: employeeName,
             day: dayPick,
             startTime: startTime,
             endTime: endTime
         }
-
         var ourSchedule = new Schedule(scheduleData);
         ourSchedule.save().then(function(){
             console.log('Schedule saved successfully');
@@ -94,8 +92,6 @@ router.get('/edit/:scheduleId', function (req, res) {
     // check if the user is logged in 
     if (req.session.userLoggedIn) {
         var scheduleId = req.params.scheduleId;
-        console.log(scheduleId);
-
         Employee.find({}).exec(function (err, employees) {
             if (err) {
                 res(err)
@@ -123,8 +119,8 @@ router.get('/edit/:scheduleId', function (req, res) {
 router.post('/edit/:id', [
     check('eName').custom(customChecksNameSelected),
     check('sDay').custom(customChecksDaySelected),
-    check('startTime').custom(customChecksStartTimeSelected),
-    check('endTime').custom(customChecksEndTimeSelected),
+    check('startTime', 'Start time is required').not().isEmpty(),
+    check('endTime','End time is required').not().isEmpty(),
     check('startTime').custom(checkStartTimeEndTimeNotSame)
 ], function (req, res) {
     const errors = validationResult(req);
@@ -153,7 +149,6 @@ router.post('/edit/:id', [
         var dayPeek = req.body.sDay;
         var startTime = req.body.startTime;
         var endTime= req.body.endTime;
-
         // storing values in object called "scheduleData"
         var scheduleData = {
             employeeName: employeeName,
@@ -161,7 +156,6 @@ router.post('/edit/:id', [
             startTime: startTime,
             endTime: endTime
         }
-
         var id = req.params.id;
         Schedule.findOne({ _id: id }, function (err, schedule) {
             schedule.employeeName = employeeName;
@@ -174,12 +168,11 @@ router.post('/edit/:id', [
             });
         });
         res.render('schedule/editedScheduleDetail', scheduleData);
-
     }
 });
 
 
-//DELETE SCHEDULE METHOD
+// DELETE SCHEDULE METHOD [GET]
 router.get('/delete/:id', function (req, res){
     if (req.session.userLoggedIn) {
         var scheduleId = req.params.id;
@@ -196,37 +189,58 @@ router.get('/delete/:id', function (req, res){
     }
 });
 
-// custome schedule validations
+// validations
+// custom name selected validation
 function customChecksNameSelected(value){
     if(value === '---Select Employee---'){
         throw new Error('Please select employee name');
     }
     return true;
 }
-
+// custom day validation
 function customChecksDaySelected(value){
     if(value === '---Select Day---'){
         throw new Error('Please select day');
     }
     return true;
 }
-
-function customChecksStartTimeSelected(value){
-    if(value === '---Start Time---'){
-        throw new Error('Please select start time');
-    }
-    return true;
-}
-function customChecksEndTimeSelected(value){
-    if(value === '---End Time---'){
-        throw new Error('Please select end time');
-    }
-    return true;
-}
-
+// // custom start tiem selected validation
+// function customChecksStartTimeSelected(value){
+//     if(value === '---Start Time---'){
+//         throw new Error('Please select start time');
+//     }
+//     return true;
+// }
+// // custom end time selected validation
+// function customChecksEndTimeSelected(value){
+//     if(value === '---End Time---'){
+//         throw new Error('Please select end time');
+//     }
+//     return true;
+// }
+// custom to check start & end time are not same
 function checkStartTimeEndTimeNotSame(value, {req, loc, path} ){
     if(value == req.body.endTime){
         throw new Error('Start time and End time can not be same');
     }
     return true;
+}
+// converts the time into AM/PM
+function changeTime(time){
+    var timeSplit = time.split(':'), hours, minutes, meridian;
+    hours= timeSplit[0];
+    minutes = timeSplit[1];
+    if(hours> 12){
+        meridian = 'PM';
+        hours -= 12;
+    } else if(hours<12){
+        meridian = 'AM';
+        if(hours == 0){
+            hours = 12;
+        }
+    } else {
+        meridian = 'PM';
+    }
+    time = hours + ':' + minutes + ' ' + meridian;
+    return time;
 }
