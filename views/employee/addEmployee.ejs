@@ -9,11 +9,10 @@
     <main>
       <h1 id="addEmployee">Add Employee Details</h1>
       <form name="Employee" method="post" action="/addEmployee" class="employeeForm">
-        <div class="textboxes">
 
           <label class="employeeLable">First Name: </label>
           <input id="firstname" placeholder="First name" type="text" name="firstname" class="employeeTextboxes"
-            value="<%= form.firstnameHolder %>"><br />
+            value="<%= form.firstnameHolder %>" autofocus><br />
 
           <label class="employeeLable">Last Name: </label>
           <input id="lastname" placeholder="Last name" type="text" name="lastname" class="employeeTextboxes"
@@ -45,7 +44,6 @@
 
           <p id="errors"></p>
 
-        </div>
         <div class="buttons">
           <button class="btnSubmit" id="submit"> Submit </button>
 

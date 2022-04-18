@@ -8,7 +8,7 @@ CSS FOR EDIT EMPLOYEE DETAILS BODY
 ***********************************/
 body {
   background-image: url("../../images/image9.png");
-  background-size: calc(100%);
+  background-size: cover;
   background-position: top;
   opacity: .95;
   background-repeat: no-repeat;
@@ -17,62 +17,93 @@ body {
 /**********************************
 CSS FOR EDIT EMPLOYEE DETAILS MAIN
 ***********************************/
-main{
+main {
   background-color: rgba(195, 195, 216, 0.3);
+  height: 100%;
+  min-height: 78vh;
 }
 
 /************************************
 CSS FOR EDIT EMPLOYEE DETAILS HEADER
 *************************************/
-.editedInventory, .editedEmployee, .editedSchedule,
- .paystubDisplay, .editedAttendance, .employeeDetails{
+.editedInventory,
+.editedEmployee,
+.editedSchedule,
+.paystubDisplay,
+.editedAttendance,
+.employeeDetails {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
   padding: 0.5%;
   text-align: center;
   color: darkgreen;
   background-color: lightgreen;
-  position: relative;
-  margin: 2% 28%;
-  font-size: 160%;
+  margin: 2% auto;
+  width: 38rem;
+  font-size: 150%;
   border-radius: 5px;
   box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
   text-transform: uppercase;
   opacity: .95;
 }
 
-.paystubDisplay{
-  margin: 2% 37%;
+.paystubDisplay {
+  width: 23rem;
 }
 
-.editedSchedule{
-  margin: 2% 32%;
+.editedSchedule {
+  width: 30rem;
+}
+
+.employeeDetails {
+  width: 18rem;
 }
 
 /**********************************
 CSS FOR EDIT EMPLOYEE DETAILS TABLE
 ***********************************/
-table {
+.cardSchedule,
+.cardAttendance,
+.cardInventory,
+.cardEmployee,
+.cardPaystub {
   margin: 5% auto;
   box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
   border-radius: 12px;
   background-color: white;
+  padding: 5% auto;
   padding: 1%;
+  overflow: auto;
+}
+
+.cardEmployee {
+  width: 35%;
+}
+
+.cardAttendance,
+.cardSchedule {
+  width: 30%;
+}
+
+.cardInventory,
+.cardPaystub {
+  width: 35%;
 }
 
 /*******************************************
 CSS FOR EDIT EMPLOYEE DETAILS TABLE HEADING
 ********************************************/
-table tr th {
+.table tr th {
   font-size: 125%;
   text-align: left;
-  padding-left: 5%; 
+  padding: 2%;
+  width: 12rem;
 }
 
 /*******************************************
 CSS FOR EDIT EMPLOYEE DETAILS TABLE DETAILS
 ********************************************/
-table tr td {
+.table tr td {
   font-size: 125%;
   padding: 2% 0;
   text-align: left;
@@ -82,8 +113,7 @@ table tr td {
 /*******************************************************************************************
  CSS FOR EDIT EMPLOYEE, ATTENDANCE, INVENTORY DETAILS BUTTON TO "GO BACK TO THE MAIN PAGE" & 
  *******************************************************************************************/
-.button, .buttonAttendance, 
-.buttonInventory, .buttonPaystub {
+.button {
   border-radius: 4px;
   background-color: #5ca1e1;
   border: none;
@@ -95,47 +125,39 @@ table tr td {
   transition: all 0.5s;
   cursor: pointer;
   box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
-  display: inline-block;
   position: relative;
   transition: 0.5s;
-  margin: 10% 50% 5% 60%;
+  display: block;
+  margin: 5% auto;
+  font-family: "Playfair Display", serif;
 }
 
 /***************************************
 CSS FOR EDIT ATTENDANCE DETAILS' BUTTON
 ****************************************/
-.buttonAttendance{
-  margin: 10% 50% 5% 25%;
-}
 
-.buttonPaystub{
-  margin: 10% 50% 5% 22%;
-}
 
 /***************************************
 CSS FOR EDIT INVENTORY DETAILS' BUTTON
 ****************************************/
-.buttonInventory{
-  margin: 10% 50% 5% 38.5%;
-}
-.button:after, .buttonAttendance:after,
- .buttonInventory:after, .buttonPaystub:after {
+
+
+.button:after {
   content: "»";
   position: absolute;
   opacity: 0;
   top: 14px;
   right: -20px;
   transition: 0.5s;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.button:hover, .buttonAttendance:hover,
- .buttonInventory:hover, .buttonPaystub:hover {
+.button:hover {
   padding-right: 24px;
   padding-left: 8px;
 }
 
-.button:hover:after, .buttonAttendance:hover:after, 
-.buttonInventory:after, .buttonPaystub:after {
+.button:hover:after {
   opacity: 1;
   right: 10px;
 }
@@ -157,12 +179,10 @@ CSS FOR EDIT INVENTORY DETAILS' BUTTON
   background: transparent;
   text-transform: capitalize;
   transition: all 0.35s;
-  left: 115%;
+  left: 17.5%;
   transform: translate(-50%, -50%);
-  margin-top: 1em;
   padding-top: 5px;
-  margin-top: 20%;
-  margin-bottom: -5%;
+  margin: 10% auto -5% auto;
   font-weight: 100;
 }
 
@@ -196,7 +216,107 @@ CSS FOR EDIT INVENTORY DETAILS' BUTTON
   top: 0;
 }
 
+@media only screen and (max-width: 830px),
+(min-device-width: 768px) and (max-device-width: 724px) {
+
+  body {
+    background-image: none;
+  }
 
 
+  .cardInventory,
+  .cardEmployee,
+  .cardPaystub {
+    width: 70%;
+  }
+
+  .cardSchedule,
+  .cardAttendance {
+    width: 50%;
+  }
 
 
+  /*******************************************
+  CSS FOR EDIT EMPLOYEE DETAILS TABLE HEADING
+  ********************************************/
+  .table tr th {
+    font-size: 120%;
+    text-align: left;
+    padding: 2%;
+    width: 12rem;
+  }
+
+  /*******************************************
+  CSS FOR EDIT EMPLOYEE DETAILS TABLE DETAILS
+  ********************************************/
+  .table tr td {
+    font-size: 115%;
+    padding: 2% 0;
+    text-align: left;
+  }
+
+  .button {
+    margin: 5% auto;
+  }
+
+  .editedInventory,
+  .editedEmployee,
+  .editedSchedule,
+  .paystubDisplay,
+  .editedAttendance {
+    font-size: 125%;
+    width: 30rem;
+  }
+}
+
+
+@media only screen and (max-width: 550px) {
+  body {
+    background-image: none;
+  }
+
+  .cardSchedule,
+  .cardAttendance,
+  .cardInventory,
+  .cardEmployee,
+  .cardPaystub {
+    width: 100%;
+  }
+
+  /*******************************************
+  CSS FOR EDIT EMPLOYEE DETAILS TABLE HEADING
+  ********************************************/
+  .table tr th {
+    font-size: 120%;
+    text-align: left;
+    padding: 2%;
+    width: 12rem;
+  }
+
+  /*******************************************
+  CSS FOR EDIT EMPLOYEE DETAILS TABLE DETAILS
+  ********************************************/
+  .table tr td {
+    font-size: 115%;
+    padding: 2% 0;
+    text-align: left;
+  }
+
+  .button {
+    margin: 5% auto;
+  }
+
+  .editedInventory,
+  .editedEmployee,
+  .editedSchedule,
+  .paystubDisplay,
+  .editedAttendance {
+    font-size: 125%;
+    width: 20rem;
+  }
+
+  .employeeDetails {
+    width: 10rem;
+  }
+
+}

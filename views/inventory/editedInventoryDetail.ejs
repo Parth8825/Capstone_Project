@@ -11,57 +11,57 @@
             <section class="page">
                 <% if(typeof(description) !='undefined' ){ %>
                     <h2 class="editedInventory">Inventory Data successfully updated!!</h2>
-                    <table>
-                        <tr>
-                            <th>Item Name: </th>
-                            <td>
-                                <%= itemname %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Quantity: </th>
-                            <td>
-                                <%= quantity %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Rate: </th>
-                            <td>
-                                <%= rate %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Added By: </th>
-                            <td>
-                                <%= addedby %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Received Date: </th>
-                            <td>
-                                <%= receiveddatetime %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Remaied Item: </th>
-                            <td>
-                                <%= remaineditem %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Description: </th>
-                            <td>
-                                <%= description %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <a href="/inventory" class="buttonInventory">Go back to Main</a>
-                            </th>
-                        </tr>
-
-                    </table>
-                    <% } %>
+                    <div class="cardInventory">
+                        <table class="table">
+                            <tr>
+                                <th>Item Name: </th>
+                                <td>
+                                    <%= itemname %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Quantity: </th>
+                                <td>
+                                    <%= quantity %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rate: </th>
+                                <td>
+                                    <%= rate %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Added By: </th>
+                                <td>
+                                    <%= addedby %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Received Date: </th>
+                                <td>
+                                    <%= receiveddatetime %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Remaied Item: </th>
+                                <td>
+                                    <%= remaineditem %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Description: </th>
+                                <td>
+                                    <%= description %>
+                                </td>
+                            </tr>
+                        </table>
+                        <div >
+                            <a href="/inventory">
+                                <button class="button"> Go back to Main</button></a>
+                        </div>
+                        <% } %>
+                    </div>
             </section>
         </main>
         <%- include('../layouts/footer'); -%>

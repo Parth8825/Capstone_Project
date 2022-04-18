@@ -11,39 +11,40 @@
             <section class="page">
                 <% if(typeof(endTime) !='undefined' ){ %>
                     <h2 class="editedSchedule">Schedule successfully updated!!</h2>
-                    <table>
-                        <tr>
-                            <th>Employee Name: </th>
-                            <td>
-                                <%= employeeName %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Day: </th>
-                            <td>
-                                <%= day %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Start Time: </th>
-                            <td>
-                                <%= startTime %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>End Time </th>
-                            <td>
-                                <%= endTime %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <a href="/schedule" class="buttonAttendance">Go back to Main</a>
-                            </th>
-                        </tr>
+                    <div class="cardSchedule">
+                        <table class="table">
+                            <tr>
+                                <th>Employee Name: </th>
+                                <td>
+                                    <%= employeeName %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Day: </th>
+                                <td>
+                                    <%= day %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Start Time: </th>
+                                <td>
+                                    <%= startTime %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>End Time </th>
+                                <td>
+                                    <%= endTime %>
+                                </td>
+                            </tr>
 
-                    </table>
-                    <% } %>
+                        </table>
+                        <div >
+                            <a href="/schedule">
+                                <button class="button"> Go back to Main</button></a>
+                        </div>
+                        <% } %>
+                    </div>
             </section>
         </main>
         <%- include('../layouts/footer'); -%>

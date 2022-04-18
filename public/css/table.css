@@ -4,16 +4,25 @@
   box-sizing: border-box;
 }
 
+main{
+  min-height: 70vh;
+}
+
 /***********************
 CSS FOR EMPLOYEE HEADER
 ************************/
-#employeeDetails, #attendance, #itemDetails, #schedule  {
+#employeeDetails,
+#attendance,
+#itemDetails,
+#schedule {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
   padding: .5% .5%;
   color: #063057;
-  margin: 1% 40% 4% 40%;
-  font-size: 160%;
+  position: relative;
+  width: 200px;
+  margin: 1% auto;
+  font-size: 150%;
   border-top: 4px double #052441;
   border-bottom: 4px double #052441;
   background-color: rgba(195, 195, 216, 0.3);
@@ -27,7 +36,7 @@ CSS FOR EMPLOYEE HEADER
 /*******************************
 CSS FOR ADD,EDIT,DELETE MESSAGES
 *********************************/
-.messages{
+.messages {
   text-align: center;
   position: relative;
   align-items: center;
@@ -43,13 +52,16 @@ CSS FOR THE EMPLOYEE PAGE'S TABLE
 *********************************/
 .content-table {
   border-collapse: collapse;
-  width: 100%;
+  width: 99.5%;
   font-size: 115%;
-  min-width: 400px;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   margin: auto 2px;
+}
+
+.table{
+  overflow-x: auto;
 }
 
 /************************************
@@ -92,13 +104,13 @@ CSS FOR THE EMPLOYEE PAGE'S TABLE HEADER
 /*****************************************
 CSS FOR THE EMPLOYEE PAGE'S NAME COLUMN
 ******************************************/
-.link:hover{
+.link:hover {
   transition: .75s;
   font-size: 110%;
   font-weight: 500;
 }
 
-.link{
+.link {
   color: #1c5b97;
 }
 
@@ -107,7 +119,8 @@ CSS FOR THE EMPLOYEE PAGE'S EDIT AND DELETE BUTTON
 **************************************************/
 .buttons {
   display: inline-flex;
-  padding-right: 15px;
+  position: relative;
+  right: 10%;
 }
 
 /********************************************
@@ -224,4 +237,81 @@ CSS FOR THE EMPLOYEE PAGE'S TABLE EDIT BUTTON
 .deleteButton:hover:before,
 .deleteButton:hover:after {
   top: 0;
+}
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  .table{
+    overflow-x:hidden;
+    border: 4px double #052441;
+    border-radius: 5px;
+
+  }
+
+  .content-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    margin-bottom: 30px;
+  }
+
+  .content-table tbody tr td {
+    font-size: .9em;
+    border: none;
+    position: relative;
+    padding-left: 43%;
+  }
+
+  .content-table tbody tr td:before {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  td:nth-of-type(1):before {
+    content: "Employee Details:";
+  }
+
+  .content-table tbody tr td:not(:first-child) {
+    display: none;
+  }
+
+  .content-table tbody tr td:last-of-type {
+    display: block;
+  }
+
+  .content-table tbody tr:last-of-type {
+    border: none;
+  }
+
+  #employeeDetails,
+  #attendance,
+  #itemDetails,
+  #schedule {
+    padding: 1.25%;
+    display: block;
+    margin: 5% auto;
+    width: 170px;
+    box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 135%;
+    color: #002d5a;
+  }
 }

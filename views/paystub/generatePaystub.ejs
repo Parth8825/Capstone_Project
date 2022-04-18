@@ -11,7 +11,7 @@
             <form name="Employee" method="post" class="paystubForm">
                 <% var employeeId %>
                     <label class="paystubLable">Employee Name: </label>
-                    <select name="name" id="name" class="paystubTextboxes select">
+                    <select name="name" id="name" class="paystubTextboxes select" autofocus>
                         <option value="---Select Employee---">-------------- Select Employee --------------</option>
                         <% for(var employee of employees){ %>
                             <% var name=employee.name%>

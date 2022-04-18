@@ -10,73 +10,74 @@
     <main>
       <% if(typeof(takeHome) !='undefined' ){ %>
         <h2 class="paystubDisplay">Your Paystub is here!!</h2>
-        <table>
-          <tr>
-            <th>Name: </th>
-            <td>
-              <%= employeeName %>
-            </td>
-          </tr>
-          <tr>
-            <th>Date: </th>
-            <td>
-              <%= date %>
-            </td>
-          </tr>
-          <tr>
-            <th>Week-Hours: </th>
-            <td>
-              <%= weeklyHours %>
-            </td>
-          </tr>
-          <tr>
-            <th>Pay Rate: </th>
-            <td>
-              $<%= payrate %>
-            </td>
-          </tr>
-          <tr>
-            <th>Gross Pay: </th>
-            <td>
-              $<%= grossPay %>
-            </td>
-          </tr>
-          <tr>
-            <th>CPP: </th>
-            <td>
-              $<%= cpp %>
-            </td>
-          </tr>
-          <tr>
-            <th>EI: </th>
-            <td>
-              $<%= ei %>
-            </td>
-          </tr>
-          <tr>
-            <th>Provincial Tax: </th>
-            <td>
-              $<%= provincialTaxes %>
-            </td>
-          </tr>
-          <tr>
-            <th>Federal Tax: </th>
-            <td>
-              $<%= federalTaxes %>
-            </td>
-          </tr>
-          <tr>
-            <th>Net Pay: </th>
-            <td>
-              $ <%= takeHome %>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <a href="/paystub" class="buttonPaystub">Go back to Main</a>
-            </th>
-          </tr>
-        </table>
-        <% } %>
+        <div class="cardPaystub">
+          <table class="table">
+            <tr>
+              <th>Name: </th>
+              <td>
+                <%= employeeName %>
+              </td>
+            </tr>
+            <tr>
+              <th>Date: </th>
+              <td>
+                <%= date %>
+              </td>
+            </tr>
+            <tr>
+              <th>Week-Hours: </th>
+              <td>
+                <%= weeklyHours %>
+              </td>
+            </tr>
+            <tr>
+              <th>Pay Rate: </th>
+              <td>
+                $<%= payrate %>
+              </td>
+            </tr>
+            <tr>
+              <th>Gross Pay: </th>
+              <td>
+                $<%= grossPay %>
+              </td>
+            </tr>
+            <tr>
+              <th>CPP: </th>
+              <td>
+                $<%= cpp %>
+              </td>
+            </tr>
+            <tr>
+              <th>EI: </th>
+              <td>
+                $<%= ei %>
+              </td>
+            </tr>
+            <tr>
+              <th>Provincial Tax: </th>
+              <td>
+                $<%= provincialTaxes %>
+              </td>
+            </tr>
+            <tr>
+              <th>Federal Tax: </th>
+              <td>
+                $<%= federalTaxes %>
+              </td>
+            </tr>
+            <tr>
+              <th>Net Pay: </th>
+              <td>
+                $ <%= takeHome %>
+              </td>
+            </tr>
+          </table>
+          <div>
+            <a href="/paystub">
+              <button class="button"> Go back to Main</button></a>
+          </div>
+          <% } %>
+        </div>
     </main>
     <%- include('../layouts/footer'); -%>
