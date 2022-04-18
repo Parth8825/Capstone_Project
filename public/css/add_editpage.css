@@ -396,6 +396,17 @@ footer {
   right: 10px;
 }
 
+@media only screen and (max-width: 1242px){
+  .errors {
+    float: left;
+    top: 900px;
+    right: 50%;
+    animation: none;
+  }
+
+
+}
+
 @media only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 724px) {
 
@@ -411,6 +422,14 @@ footer {
   .userProfileForm,
   .passwordResetForm {
     width: 80%;
+    display: block;
+  }
+
+  .errors {
+    float: left;
+    top: 800px;
+    right: 50%;
+    animation: none;
   }
 
   #cancel {
@@ -544,6 +563,13 @@ footer {
   #enterEmail {
     font-size: 100%;
     width: 200px;
+  }
+
+  .errors {
+    float: left;
+    top: 1000px;
+    right: 30%;
+    animation: none;
   }
 
 }
