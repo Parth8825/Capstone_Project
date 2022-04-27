@@ -259,6 +259,7 @@ body {
   .loginBody {
     height: 90vh;
   }
+  
 }
 
 
@@ -268,8 +269,32 @@ body {
     padding: 0;
     margin: 0;
   }
-
+    
+  .loginBody,
+  .message,
+  .form,
+  .loginForm {
+    display:flex;
+  }
   .container {
+    display:flex;
+    background: white;
+    position:relative;
+  }
+  .message {
+    display:flex;
+    background: white;
+    width: 50%;
+    height: 100%;
+
+  }
+  .form--signup {
+    display:flex;
+  }
+  .form--login {
+    display:flex;
+  }
+  /* .container {
     transform: scale(0.45);
   }
 
@@ -279,5 +304,5 @@ body {
 
   .loginBody {
     height: 70vh;
-  }
+  } */
 }
