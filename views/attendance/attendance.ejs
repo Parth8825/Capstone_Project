@@ -1,6 +1,7 @@
 <%- include('../layouts/header'); -%>
 
     <link href="/css/table.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/confirmation.js" defer></script>
     </head>
 
     <body>
@@ -10,7 +11,7 @@
                 <h4>
                     <%= locals.admin ? admin: "Admin" %>
                 </h4>
-                
+
             </div>
         </a>
         <header>
@@ -63,7 +64,7 @@
                                                 <div class="buttons">
                                                     <a class="editButton"
                                                         href="/attendance/edit/<%= attendance.id %>">Edit</a>
-                                                    <a class="deleteButton"
+                                                    <a class="deleteButton" id="changeLink"
                                                         href="/attendance/delete/<%= attendance._id %>">Delete</a>
                                                 </div>
                                             </td>
