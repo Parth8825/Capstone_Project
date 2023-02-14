@@ -27,7 +27,7 @@
     "express": "^4.17.3",
     "express-session": "*",
     "express-validator": "*",
-    "mongoose": "^6.2.10",
+    "mongoose": "^6.4.6",
     "nodemailer": "^6.7.3",
     "nodemon": "*",
     "pdfkit": "^0.13.0",
