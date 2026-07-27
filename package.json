@@ -18,19 +18,23 @@
   },
   "homepage": "https://github.com/Parth8825/Capstone_Project#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "body-parser": "*",
-    "connect-flash": "*",
-    "cookie-parser": "*",
-    "dotenv": "^16.0.0",
-    "ejs": "*",
-    "express": "^4.17.3",
-    "express-session": "*",
-    "express-validator": "*",
-    "mongoose": "^6.4.6",
-    "nodemailer": "^6.7.3",
-    "nodemon": "*",
-    "pdfkit": "^0.13.0",
-    "uuid": "*"
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.1",
+    "mongoose": "^6.13.10",
+    "nodemailer": "^9.0.3",
+    "nodemon": "^3.1.9",
+    "pdfkit": "^0.16.0",
+    "uuid": "^11.1.0"
+  },
+  "overrides": {
+    "minimatch": "^10.0.3",
+    "tar": "^7.4.3"
   }
 }

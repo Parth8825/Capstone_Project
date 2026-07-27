@@ -198,13 +198,13 @@ const mailer = (email, otp)=>{
       port: 587,
       secure: false,
       auth: {
-          user: 'teamprtproject@gmail.com',
-          pass: 'info2310teamprt'
+          user: process.env.EMAIL_USER || '',
+          pass: process.env.EMAIL_PASS || ''
       }
   });
   
   let mailOptions = {
-      from: 'teamprtproject@gmail.com',
+      from: process.env.EMAIL_USER || 'noreply@example.com',
       to: email,
       subject: 'Here is your OTP, Please don\'t reply ',
       text: `Thank you! \n Your OTP is: ${otp} \n This code will expire in 2 minutes`
@@ -212,7 +212,7 @@ const mailer = (email, otp)=>{
 
   transporter.sendMail(mailOptions, function(err, info){
       if(err){
-          console.log(error);
+          console.log(err);
       }   else{
           console.log('Email send: ' + info.response );
       }

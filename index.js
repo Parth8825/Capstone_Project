@@ -41,12 +41,11 @@ var ourApp = express();
 ourApp.use(bodyParser.urlencoded({ extended: false }));
 ourApp.use(bodyParser.json());
 // set up cookies
-ourApp.use(cookieParse(uuidv4()));
+ourApp.use(cookieParse(process.env.SESSION_SECRET || uuidv4()));
 
 // set up session
 ourApp.use(session({
-    // uuid will provide unique Hash code for secret session
-    secret: uuidv4(), // '1b9d6bcd-bbfd-4b3s-9d6f-sd6sdffe6dx'
+    secret: process.env.SESSION_SECRET || uuidv4(),
     cookie: { maxAge: 1800000},
     resave: false,
     saveUninitialized: true
