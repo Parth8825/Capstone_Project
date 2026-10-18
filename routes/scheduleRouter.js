@@ -80,7 +80,7 @@ router.post('/addSchedule', [
         }
         var ourSchedule = new Schedule(scheduleData);
         ourSchedule.save().then(function(){
-            console.log('Schedule saved successfully');
+
         });
         req.flash('msg', 'Schedule Added successfully !!!');
         res.redirect('/schedule');
@@ -98,8 +98,8 @@ router.get('/edit/:scheduleId', function (req, res) {
             }
             else {
                 Schedule.findOne({ _id: scheduleId }).exec(function (err, schedule) {
-                    console.log('Error: ' + err);
-                    console.log('Schedule: ' + schedule);
+
+
                     if (schedule) {
                         res.render('schedule/editSchedule', { schedule: schedule, employees: employees });
                     }
@@ -132,8 +132,8 @@ router.post('/edit/:id', [
             }
             else {
                 Schedule.findOne({ _id: scheduleId }).exec(function (err, schedule) {
-                    console.log('Error: ' + err);
-                    console.log('Schedule: ' + schedule);
+
+
                     if(schedule){
                         res.render('schedule/editSchedule', { schedule:schedule, employees: employees, errors: errors.array()});
                     }
@@ -164,7 +164,7 @@ router.post('/edit/:id', [
             schedule.endTime = endTime;
 
             schedule.save().then(function () {
-                console.log('Schedule updated');
+
             });
         });
         res.render('schedule/editedScheduleDetail', scheduleData);
@@ -173,13 +173,13 @@ router.post('/edit/:id', [
 
 
 // DELETE SCHEDULE METHOD [GET]
-router.get('/delete/:id', function (req, res){
+router.post('/delete/:id', function (req, res){
     if (req.session.userLoggedIn) {
         var scheduleId = req.params.id;
-        console.log(scheduleId);
+
         Schedule.findByIdAndDelete({_id: scheduleId}).exec(function (err, schedule){
-            console.log('Error: ' + err);
-            console.log('Schedule: ' + schedule);
+
+
         });
         req.flash('msg', 'Schedule deleted successfully !!!');
         res.redirect('/schedule');

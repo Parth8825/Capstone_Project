@@ -1,287 +1,85 @@
 const express = require('express');
-const bcrypt = require('bcrypt'); // for password encryption
-var router = express.Router();
-module.exports = router;
-// getting models
+const bcrypt = require('bcrypt');
+const { randomInt, randomBytes, createHash } = require('node:crypto');
+const { rateLimit } = require('express-rate-limit');
 const Admin = require('../models/adminModel');
-const Otp = require('../models/otpModel'); 
-//setting up express validator
-const { check, validationResult } = require('express-validator');
+const Otp = require('../models/otpModel');
+const router = express.Router();
+const hash = value => createHash('sha256').update(value).digest('hex');
+const validPassword = value => typeof value === 'string' && value.length >= 12 && Buffer.byteLength(value) <= 72;
+const limiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: 'draft-8', legacyHeaders: false });
+const regenerate = req => new Promise((resolve, reject) => req.session.regenerate(err => err ? reject(err) : resolve()));
+const saveSession = req => new Promise((resolve, reject) => req.session.save(err => err ? reject(err) : resolve()));
 
-//login page
-router.get('/login', function (req, res) {
-  if (req.session.userLoggedIn) {
-      res.redirect('/');
-  }
-  else {
-      res.render('login');
-  }
-});
-// login user
-router.post('/login',[
-  check('username', 'username is required in Login').not().isEmpty(),
-  check('password', 'password is required in Login').not().isEmpty()
-], async function (req, res) {
-  const errors = validationResult(req);
-  try{
-      if (!errors.isEmpty()) {
-          res.render('login', {
-              errors: errors.array()
-          });
-      }
-      else{
-          var user = req.body.username;
-          var pass = req.body.password;
-          Admin.findOne({ username: user}).exec(async function (err, admin) {
-              console.log('Error: ' + err);
-              console.log('Admin: ' + admin);
-              if(!admin){
-                  return res.render('login', { loginError: 'Sorry, cannot find user !!' });
-              }
-              try{
-                  if(await bcrypt.compare(pass, admin.password)){
-                      // store username in session and set logged in true
-                      req.session.username = admin.username;
-                      req.session.userLoggedIn = true;
-                      // redirect to the dashboard
-                      res.redirect('/');
-                  }
-                  else {
-                  res.render('login', { loginError: 'Sorry, password is incorrect' });
-                  }
-              }
-              catch{
-                  res.status(500).send();
-              }
-          });
-      } 
-  }
-  catch{
-      res.status(500).send();
-  }
-  
-});
-
-// sign-up form
-router.get('/signup', function(req, res){
-    if (req.session.userLoggedIn) {
+router.get('/login', (req, res) => req.session.userLoggedIn ? res.redirect('/') : res.render('login'));
+// Administrators have access to all employee records. Provision them out of band.
+router.all('/signup', (req, res) => res.status(403).send('Contact your administrator for an account.'));
+router.post('/login', limiter, async (req, res, next) => {
+    try {
+        const { username, password } = req.body;
+        if (typeof username !== 'string' || typeof password !== 'string' || !username || Buffer.byteLength(password) > 72) {
+            return res.status(400).render('login', { loginError: 'Invalid username or password.' });
+        }
+        const admin = await Admin.findOne({ username });
+        // Compare a dummy hash as well to avoid a fast path for unknown usernames.
+        const matches = await bcrypt.compare(password, admin ? admin.password : '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy');
+        if (!admin || !matches) return res.status(401).render('login', { loginError: 'Invalid username or password.' });
+        await regenerate(req);
+        req.session.username = admin.username;
+        req.session.userLoggedIn = true;
+        await saveSession(req);
         res.redirect('/');
-    }
-    else {
-        res.render('login');
-    }
+    } catch (err) { next(err); }
 });
-// sign-up form
-router.post('/signup', [
-  check('newUsername').custom(customUserNameValidation),
-  check('newEmail', 'Please enter valid Email-Id').isEmail(),
-  check('newPassword', 'Password is required').not().isEmpty()
-],async function (req, res) {
-  const errors = validationResult(req);
-  try{
-      if (!errors.isEmpty()) {
-          res.render('login', {
-              errors: errors.array()
-          });
-      }
-      else{
-          var newUser = req.body.newUsername;
-          var newEmail = req.body.newEmail;
-
-          let adminName = await Admin.findOne({ username: newUser});
-          if(adminName){
-                if(adminName.mail == newEmail){
-                    return res.render('login', { loginError: 'User name & Email ID already exist, try different one' });
-                }
-                return res.render('login', { loginError: 'User under this name already exist, try different name' });
-          }
-
-          let adminEmail = await Admin.findOne({ mail: newEmail});
-          if(adminEmail){
-                return res.render('login', { loginError: 'Email ID already exist, try different Email ID' });
-          }
-          //creates a salt to generate new hash value every time.
-          const salt = await bcrypt.genSalt();
-          const hashedPassword = await bcrypt.hash(req.body.newPassword, salt); //converts password into hashcode and store into hashedPassword
-          var newPassword = hashedPassword;
-  
-          var loginData = {
-              username: newUser,
-              mail: newEmail,
-              password: newPassword
-          }
-          
-          var userLoginData = new Admin(loginData);
-          userLoginData.save().then(function (){
-              console.log('Login data saved');
-          });
-          res.render('login', { message: "Singed up  successfully....!" });
-      }
-  }
-  catch{
-      res.status(500).send();
-  }
-  
+router.post('/logout', (req, res, next) => {
+    req.session.destroy(err => {
+        if (err) return next(err);
+        res.clearCookie('connect.sid');
+        res.redirect('/login');
+    });
 });
-// logout process
-router.get('/signup', function (req, res) {
-  if (req.session.userLoggedIn) {
-      res.redirect('/');
-  }
-  else {
-      res.render('login');
-  }
-});
-// logout process
-router.get('/logout', function (req, res) {
-  if (req.session.userLoggedIn) {
-      req.session.destroy(function (err) {
-          if (err) {
-              console.log(err);
-              res.send("Error")
-          }
-          else {
-             res.render('login', { message: "logout successfully....!" });
-          }
-      });
-  }
-  else {
-      res.redirect('/login');
-  }
-  
-});
-
-// verify email process [GET]
-router.get('/verifyEmail', function (req, res) {
-  res.render('changePassword/verifyEmail');
-});
-// verify email process [POST]
-router.post('/verifyEmail', [
-    check('yourEmail', 'Email is required').not().isEmpty(),
-],async function (req, res) {
-    const errors = validationResult(req);
-    try{
-        if (!errors.isEmpty()) {
-            res.render('changePassword/verifyEmail', {
-                errors: errors.array()
+router.get('/verifyEmail', (req, res) => res.render('changePassword/verifyEmail'));
+router.post('/verifyEmail', limiter, async (req, res, next) => {
+    try {
+        const email = req.body.yourEmail;
+        if (typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
+            return res.status(400).render('changePassword/verifyEmail', { error: 'Enter a valid email address.' });
+        }
+        // Every request gets an opaque challenge, including unknown addresses.
+        const challenge = randomBytes(32).toString('hex');
+        req.session.resetChallenge = challenge;
+        const admin = await Admin.findOne({ mail: email });
+        if (admin) {
+            const code = String(randomInt(100000, 1000000));
+            await Otp.deleteMany({ mail: email });
+            await Otp.create({ mail: email, challenge, codeHash: hash(code), expiresAt: new Date(Date.now() + 300000), attempts: 0 });
+            const transporter = require('nodemailer').createTransport({
+                service: 'gmail', auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS }
             });
+            await transporter.sendMail({ from: process.env.EMAIL_USER, to: email,
+                subject: 'Password reset code', text: `Your code is ${code}. It expires in 5 minutes.` });
         }
-        else{
-          let emailid = req.body.yourEmail;
-          let email = await Admin.findOne({mail: emailid});
-          if(email){
-              let otpcode = Math.floor((Math.random()*10000)+1);
-              let otpData = new Otp({
-                  mail: emailid,
-                  code: otpcode,
-                  expireIn: new Date().getTime() + 300*1000
-              });
-              let otpResponse = await otpData.save();
-              mailer(emailid,otpcode); // calling an object
-              res.render('changePassword/resetPassword', otpResponse);
-              console.log('Success !!! Please check your email id')
-          }
-          else {
-              res.render('changePassword/verifyEmail', {error: 'email id not exist, please enter valid mail id'});
-          }
-        }
-    }catch{
-        res.status(500).send();
-    }
+        await saveSession(req);
+        res.render('changePassword/resetPassword');
+    } catch (err) { next(err); }
 });
-
-// object which is going to send the mail to the client to get the OTP 
-const mailer = (email, otp)=>{
-  const nodemailer = require('nodemailer');
-  let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      port: 587,
-      secure: false,
-      auth: {
-          user: process.env.EMAIL_USER || '',
-          pass: process.env.EMAIL_PASS || ''
-      }
-  });
-  
-  let mailOptions = {
-      from: process.env.EMAIL_USER || 'noreply@example.com',
-      to: email,
-      subject: 'Here is your OTP, Please don\'t reply ',
-      text: `Thank you! \n Your OTP is: ${otp} \n This code will expire in 2 minutes`
-  };
-
-  transporter.sendMail(mailOptions, function(err, info){
-      if(err){
-          console.log(err);
-      }   else{
-          console.log('Email send: ' + info.response );
-      }
-  });
-}
-
-// change password process
-router.post('/resetPssword', [
-    check('otp', 'OTP is required').not().isEmpty(),
-    check('resetPassword', 'Password is required').not().isEmpty()
-],async function (req, res) {
-    const errors = validationResult(req);
-    try{
-        if (!errors.isEmpty()) {
-            res.render('changePassword/resetPassword', {
-                errors: errors.array()
-            });
-        }
-        else{
-            Otp.findOne({code: req.body.otp}).exec(async function (err, otp) {
-    
-                if(otp){
-                    let currentTime = new Date().getTime();
-                    let diff = otp.expireIn - currentTime;
-                    if(diff < 0){
-                        res.render('changePassword/resetPassword',  {error: 'Token Exprired'})
-                    }else{
-                        var mail = otp.mail;
-                        const newSalt = await bcrypt.genSalt();
-                        const hashedResetPassword = await bcrypt.hash(req.body.resetPassword, newSalt);
-                        Admin.findOne({mail: mail}).exec(async function (err, admin) {
-                            admin.password = hashedResetPassword;
-                            admin.save();
-                            console.log('New password saved');
-                            res.redirect('/login');
-                        });
-                        
-                    }
-                }
-                else{
-                    res.render('changePassword/resetPassword',  {error: 'Invalid OTP'})
-                }
-            });
-        }
-    }
-    catch{
-        res.status(500).send();
-    }
-    
+router.post('/resetPssword', limiter, async (req, res, next) => {
+    try {
+        const { otp, resetPassword } = req.body;
+        const invalid = () => res.status(400).render('changePassword/resetPassword', { error: 'Invalid or expired code, or password must be at least 12 characters and at most 72 bytes.' });
+        if (!req.session.resetChallenge || typeof otp !== 'string' || !/^\d{6}$/.test(otp) || !validPassword(resetPassword)) return invalid();
+        // Increment attempts atomically; concurrent requests cannot bypass the limit.
+        const challenge = req.session.resetChallenge;
+        const attempt = await Otp.findOneAndUpdate({ challenge, expiresAt: { $gt: new Date() }, attempts: { $lt: 5 } }, { $inc: { attempts: 1 } });
+        if (!attempt || attempt.codeHash !== hash(otp)) return invalid();
+        const password = await bcrypt.hash(resetPassword, 12);
+        // Atomic consumption ensures only one request can use a valid code.
+        const consumed = await Otp.findOneAndDelete({ _id: attempt._id, codeHash: hash(otp), expiresAt: { $gt: new Date() } });
+        if (!consumed) return invalid();
+        await Admin.updateOne({ mail: consumed.mail }, { $set: { password } });
+        await regenerate(req);
+        await saveSession(req);
+        res.redirect('/login');
+    } catch (err) { next(err); }
 });
-
-// Validations
-// Defining regular expressions
-var latterAndThenNumberRegex = /^[a-zA-Z]*\d*$/;
-// function to check a value using regular expression
-function checkRegex(userInput, regex) {
-  if (regex.test(userInput)) {
-      return true;
-  }
-  else {
-      return false;
-  }
-}
-// custome sign-up user name validation
-function customUserNameValidation(value){
-  if(value === ''){
-      throw new Error('User name is required');
-  }else if(!checkRegex(value, latterAndThenNumberRegex)){
-      throw new Error('First should be character then numeric value Ex. John123');
-  }
-  return true;
-}
+module.exports = router;

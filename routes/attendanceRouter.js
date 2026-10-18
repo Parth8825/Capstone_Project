@@ -77,7 +77,7 @@ router.post('/addAttendance', [
         }
         var ourAttendance = new Attendance(attendanceData);
         ourAttendance.save().then(function(){
-            console.log('Attedance saved successfully');
+
         });
         req.flash('msg', 'Attendance added successfully !!!');
         res.redirect('/attendance');
@@ -93,8 +93,8 @@ router.get('/edit/:id', function(req, res){
             }
             else {
                 Attendance.findOne({ _id: attendanceId }).exec(function (err, attendance) {
-                    console.log('Error: ' + err);
-                    console.log('Schedule: ' + attendance);
+
+
                     if (attendance) {
                         res.render('attendance/editAttendance', { attendance: attendance, employees: employees });
                     }
@@ -153,20 +153,20 @@ router.post('/edit/:id',[
             attendance.sDay = sDay;
             attendance.attendance = takeAttendance;
             attendance.save().then(function (){
-                console.log('Attandance updated');
+
             });
         });
         res.render('attendance/editedAttendanceDetail', attandanceData);
     }
 });
 // DELETE ATTENDANCE
-router.get('/delete/:id', function (req, res){
+router.post('/delete/:id', function (req, res){
     if (req.session.userLoggedIn) {
         var attendanceId = req.params.id;
-        console.log(attendanceId);
+
         Attendance.findByIdAndDelete({_id: attendanceId}).exec(function (err, attendance){
-            console.log('Error: ' + err);
-            console.log('Attendance: ' + attendance);
+
+
         });
         req.flash('msg', 'Attendance deleted successfully !!!');
         res.redirect('/attendance');

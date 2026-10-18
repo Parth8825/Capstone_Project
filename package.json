@@ -4,8 +4,10 @@
   "description": "Academic Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "node --test",
+    "create-admin": "node scripts/create-admin.js"
   },
   "repository": {
     "type": "git",
@@ -18,23 +20,23 @@
   },
   "homepage": "https://github.com/Parth8825/Capstone_Project#readme",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.3",
+    "bcrypt": "^6.0.0",
     "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.7",
+    "connect-mongo": "^5.1.0",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "express-rate-limit": "^8.7.1",
     "express-session": "^1.18.1",
     "express-validator": "^7.2.1",
     "mongoose": "^6.13.10",
-    "nodemailer": "^9.0.3",
-    "nodemon": "^3.1.9",
-    "pdfkit": "^0.16.0",
-    "uuid": "^11.1.0"
+    "nodemailer": "^10.1.6",
+    "pdfkit": "^0.16.0"
   },
-  "overrides": {
-    "minimatch": "^10.0.3",
-    "tar": "^7.4.3"
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "supertest": "^7.3.1"
   }
 }

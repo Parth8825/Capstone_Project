@@ -101,7 +101,7 @@ router.post('/generatePaystub', [
                 }
                 var ourPaystub = new Paystub(payStubData);
                 ourPaystub.save().then(function(){
-                    console.log('Paystub saved successfully');
+
                 });
                 //req.flash('msg', 'Schedule Added successfully !!!');
                 res.render('paystub/displayPaystub', payStubData);

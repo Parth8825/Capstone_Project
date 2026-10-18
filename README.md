@@ -18,7 +18,7 @@ The **Employee Management System (EMS)** is a full-stack web application built t
 ## ✨ Key Features
 
 * 🔐 **Authentication & Security**
-  * Secure Admin Login & Registration with hashed passwords (`bcrypt`).
+  * Administrator login and operator-managed account provisioning with hashed passwords (`bcrypt`).
   * OTP-based email password recovery via Nodemailer.
   * Session and cookie management with configurable secret keying.
 
@@ -49,7 +49,7 @@ The **Employee Management System (EMS)** is a full-stack web application built t
 * **View Engine:** EJS (Embedded JavaScript Templates)
 * **Styling & Assets:** Custom CSS & static assets
 * **PDF Service:** `pdfkit`
-* **Email Service:** `nodemailer` (`^9.0.3`)
+* **Email Service:** `nodemailer`
 
 ---
 
@@ -58,7 +58,7 @@ The **Employee Management System (EMS)** is a full-stack web application built t
 ### Prerequisites
 
 Ensure you have the following installed on your machine:
-* [Node.js](https://nodejs.org/) (v16 or higher) & `npm`
+* [Node.js](https://nodejs.org/) (v22 or higher) & `npm`
 * [MongoDB](https://www.mongodb.com/) (Local server via MongoDB Community Edition / Docker OR [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) cloud cluster)
 
 ---
@@ -73,7 +73,7 @@ Ensure you have the following installed on your machine:
 
 2. **Install Dependencies:**
    ```bash
-   npm install
+   npm ci
    ```
 
 3. **Configure Environment Variables:**
@@ -81,19 +81,19 @@ Ensure you have the following installed on your machine:
    ```env
    PORT=8080
    MONGO_DATABASE_URL=mongodb://127.0.0.1:27017/capstone_db
-   SESSION_SECRET=your_random_secure_secret_here
+   SESSION_SECRET=<generate-a-random-secret-of-at-least-32-characters>
    EMAIL_USER=your_email@gmail.com
    EMAIL_PASS=your_gmail_app_password
    ```
 
 4. **Start the Application:**
-   * **Development mode (with Nodemon):**
+   * **Development mode (Node watch):**
      ```bash
-     npm start
+     npm run dev
      ```
    * **Standard mode:**
      ```bash
-     node index.js
+     npm start
      ```
 
 5. **Access the Web Application:**
@@ -124,7 +124,7 @@ Ensure you have the following installed on your machine:
 
 ## 🔒 Security Status
 
-* **Vulnerabilities Audit:** `0 vulnerabilities` (All dependencies updated & patched).
+* Run `npm audit` against the committed lockfile to check current dependency advisories. Audit results are time-dependent and do not replace an application security review.
 * **Environment Credentials:** Sensitive data (MongoDB URIs, Email credentials, Session secrets) are stored in `.env` and kept out of version control.
 
 ---
@@ -132,3 +132,13 @@ Ensure you have the following installed on your machine:
 ## 📄 License
 
 This project is licensed under the **ISC License**.
+
+## Security configuration and migration
+
+- Set a random `SESSION_SECRET` of at least 32 characters (for example, generate one with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`). Startup fails if it is missing or too short.
+- Sessions are persisted in MongoDB. Production requires HTTPS and `NODE_ENV=production` for secure cookies. Set `TRUST_PROXY=1` only behind exactly one trusted reverse proxy that overwrites forwarded client headers; otherwise leave it unset.
+- Public signup is disabled because every account can access all employee/payroll data. Existing accounts still work. To provision an administrator, supply `ADMIN_USERNAME`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` through your shell's secret input or a temporary local environment, then run `npm run create-admin`. Remove these variables afterward. Do not commit credentials. New/reset passwords require 12 characters and at most 72 UTF-8 bytes.
+- Existing reset codes are invalidated by the new schema. Request a new code; codes last five minutes, are session-bound and single-use, and allow at most five guesses. Keep the same browser session open during recovery. Old OTP documents without `expiresAt` can be removed by an operator after deployment.
+- Delete and logout actions now require POST with a session CSRF token. All HTML forms include this token.
+- Login and password recovery share a limit of 10 requests per IP per 15 minutes. The limiter uses process-local storage; use a shared rate-limit store before scaling to multiple application instances.
+- `npm test` runs HTTP security regression tests with mocked database/email operations. A real MongoDB/Gmail deployment smoke test is still required before release. Review existing administrator accounts, because accounts created through the former public signup remain authorized.

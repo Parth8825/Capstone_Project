@@ -1,11 +1,5 @@
-document.getElementById("changeLink").onclick = function() {
-  var getConfirmation = confirm("Please select OK to Delete record");
-  if(getConfirmation){
-    let link = "/delete/<%= employee._id %>";
-    document.getElementById("changeLink").href = link;
-  }
-  else{
-    let link = "/";
-    document.getElementById("changeLink").href = link;
-  }
-}
+document.querySelectorAll('form[action*="/delete/"]').forEach(form => {
+  form.addEventListener('submit', event => {
+    if (!confirm('Please select OK to delete this record')) event.preventDefault();
+  });
+});

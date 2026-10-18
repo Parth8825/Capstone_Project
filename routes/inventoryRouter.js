@@ -110,7 +110,7 @@ router.post('/addInventory', [
         // create an object for the model Employee
         var ourInventory = new Inventory(inventoryData);
         ourInventory.save().then(function () {
-            console.log('New Item in Inventory added');
+
         });
         req.flash('msg', 'Item added successfully !!!');
         res.redirect('/inventory');
@@ -128,8 +128,8 @@ router.get('/edit/:inventoryId', function (req, res) {
             }
             else {
                 Inventory.findOne({ _id: inventoryId }).exec(function (err, inventory) {
-                    console.log('Error: ' + err);
-                    console.log('Inventory: ' + inventory);
+
+
                     if (inventory) {
                         res.render('inventory/editInventory', { inventory: inventory, employees: employees });
                     }
@@ -163,8 +163,8 @@ router.post('/edit/:id', [
             }
             else {
                 Inventory.findOne({ _id: inventoryId }).exec(function (err, inventory) {
-                    console.log('Error: ' + err);
-                    console.log('Inventory: ' + inventory);
+
+
                     if(inventory){
                         res.render('inventory/editInventory', { inventory:inventory, employees: employees, errors: errors.array()});
                     }
@@ -204,7 +204,7 @@ router.post('/edit/:id', [
             inventory.remaineditem = remaineditem;
             inventory.description = description;
             inventory.save().then(function () {
-                console.log('Inventory updated');
+
             });
         });
         res.render('inventory/editedInventoryDetail', inventoryData);
@@ -213,14 +213,14 @@ router.post('/edit/:id', [
 });
 
 // DELETE INVENTORY ITEM FROM THE DATABASE
-router.get('/delete/:inventoryId', function (req, res) {
+router.post('/delete/:inventoryId', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
         var inventoryId = req.params.inventoryId;
-        console.log(inventoryId);
+
         Inventory.findByIdAndDelete({ _id: inventoryId }).exec(function (err, inventory) {
-            console.log('Error: ' + err);
-            console.log('Item: ' + inventory);
+
+
         });
         req.flash('msg', 'Item from Inventory deleted successfully !!!');
         res.redirect('/inventory');
