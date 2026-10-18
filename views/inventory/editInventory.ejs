@@ -12,6 +12,7 @@
         <main>
             <h1 id="addItem">Edit Item to Inventory</h1>
             <form name="Inventory" method="post" action="/inventory/edit/<%= inventory.id %>" class="inventoryForm">
+<input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="textboxes">
                     <label class="inventoryLable">Item Name: </label>
                     <input id="itemname" placeholder="Item Name" type="text" name="itemname" class="inventoryTextboxes"

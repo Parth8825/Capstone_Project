@@ -64,8 +64,8 @@
                                                 <div class="buttons">
                                                     <a class="editButton"
                                                         href="/attendance/edit/<%= attendance.id %>">Edit</a>
-                                                    <a class="deleteButton" id="changeLink"
-                                                        href="/attendance/delete/<%= attendance._id %>">Delete</a>
+                                                    <form method="post" action="/attendance/delete/<%= attendance._id %>" style="display:inline">
+<input type="hidden" name="_csrf" value="<%= csrfToken %>"><button class="deleteButton" type="submit">Delete</button></form>
                                                 </div>
                                             </td>
                                         </tr>

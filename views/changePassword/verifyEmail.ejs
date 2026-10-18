@@ -9,6 +9,7 @@
     <main>
       <h1 id="enterEmail">Enter Registered Email ID</h1>
       <form method="post" action="/verifyEmail" class="passwordResetForm">
+<input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
         <label class="paystubLable">Enter Your Email: </label>
         <input id="yourEmail" type="email" name="yourEmail" class="paystubTextboxes" autofocus><br />

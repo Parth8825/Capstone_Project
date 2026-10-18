@@ -75,8 +75,8 @@
                                                 <div class="buttons">
                                                     <a class="editButton"
                                                         href="../inventory/edit/<%= inventory._id %>">Edit</a>
-                                                    <a class="deleteButton" id="changeLink"
-                                                        href="../inventory/delete/<%= inventory._id %>">Delete</a>
+                                                    <form method="post" action="/inventory/delete/<%= inventory._id %>" style="display:inline">
+<input type="hidden" name="_csrf" value="<%= csrfToken %>"><button class="deleteButton" type="submit">Delete</button></form>
                                                 </div>
                                             </td>
                                         </tr>

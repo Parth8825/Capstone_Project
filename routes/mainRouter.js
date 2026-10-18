@@ -131,7 +131,7 @@ router.post('/addEmployee', [
         // create an object for the model Employee
         var ourEmployees = new Employee(employeeData);
         ourEmployees.save().then(function () {
-            console.log('New Employee created');
+
         });
         req.flash('msg', '\"' + employeeData.name + '\"' +' added successfully !!!');
         res.redirect('/');
@@ -143,10 +143,10 @@ router.get('/edit/:employeeId', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
         var employeeId = req.params.employeeId;
-        console.log(employeeId);
+
         Employee.findOne({ _id: employeeId }).exec(function (err, employee) {
-            console.log('Error: ' + err);
-            console.log('Employee: ' + employee);
+
+
             if (employee) {
                 res.render('employee/editEmployee', { employee: employee });
             }
@@ -174,8 +174,8 @@ router.post('/edit/:id', [
     if (!errors.isEmpty()) {
         var employeeId = req.params.id;
         Employee.findOne({ _id: employeeId }).exec(function (err, employee) {
-            console.log('Error: ' + err);
-            console.log('Employee: ' + employee);
+
+
             if(employee){
                 res.render('employee/editEmployee', { employee:employee, errors: errors.array()});
             }
@@ -215,7 +215,7 @@ router.post('/edit/:id', [
             employee.position = position;
             employee.payrate = payrate;
             employee.save().then(function () {
-                console.log('Employee updated');
+
             });
         });
         res.render('employee/editedEmployeeDetail', employeeData);
@@ -224,14 +224,14 @@ router.post('/edit/:id', [
 });
 
 // delete employee data from database
-router.get('/delete/:employeeId', function (req, res) {
+router.post('/delete/:employeeId', function (req, res) {
     // check if thr user is logged in 
     if (req.session.userLoggedIn) {
         var employeeId = req.params.employeeId;
-        console.log(employeeId);
+
         Employee.findByIdAndDelete({ _id: employeeId }).exec(function (err, employee) {
-            console.log('Error: ' + err);
-            console.log('Employee: ' + employee);
+
+
         });
         req.flash('msg', 'Employee deleted successfully !!!');
         res.redirect('/');

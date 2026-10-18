@@ -9,6 +9,7 @@
     <main>
       <h1 id="userProfile">User Profile</h1>
       <form action="" class="userProfileForm">
+<input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
         <label class="userProfileLable">User Name: </label>
         <input id="yourName" type="text" name="yourName" class="userProfileTextboxes" value="<%= name %>" readonly><br />

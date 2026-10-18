@@ -8,7 +8,8 @@
             <li><a href="/schedule"><img src="../../images/schedule.png" alt="">Schedule</a></li>
             <li><a href="/attendance"><img src="../../images/attendance.png" alt="">Attendance</a></li>
             <li><a href="/aboutus"><img src="../../images/aboutus.png" alt="">About Us</a></li>
-            <li><a href="/logout"><img src="../../images/logout.png" alt="">log out</a></li>
+            <li><form method="post" action="/logout">
+<input type="hidden" name="_csrf" value="<%= csrfToken %>"><button type="submit">Log out</button></form></li>
         </div>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <img src="../../images/list.png" alt="" class="listImage">

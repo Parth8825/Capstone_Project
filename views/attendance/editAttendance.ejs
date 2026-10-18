@@ -10,6 +10,7 @@
         <main>
             <h1 id="createSchedule">Take Attendance</h1>
             <form name="Attendance" method="post" action="/attendance/edit/<%= attendance.id %>" class="attendanceForm">
+<input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="textboxes">
                     <label class="attendanceLable">Employee Name: </label>
                     <select name="eName" id="eName" class="attendanceTextboxes select">

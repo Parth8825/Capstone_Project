@@ -9,6 +9,7 @@
         <main>
             <h1 id="createSchedule">Create a Schedule</h1>
             <form name="Inventory" method="post" action="/schedule/addSchedule" class="scheduleForm">
+<input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="textboxes">
                     <label class="scheduleLable">Employee Name: </label>
 
